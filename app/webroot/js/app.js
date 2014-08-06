@@ -4,8 +4,6 @@ $(document).ready(function() {
 		$('.lessons-menu').hide();
 		$(this).children('.lessons-menu').show();
 	});
-
-	$('.item_nav_video').width($('#navigation_videos').width() / 3 - 4);
 	
 
 	$('#search_lessons').keyup(function(){
@@ -54,15 +52,37 @@ $(document).ready(function() {
 
 	// changer le background en fonction de l'heure de la journée
 	var d = new Date();
-	// var n = d.getHours();
-	// if(n >= 19 || n < 8) {
-		$('#container').removeClass('day');
+	var n = d.getHours();
+
+	if(n >= 6 || n < 7) {	//Lever du jour
+		$('#container').removeClass();
+		$('#container').addClass('sunrise');
+	}
+	if(n >= 7 || n < 19) {	//Jour 
+		$('#container').removeClass();
+		$('#container').addClass('day');
+	}
+	if(n >= 19 || n < 20) {	//Coucher du soleil
+		$('#container').removeClass();
+		$('#container').addClass('sunset');
+	}
+	if(n >= 20 || n < 21) {	//Fin du Coucher du soleil
+		$('#container').removeClass();
+		$('#container').addClass('endsunset');
+	}
+	if(n >= 21 || n < 6) {	//Nuit
+		$('#container').removeClass();
 		$('#container').addClass('night');
-	// } else {
-	// 	$('#container').addClass('day');
-	// 	$('#container').removeClass('night');
-	// }
-	$('#close_menu').click(function() {
+	}
+
+
+	$('.button_login').click(function() {
+		$('#form_login').show();
+		$('#buttons_users').hide();
+	});
+
+
+	$('#menu-item-close').click(function() {
 		if($('#header').hasClass('hidden')) {
 			$('#header').removeClass('hidden');
 			$('#content').animate({

@@ -15,7 +15,7 @@ class VideosController extends AppController {
 	public function view($id = null) {
         $this->Video->id = $id;
 
-        $alls = $this->Video->find('all', array('conditions' => array('pole_id' => $this->Video->field('pole_id'))));
+        $alls = $this->Video->find('all', array('conditions' => array('learning_id' => $this->Video->field('learning_id'))));
 
         if (!$this->Video->exists()) {
             throw new NotFoundException(__('Video invalide'));
@@ -26,9 +26,7 @@ class VideosController extends AppController {
         ));
     }
 
-    public function add() {
-        $this->layout = 'admin';
-        
+    public function admin_add() {
         if ($this->request->is('post')) {
             $this->Video->create();
             if ($this->Video->save($this->request->data)) {

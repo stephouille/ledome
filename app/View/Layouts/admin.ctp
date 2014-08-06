@@ -27,6 +27,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
+	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -39,11 +40,22 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			ADMIN le dome
+	<div id="container" class="pure-g">
+		<div id="header" class="pure-u-1-5">
+			<div class="pure-menu pure-menu-open">
+				<div id="member_admin">
+					<?php echo $this->Html->image('avatar.jpg', array('alt' => 'icon lessons')); ?>
+					<?php echo $this->Html->link('Déconnexion', array('controller'=>'admin','action' => 'logout'), array('title' => 'logout')); ?>
+				</div>
+			    <!-- <a class="pure-menu-heading">ADMIN le dome</a> -->
+			    <ul>
+			        <!-- <li><a href="#">Statistiques</a></li> -->
+			        <li><a href="#">Apprentissages</a></li>
+			        <!-- <li class="pure-menu-heading">More Sites!</li> -->
+			    </ul>
+			</div>
 		</div>
-		<div id="content">
+		<div id="content" class="pure-u-4-5">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
 		</div>

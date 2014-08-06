@@ -28,10 +28,12 @@ $cakeDescription = __d('cake_dev', 'Le Dome');
 			<div id="content_home">				
 				<?php echo $this->Session->flash('auth'); ?>
 				<?php echo $this->Form->create('User'); ?>
-					<span>Mon compte</span>
-				     <?php echo $this->Form->input('email', array('label' => '', 'placeholder' => 'email'));
-				        echo $this->Form->input('password', array('label' => '', 'placeholder' => 'mot de passe')); ?>
-				<?php echo $this->Form->end(__('OK')); ?>
+					<span>Se connecter</span>
+				     <?php echo $this->Form->input('email', array('label' => '', 'placeholder' => 'Email'));
+				        echo $this->Form->input('password', array('label' => '', 'placeholder' => 'Mot de passe')); ?>
+				<?php echo $this->Html->link('Mot de passe perdu ?', array('controller'=>'users','action' => 'add'), array('title' => 'signup'));?>
+				<?php echo $this->Form->submit('OK', array('class' => 'button')); ?>
+				<?php echo $this->Form->end(); ?>
 				<?php echo $this->Html->link('Signup', array('controller'=>'users','action' => 'add'), array('title' => 'signup'));?>
 			</div>
 			<div id="home_dome">

@@ -18,6 +18,8 @@
 
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 
+// debug($poles);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,21 +40,36 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
 	<div id="container">
 		<div id="user_block" class="form">
-			<?php if (!$authUser) { ?>					
-				<?php echo $this->Session->flash('auth'); ?>
-				<?php echo $this->Form->create('User'); ?>
-					<span>Mon compte</span>
-				     <?php echo $this->Form->input('email', array('label' => '', 'placeholder' => 'email'));
-				        echo $this->Form->input('password', array('label' => '', 'placeholder' => 'mot de passe')); ?>
-				<?php echo $this->Form->end(__('OK')); ?>
-				<?php echo $this->Html->link('Signup', array('controller'=>'users','action' => 'add'), array('title' => 'signup'));?>
+
+			<?php if (!$authUser) { ?>
+
+				<div id="buttons_users">
+					<?php echo $this->Html->link('Sign Up Free', array('controller' => 'users','action' => 'add'), array('title' => 'signup', 'class' => 'button greenbutton'));?>
+					<a class="button button_login" href="javascript:void(0)">Log In</a>	
+				</div>
+
+				<div id="form_login" style="display:none">				
+					<?php echo $this->Session->flash('auth'); ?>
+					<?php echo $this->Form->create('User'); ?>
+						<span>Mon compte</span>
+					     <?php echo $this->Form->input('email', array('label' => '', 'placeholder' => 'email'));
+					        echo $this->Form->input('password', array('label' => '', 'placeholder' => 'mot de passe')); ?>
+					<?php echo $this->Form->end(__('OK')); ?>
+					<?php echo $this->Html->link('Signup', array('controller'=>'users','action' => 'add'), array('title' => 'signup'));?>
+				</div>
+
 			<?php } else { ?>
+
 				<p>Bonjour, <?= $user['firstname'] ?> !<?php echo $this->Html->link('Déconnexion', array('controller'=>'users','action' => 'logout'), array('title' => 'logout')); ?></p>
+
 			<?php } ?>
+			
+
 		</div>
 		<div id="header">
 			<div id="close_menu"></div>
@@ -71,8 +88,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	                    	<?php foreach ($poles as $pole) {
 	                    		echo '<li class="menu-level1">'.$pole['Pole']['name'];
 	                    		echo '<ul class="lessons-menu">';
-	                    		foreach($pole['Video'] as $video) {
-	                    			echo '<li>'.$this->Html->link($video['title'], array('controller'=>'videos','action' => 'view', $video['id'])).'</li>';
+	                    		foreach($pole['Learning'] as $learning) {
+	                    			echo '<li>'.$this->Html->link($learning['name'], array('controller'=>'learnings','action' => 'view', $learning['id'])).'</li>';
 	                    		}
 								echo '</ul></li>';
 	                    	} ?>
@@ -93,10 +110,18 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	                       array('controller'=>'pages','action' => 'about'),
 	                       array('escape' => false)); ?>
 					</li>
+					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='imprint') )?'active' :'' ?>">
+						<?php echo $this->Html->link($this->Html->image('icon_imprint.png', array('alt' => 'icon imprint')) . ' ' . __('<p>Mentions légales</p>'),
+	                       array('controller'=>'pages','action' => 'imprint'),
+	                       array('escape' => false)); ?>
+					</li>
 					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='contact') )?'active' :'' ?>">
 						<?php echo $this->Html->link($this->Html->image('icon_contact.png', array('alt' => 'icon contact')) . ' ' . __('<p>Contact</p>'),
 	                       array('controller'=>'pages','action' => 'contact'),
 	                       array('escape' => false)); ?>
+					</li>
+					<li id="menu-item-close">
+						<?php echo $this->Html->image('icon_close.png', array('alt' => 'icon contact')); ?>
 					</li>
 				</ul>
 			</div>
@@ -113,20 +138,21 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<div class="clear"></div>
 
 		<div id="footer">
-			<div id="copyright">© LE DOME 2014</div>
+<!-- 			<div id="copyright">© LE DOME 2014</div>
 			<div id="links_footer">
 				<a href="#">Mentions légales</a>
 				<a href="#">Contact</a>				
-			</div>
-			<div id="sharing_footer">
-
+			</div> -->
+			<div id="social_footer">
+				<a class="social_footer" id="social_facebook" href="https://www.facebook.com/" target="_blank"></a>
+				<a class="social_footer" id="social_twitter" href="https://twitter.com/" target="_blank"></a>	
 			</div>
 		</div>
 
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+	
 	<script src="//www.youtube.com/player_api"></script>
 	<?php echo $this->Html->script('jquery-min'); ?>
 	<?php echo $this->Html->script('app'); ?>

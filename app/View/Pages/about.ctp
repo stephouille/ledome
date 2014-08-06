@@ -1,9 +1,14 @@
 <div class="block_content">
 
-	<h2>Our organization</h2>
+	<h2>LE DOME</h2>
+	<h3>Opening knowledge to all</h3>
 
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sollicitudin hendrerit nulla, eget consectetur ligula. Pellentesque sit amet metus nibh. Donec sollicitudin, magna in vulputate pretium, purus enim aliquet dui, vel ultrices tortor elit at augue. Vivamus et fermentum nunc. Aenean convallis sit amet leo vitae varius. Vestibulum pretium vitae urna sit amet rutrum. Morbi cursus tortor in ante ullamcorper, faucibus semper leo hendrerit. Proin vel commodo ipsum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam dictum vel quam et iaculis. Ut eu massa ante. Quisque velit erat, tincidunt ut neque in, tincidunt vestibulum justo. Mauris enim ipsum, venenatis ultricies justo et, mollis euismod arcu. Duis a lacus non purus rutrum lobortis et eget ipsum.</p>
+	<p>LE DOME est un endroit où il fait bon apprendre. Conçu pour rendre le savoir accessible au plus grand nombre, ce site web offre à la fois la possibilité de consulter gratuitement des cours de toutes sortes (arts, savoirs académiques, savoirs technologiques, développement personnel) et de les sauvegarder au cœur d’un espace qui enregistre la progression parcourue et où ils peuvent être consultables à tout instant.</p>
 
-	<?php echo $this->Html->link('Commencer', array('controller'=>'lessons','action' => 'index'), array('class' => 'button'));?>
+	<p>La philosophie est l’open source. Tout est gratuit, l’inscription n’est pas obligatoire mais elle permet la conservation  de la bibliothèque et de la progression des cours consultés. Toutefois les données récupérées (login, email) ne sont destinées à aucun but commercial. Il n’y a pas non plus de pub et n’y en aura jamais (c’est dans les statuts).</p>
+
+	<p>Vous pouvez nous apporter un soutien financier ou nous aider à améliorer nos cours, ça nous sera très utile. Mais ce qui nous ferait vraiment vraiment plaisir, c’est que vous appreniez un truc, là, tout de suite.</p>
+
+	<?php echo $this->Html->link('Démarrer', array('controller' => 'lessons','action' => 'index'), array('class' => 'button'));?>
 
 </div>

@@ -5,10 +5,17 @@
 	<div class="left block" id="block_donation">
 		<div class="content_block">
 			<h2>Faîtes un don</h2>
-			<form>
+
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+			<input type="hidden" name="cmd" value="_s-xclick">
+			<input type="hidden" name="hosted_button_id" value="VSBWJEAM24YBQ">
+			<input class="button" type="submit" value="Faire un don" border="0" name="submit" alt="PayPal - la solution de paiement en ligne la plus simple et la plus sécurisée !">
+			<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+			</form>
+<!-- 			<form>
 				<input type="text" name="donation" />
 				<button type="submit">Faire un don</button>
-			</form>
+			</form> -->
 		</div>
 	</div>
 

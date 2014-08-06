@@ -33,31 +33,58 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	public $uses = array('Pole');
+	public $components = array('Security','Cookie','Session','Auth','RequestHandler');
+    public $helpers = array('Html','Session','Form');
 
-	public $components = array(
-        'Session',
-        'RequestHandler',
-        'Auth' => array(
-        	'authenticate' => array
-		       (
-		           'Form' => array
-		           (
-		               'fields' => array('username' => 'email', 'password' => 'password')
-		           )
-		       ),
-            'loginRedirect' => array('controller' => 'pages', 'action' => 'home'),
-            'logoutRedirect' => array('controller' => 'pages', 'action' => 'home')
-        )
-    );
+	// public $components = array(
+ //        'Session',
+ //        'RequestHandler',
+ //        'Auth' => array(
+ //        	'authenticate' => array
+	// 	       (
+	// 	           'Form' => array
+	// 	           (
+	// 	               'fields' => array('username' => 'email', 'password' => 'password')
+	// 	           )
+	// 	       ),
+ //            'loginRedirect' => array('controller' => 'pages', 'action' => 'home'),
+ //            'logoutRedirect' => array('controller' => 'pages', 'action' => 'home')
+ //        )
+ //    );
 
     public function beforeFilter() {
-	    parent::beforeFilter();
-	    // Permet aux utilisateurs de s'enregistrer et de se déconnecter
-	    // $this->Auth->allow('add', 'logout');
-        $this->Auth->allow();
+    	parent::beforeFilter();
 
-        // debug($this->Auth->login());
-	
+    	if ($this->request->prefix == 'admin') {
+            $this->layout = 'admin';
+            // Specify which controller/action handles logging in:
+            AuthComponent::$sessionKey = 'Auth.Admin'; // solution from http://stackoverflow.com/questions/10538159/cakephp-auth-component-with-two-models-session
+            $this->Auth->loginAction = array('controller'=>'admin', 'action'=>'login');
+            $this->Auth->loginRedirect = array('controller'=>'admin', 'action'=>'index');
+            $this->Auth->logoutRedirect = array('controller'=>'admin', 'action'=>'login');
+            $this->Auth->authenticate = array(
+                'Form' => array(
+                    'userModel' => 'Admin',
+                )
+            );
+            $this->Auth->allow();
+
+        } else {
+        	AuthComponent::$sessionKey = 'Auth.User';
+        	$this->Auth->authenticate = array(
+		           'Form' => array(
+		               'fields' => array('username' => 'email', 'password' => 'password')
+		           )
+		       );
+        	$this->Auth->loginAction = array('controller'=>'users', 'action'=>'login');
+        	$this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'home');
+            $this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'home');
+
+            // If we get here, it is neither a 'phys' prefixed method, not an 'admin' prefixed method.
+            // So, just allow access to everyone - or, alternatively, you could deny access - $this->Auth->deny();
+            $this->Auth->allow();           
+        }
+
         if ($this->Auth->login()) {
 			$authUser = true;
 			$user = $this->Auth->user();
@@ -74,5 +101,11 @@ class AppController extends Controller {
             'poles' => $poles, 
             '_serialize' => array('authUser', 'user', 'poles')
         ));
+    }
+
+    public function isAuthorized($user){
+        // You can have various extra checks in here, if needed.
+        // We'll just return true though. I'm pretty certain this method has to exist, even if it just returns true.
+        return true;
     }
 }

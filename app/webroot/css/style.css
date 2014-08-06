@@ -1,6 +1,25 @@
+/* ----- Colors ----- */
+@font-face {
+  font-family: 'effralight';
+  src: url("../font/EffraLight-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'effraregular';
+  src: url("../font/Effra-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'adam';
+  src: url("../font/adam.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
 body, html {
   height: 100%;
-  font-family: Helvetica, Arial, sans-serif; }
+  font-family: 'effraregular', Helvetica, Arial, sans-serif; }
 
 ul {
   list-style-type: none;
@@ -8,7 +27,8 @@ ul {
   margin: 0; }
 
 a {
-  text-decoration: none; }
+  text-decoration: none;
+  color: #000; }
 
 h1 {
   text-align: center;
@@ -25,20 +45,27 @@ h3 {
   font-weight: normal; }
 
 button, .button {
-  border: 1px solid #db5e36;
-  background-color: #db5e36;
+  border: 0;
+  background-color: #e7743b;
   color: #FFF;
-  border-radius: 3px; }
+  border-radius: 2px;
+  width: 100px;
+  display: block;
+  text-align: center;
+  height: 28px;
+  line-height: 28px;
+  -moz-box-shadow: 0px 2px 0px 0px #444;
+  -webkit-box-shadow: 0px 2px 0px 0px #444;
+  -o-box-shadow: 0px 2px 0px 0px #444;
+  box-shadow: 0px 2px 0px 0px #444;
+  filter: progid:DXImageTransform.Microsoft.Shadow(color=#444, Direction=180, Strength=0); }
   button:hover, .button:hover {
-    background-color: #FFF;
-    color: #db5e36;
+    background-color: #e66525;
     cursor: pointer; }
-
-@font-face {
-  font-family: 'adam';
-  src: url("../font/adam.otf") format("truetype");
-  font-weight: normal;
-  font-style: normal; }
+  button.greenbutton, .button.greenbutton {
+    background-color: #6fc38e; }
+    button.greenbutton:hover, .button.greenbutton:hover {
+      background-color: #62bf7f; }
 
 #container {
   overflow: hidden;
@@ -46,40 +73,91 @@ button, .button {
   background-size: cover;
   background-attachment: fixed;
   height: 100%; }
-  #container.night {
-    background: #23538a;
+  #container.sunrise {
+    background: #f2eed5;
     /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover, #23538a 0%, black 100%);
+    background: -moz-linear-gradient(top, #f2eed5 0%, #63b6ff 99%);
     /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #23538a), color-stop(100%, black));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2eed5), color-stop(99%, #63b6ff));
     /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover, #23538a 0%, black 100%);
+    background: -webkit-linear-gradient(top, #f2eed5 0%, #63b6ff 99%);
     /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover, #23538a 0%, black 100%);
-    /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover, #23538a 0%, black 100%);
+    background: -o-linear-gradient(top, #f2eed5 0%, #63b6ff 99%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f2eed5 0%, #63b6ff 99%);
     /* IE10+ */
-    background: radial-gradient(ellipse at center, #23538a 0%, black 100%);
+    background: linear-gradient(to bottom, #f2eed5 0%, #63b6ff 99%);
     /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#23538a', endColorstr='#000000',GradientType=1 );
-    /* IE6-9 fallback on horizontal gradient */ }
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2eed5', endColorstr='#63b6ff',GradientType=0 );
+    /* IE6-9 */ }
   #container.day {
-    background: #fcfcfc;
+    background: #4acde8;
     /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover, #fcfcfc 0%, #fcdba9 100%);
+    background: -moz-linear-gradient(top, #4acde8 0%, #0a84ff 100%);
     /* FF3.6+ */
-    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #fcfcfc), color-stop(100%, #fcdba9));
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4acde8), color-stop(100%, #0a84ff));
     /* Chrome,Safari4+ */
-    background: -webkit-radial-gradient(center, ellipse cover, #fcfcfc 0%, #fcdba9 100%);
+    background: -webkit-linear-gradient(top, #4acde8 0%, #0a84ff 100%);
     /* Chrome10+,Safari5.1+ */
-    background: -o-radial-gradient(center, ellipse cover, #fcfcfc 0%, #fcdba9 100%);
-    /* Opera 12+ */
-    background: -ms-radial-gradient(center, ellipse cover, #fcfcfc 0%, #fcdba9 100%);
+    background: -o-linear-gradient(top, #4acde8 0%, #0a84ff 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #4acde8 0%, #0a84ff 100%);
     /* IE10+ */
-    background: radial-gradient(ellipse at center, #fcfcfc 0%, #fcdba9 100%);
+    background: linear-gradient(to bottom, #4acde8 0%, #0a84ff 100%);
     /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fcfcfc', endColorstr='#fcdba9',GradientType=1 );
-    /* IE6-9 fallback on horizontal gradient */ }
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4acde8', endColorstr='#0a84ff',GradientType=0 );
+    /* IE6-9 */ }
+  #container.sunset {
+    background: #243c6c;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #243c6c 0%, #c75d5a 99%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #243c6c), color-stop(99%, #c75d5a));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #243c6c 0%, #c75d5a 99%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #243c6c 0%, #c75d5a 99%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #243c6c 0%, #c75d5a 99%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #243c6c 0%, #c75d5a 99%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#243c6c', endColorstr='#c75d5a',GradientType=0 );
+    /* IE6-9 */ }
+  #container.endsunset {
+    background: #243c6c;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #243c6c 0%, #3d0335 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #243c6c), color-stop(100%, #3d0335));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #243c6c 0%, #3d0335 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #243c6c 0%, #3d0335 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #243c6c 0%, #3d0335 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #243c6c 0%, #3d0335 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#243c6c', endColorstr='#3d0335',GradientType=0 );
+    /* IE6-9 */ }
+  #container.night {
+    background: #243c6c;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, #243c6c 0%, #060233 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #243c6c), color-stop(100%, #060233));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #243c6c 0%, #060233 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #243c6c 0%, #060233 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #243c6c 0%, #060233 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, #243c6c 0%, #060233 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#243c6c', endColorstr='#060233',GradientType=0 );
+    /* IE6-9 */ }
   #container #content {
     float: right;
     width: 90%;
@@ -104,11 +182,29 @@ button, .button {
             margin: 10px 0; }
       #container #content .block_content.big_content {
         width: 98%;
-        height: 85%; }
+        height: 98%;
+        margin-top: 1%; }
         #container #content .block_content.big_content .block_video {
           width: 55%; }
           #container #content .block_content.big_content .block_video iframe {
             width: 100%; }
+          #container #content .block_content.big_content .block_video #bottom_video {
+            width: 100%; }
+            #container #content .block_content.big_content .block_video #bottom_video .tab {
+              height: 40px;
+              border-bottom: 1px solid #cfcfcf; }
+              #container #content .block_content.big_content .block_video #bottom_video .tab a {
+                display: inline-block;
+                width: 200px;
+                height: 40px;
+                text-align: center;
+                line-height: 40px; }
+                #container #content .block_content.big_content .block_video #bottom_video .tab a:hover, #container #content .block_content.big_content .block_video #bottom_video .tab a.active {
+                  border-bottom: 3px solid #6fc38e; }
+            #container #content .block_content.big_content .block_video #bottom_video .content_tabs .content_tab {
+              display: none; }
+              #container #content .block_content.big_content .block_video #bottom_video .content_tabs .content_tab.active {
+                display: block; }
         #container #content .block_content.big_content .block_notes {
           width: 42%; }
           #container #content .block_content.big_content .block_notes #VideoTextarea_tbl {
@@ -122,14 +218,21 @@ button, .button {
   position: absolute;
   top: 20%;
   left: 12%; }
+  #content_home input {
+    padding: 5px;
+    height: 35px;
+    width: 100%;
+    margin: 5px 0; }
 
 #home_dome {
   position: absolute;
   bottom: 10%;
-  right: 10%; }
-
-#home_dome a:hover img {
-  opacity: 0.7; }
+  right: 10%;
+  text-align: right; }
+  #home_dome a img {
+    width: 85%; }
+  #home_dome a:hover img {
+    opacity: 0.7; }
 
 #header {
   height: 100%;
@@ -138,6 +241,7 @@ button, .button {
   float: left;
   position: relative; }
   #header #close_menu {
+    z-index: 99;
     position: absolute;
     display: block;
     background-color: #FFF;
@@ -154,6 +258,7 @@ button, .button {
     font-family: 'adam', Arial, sans-serif;
     color: #000; }
     #header #menu li {
+      cursor: pointer;
       display: inline-block;
       width: 100%;
       text-align: center;
@@ -195,14 +300,21 @@ button, .button {
             border: 0; }
       #header #menu li#menu-item-lessons:hover #menu_lessons {
         display: block; }
+      #header #menu li#menu-item-close {
+        border-top: 2px solid #000;
+        width: 25%;
+        margin: 0 auto;
+        display: block;
+        margin-top: 30px;
+        padding-top: 20px; }
 
 #user_block {
+  z-index: 99;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 20px;
+  right: 20px;
   color: #FFF;
   width: 32%;
-  margin-top: 10px;
   text-align: right; }
   #user_block span {
     font-family: 'adam', Arial, sans-serif;
@@ -211,6 +323,9 @@ button, .button {
     margin-right: 8px; }
   #user_block .input {
     float: left; }
+  #user_block #buttons_users a {
+    display: inline-block;
+    margin: 0 2px; }
 
 #search_lessons {
   width: 200px;
@@ -229,15 +344,16 @@ button, .button {
 .block_dome {
   height: 100%; }
   .block_dome #block_noconnected {
-    width: 400px;
-    height: 200px;
-    background-color: rgba(255, 255, 255, 0.65);
+    width: 61%;
+    height: 97%;
+    background-color: rgba(255, 255, 255, 0.5);
     position: absolute;
     z-index: 99;
     left: 50%;
-    margin-left: -200px;
+    margin-left: -330px;
     top: 50%;
-    margin-top: -100px; }
+    margin-top: -330px;
+    border-radius: 50%; }
   .block_dome #drawing_dome {
     display: block;
     margin: 0 auto;
@@ -247,7 +363,7 @@ button, .button {
     background-image: url(../img/main_dome.png);
     background-position: center;
     background-repeat: no-repeat;
-    width: 610px; }
+    width: 100%; }
 
 .item_dome {
   display: block;
@@ -282,7 +398,20 @@ button, .button {
 
 #footer {
   position: absolute;
-  display: none; }
+  bottom: 10px;
+  right: 10px; }
+  #footer .social_footer {
+    display: inline-block;
+    width: 48px;
+    height: 46px; }
+    #footer .social_footer#social_facebook {
+      background: url(../img/icon_facebook.png); }
+      #footer .social_footer#social_facebook:hover {
+        background: url(../img/icon_facebook_hover.png); }
+    #footer .social_footer#social_twitter {
+      background: url(../img/icon_twitter.png); }
+      #footer .social_footer#social_twitter:hover {
+        background: url(../img/icon_twitter_hover.png); }
 
 #block_help #block_donation {
   text-align: center; }

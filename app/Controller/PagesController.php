@@ -102,25 +102,10 @@ class PagesController extends AppController {
 
 	}
 
-	public function about() {
+	public function about() { }
+	public function help() { }
+	public function contact() { }
+	public function friends() { }
+	public function imprint() { }
 
-	}
-
-	public function help() {
-
-
-
-	}
-
-	public function contact() {
-
-
-
-	}
-
-	public function friends() {
-
-
-
-	}
 }
