@@ -33,7 +33,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('knacss');
-		
 		echo $this->Html->css('style');
 
 		echo $this->fetch('meta');
@@ -56,11 +55,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				<div id="form_login" style="display:none">				
 					<?php echo $this->Session->flash('auth'); ?>
 					<?php echo $this->Form->create('User'); ?>
-						<span>Mon compte</span>
 					     <?php echo $this->Form->input('email', array('label' => '', 'placeholder' => 'email'));
 					        echo $this->Form->input('password', array('label' => '', 'placeholder' => 'mot de passe')); ?>
 					<?php echo $this->Form->end(__('OK')); ?>
-					<?php echo $this->Html->link('Signup', array('controller'=>'users','action' => 'add'), array('title' => 'signup'));?>
+					<?php echo $this->Html->link('Signup', array('controller'=>'users','action' => 'add'), array('title' => 'signup', 'class' => 'button'));?>
 				</div>
 
 			<?php } else { ?>
@@ -72,7 +70,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		</div>
 		<div id="header">
-			<div id="close_menu"></div>
 			<div id="menu">
 				<ul>
 					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='dome') )?'active' :'' ?>">
@@ -81,7 +78,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	                       array('escape' => false)); ?>
 					</li>
 					<li id="menu-item-lessons" class="<?php echo (!empty($this->params['action']) && ($this->params['controller']=='lessons' && $this->params['action']=='index') )?'active' :'' ?>">
-					  	<?php echo $this->Html->link($this->Html->image('icon_lessons.png', array('alt' => 'icon lessons')) . ' ' . __('<p>Les cours</p>'),
+					  	<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Les cours</p>'),
 	                       array('controller'=>'lessons','action' => 'index'),
 	                       array('escape' => false)); ?>
 	                    <ul id="menu_lessons">
@@ -95,28 +92,28 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	                    	} ?>
 	                    </ul>
 					</li>
-					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='help') )?'active' :'' ?>">
-						<?php echo $this->Html->link($this->Html->image('icon_help.png', array('alt' => 'icon help')) . ' ' . __('<p>Nous aider</p>'),
+					<li id="menu-item-help" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='help') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Nous aider</p>'),
 	                       array('controller'=>'pages','action' => 'help'),
 	                       array('escape' => false)); ?>
 					</li>
-					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='friends') )?'active' :'' ?>">
-						<?php echo $this->Html->link($this->Html->image('icon_friends.png', array('alt' => 'icon friends')) . ' ' . __('<p>Les amis</p>'),
+					<li id="menu-item-friends" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='friends') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Les amis</p>'),
 	                       array('controller'=>'pages','action' => 'friends'),
 	                       array('escape' => false)); ?>
 					</li>
-					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='about') )?'active' :'' ?>">
-						<?php echo $this->Html->link($this->Html->image('icon_about.png', array('alt' => 'icon about')) . ' ' . __('<p>A propos</p>'),
+					<li id="menu-item-about" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='about') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>A propos</p>'),
 	                       array('controller'=>'pages','action' => 'about'),
 	                       array('escape' => false)); ?>
 					</li>
-					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='imprint') )?'active' :'' ?>">
-						<?php echo $this->Html->link($this->Html->image('icon_imprint.png', array('alt' => 'icon imprint')) . ' ' . __('<p>Mentions légales</p>'),
+					<li id="menu-item-imprint" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='imprint') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Mentions légales</p>'),
 	                       array('controller'=>'pages','action' => 'imprint'),
 	                       array('escape' => false)); ?>
 					</li>
-					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='contact') )?'active' :'' ?>">
-						<?php echo $this->Html->link($this->Html->image('icon_contact.png', array('alt' => 'icon contact')) . ' ' . __('<p>Contact</p>'),
+					<li id="menu-item-contact" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='contact') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Contact</p>'),
 	                       array('controller'=>'pages','action' => 'contact'),
 	                       array('escape' => false)); ?>
 					</li>

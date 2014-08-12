@@ -3,23 +3,38 @@
 
 	<div id="navigation_videos">
 		<ul>
-		<?php foreach ($alls as $v) : ?>
+		<?php 
+			$nb_videos = count($alls);
+			$i = 1;
+			foreach ($alls as $v) : ?>
 
 			<li class="item_nav_video <?php if($v['Video']['id'] == $video['Video']['id']) echo 'active'; ?>">
-				<!-- <p class="title_video"><?= $v['Video']['title'] ?></p> -->
-				<?php echo $this->Html->link($v['Video']['position'], array('controller'=>'videos','action' => 'view', $v['Video']['id']));?>
+				<p class="title_video"><?= $v['Video']['title'] ?></p>
+				<?php 
+					$percent = round(100 / $nb_videos) * $i;
+					if($i == $nb_videos)
+						$percent = 100;
+					echo $this->Html->link($percent.'%', array('controller'=>'videos','action' => 'view', $v['Video']['id']));
+					$i++;
+				?>
 			</li>
 
 		<?php endforeach; ?>
 		</ul>
+		<div class="clear"></div>
 	</div>
 	
 	<div class="left block_video">
 
 		<div id="player"></div>
-		<script src="http://www.youtube.com/player_api"></script>
 		
-		<h3><?= $video['Video']['title'] ?></h3>
+		<div>
+			<a href="javascript:void(0)" class="btn_nav_video" id="btn_prev_video"></a>
+			<img src="<?= $video['Professor']['picture'] ?>" width="50">
+			<span class="name_professor"><?= $video['Professor']['firstname'] ?> <?= $video['Professor']['lastname'] ?></span>
+			<h3><?= $video['Video']['title'] ?></h3>
+			<a href="javascript:void(0)" class="btn_nav_video" id="btn_next_video"></a>
+		</div>
 
 		<div id="bottom_video"> <!-- Onglets Description de la vidéo / documents annexes -->
 			<div class="tab">
@@ -39,25 +54,32 @@
 
 	</div>
 
-	<div class="right block_notes">
-		<?php 
-		echo $this->Form->create(null, array(
+	<div id="block_right_videopage" class="right">
+
+		<?php echo $this->Form->create(null, array(
 		    'url' => array('controller' => 'videos', 'action' => 'download')
 		)); ?>
-	    <?php echo $this->Form->input('textarea', array('label' => '', 'type' => 'textarea', 'class' => 'bloc_notes') ); ?>
-	    <?php echo $this->Form->submit(__('Télécharger'), array('class' => 'button')); ?>
+
+		<div class="block_videopage active" id="summary">
+			<?= $video['Video']['summary'] ?>
+		</div>
+		<div class="block_videopage" id="block_notes">	
+		    <?php echo $this->Form->input('textarea', array('label' => '', 'type' => 'textarea', 'class' => 'bloc_notes') ); ?>
+		</div>
+		<div id="buttons_video_page">
+			<a href="javascript:void(0)" id="btn_take_notes" class="button take_notes">Prendre des notes</a>
+			<?php echo $this->Form->submit('Télécharger les notes', array('class' => 'button', 'id' => 'btn_download_notes')); ?>
+		</div>
+
+		
 		<?php echo $this->Form->end(); ?>
 
-		<?php echo $this->Html->link('Valider le cours', array('controller'=>'videos','action' => 'validation', $video['Video']['id']), array('class' => 'button'));?>
-	
-		
 	</div>
 	<div class="clear"></div>
 
-	
-
 </div>
 
+<script src="http://www.youtube.com/player_api"></script>
 <script type="text/javascript">
 
     // create youtube player
@@ -86,9 +108,10 @@
         }
     }
 
+    var nb_videos = '<?php Print(count($alls)); ?>';
 
     //Navigation
-    $('.item_nav_video').width($('#navigation_videos').width() / 3 - 4);
+    $('.item_nav_video').width($('#navigation_videos').width() / nb_videos);
 
     //Onglets de la page
     $('#bottom_video .tab a').click(function() {
@@ -98,6 +121,20 @@
 
     	$('.content_tab').removeClass('active');
     	$('.content_tab[data-tab='+tab+']').addClass('active');
+    });
+
+    $('#btn_take_notes').click(function() {
+    	if($(this).hasClass('take_notes')) {
+    		$(this).removeClass('take_notes');
+    		$('.block_videopage').removeClass('active');
+    		$('#block_notes').addClass('active');
+    		$(this).html('Voir le sommaire');
+    	} else {
+    		$(this).addClass('take_notes');
+    		$('.block_videopage').removeClass('active');
+    		$('#summary').addClass('active');
+    		$(this).html('Prendre des notes');
+    	}
     });
 
 
