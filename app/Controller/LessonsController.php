@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class LessonsController extends AppController {
 
-	public $uses = array('Pole', 'Video');
+	public $uses = array('Pole', 'Video', 'Learning');
 
 	public function index() {
        
@@ -22,10 +22,9 @@ class LessonsController extends AppController {
   }
 
   public function search() {
-
     $this->layout = null;
 
-    $lessons = $this->Video->find('all', array('conditions' => array('title LIKE' => '%'.$this->request->data['search'].'%')));
+    $lessons = $this->Learning->find('all', array('conditions' => array('name LIKE' => '%'.$this->request->data['search'].'%')));
 
     $this->set(array(
       'lessons' => $lessons,

@@ -5,7 +5,7 @@
 		<ul>
 		<?php 
 			$nb_videos = count($alls);
-			$i = 1;
+			$i = 0;
 			foreach ($alls as $v) : ?>
 
 			<li class="item_nav_video <?php if($v['Video']['id'] == $video['Video']['id']) echo 'active'; ?>">
@@ -28,12 +28,25 @@
 
 		<div id="player"></div>
 		
-		<div>
-			<a href="javascript:void(0)" class="btn_nav_video" id="btn_prev_video"></a>
-			<img src="<?= $video['Professor']['picture'] ?>" width="50">
-			<span class="name_professor"><?= $video['Professor']['firstname'] ?> <?= $video['Professor']['lastname'] ?></span>
-			<h3><?= $video['Video']['title'] ?></h3>
-			<a href="javascript:void(0)" class="btn_nav_video" id="btn_next_video"></a>
+		<div id="infos_video">
+			<?php 
+				if($id_prev_video != null)
+					echo $this->Html->link('', array('controller'=>'videos','action' => 'view', $id_prev_video), array('id' => 'btn_prev_video', 'class' => 'btn_nav_video'));
+				else 
+					echo $this->Html->image('icon_arrow_left.png', array('width' => '50'));
+
+			?>
+			<div id="wrapper_infos_video">
+				<img src="<?= $video['Professor']['picture'] ?>" width="50">
+				<span class="name_professor"><?= $video['Professor']['firstname'] ?> <?= $video['Professor']['lastname'] ?></span>
+				<h3><?= $video['Video']['title'] ?></h3>
+			</div>
+			<?php 
+				if($id_next_video != null)
+					echo $this->Html->link('', array('controller'=>'videos','action' => 'view', $id_next_video), array('id' => 'btn_next_video', 'class' => 'btn_nav_video'));
+				else 
+					echo $this->Html->image('icon_arrow_right.png', array('width' => '50'));
+			?>
 		</div>
 
 		<div id="bottom_video"> <!-- Onglets Description de la vidéo / documents annexes -->
@@ -104,14 +117,14 @@
     // when video ends
     function onPlayerStateChange(event) {        
         if(event.data === 0) {            
-            alert('done');
+            // alert('done');
         }
     }
 
     var nb_videos = '<?php Print(count($alls)); ?>';
 
     //Navigation
-    $('.item_nav_video').width($('#navigation_videos').width() / nb_videos);
+    $('.item_nav_video').width($('#navigation_videos').width() / nb_videos - 1);
 
     //Onglets de la page
     $('#bottom_video .tab a').click(function() {
@@ -122,6 +135,7 @@
     	$('.content_tab').removeClass('active');
     	$('.content_tab[data-tab='+tab+']').addClass('active');
     });
+
 
     $('#btn_take_notes').click(function() {
     	if($(this).hasClass('take_notes')) {

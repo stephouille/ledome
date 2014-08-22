@@ -34,6 +34,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		echo $this->Html->css('knacss');
 		echo $this->Html->css('style');
+		echo $this->Html->css('joyride-2.1');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -42,14 +43,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
+	<div id="preloadedImages"></div>
 	<div id="container">
 		<div id="user_block" class="form">
 
 			<?php if (!$authUser) { ?>
 
 				<div id="buttons_users">
-					<?php echo $this->Html->link('Sign Up Free', array('controller' => 'users','action' => 'add'), array('title' => 'signup', 'class' => 'button greenbutton'));?>
-					<a class="button button_login" href="javascript:void(0)">Log In</a>	
+					<?php echo $this->Html->link('Créer un compte', array('controller' => 'users','action' => 'add'), array('title' => 'signup', 'class' => 'button greenbutton'));?>
+					<a class="button button_login" href="javascript:void(0)">Se connecter</a>	
 				</div>
 
 				<div id="form_login" style="display:none">				
@@ -57,13 +59,12 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<?php echo $this->Form->create('User'); ?>
 					     <?php echo $this->Form->input('email', array('label' => '', 'placeholder' => 'email'));
 					        echo $this->Form->input('password', array('label' => '', 'placeholder' => 'mot de passe')); ?>
-					<?php echo $this->Form->end(__('OK')); ?>
-					<?php echo $this->Html->link('Signup', array('controller'=>'users','action' => 'add'), array('title' => 'signup', 'class' => 'button'));?>
+					<?php echo $this->Form->end(__('OK'), array('class' => 'button')); ?>
 				</div>
 
 			<?php } else { ?>
 
-				<p>Bonjour, <?= $user['firstname'] ?> !<?php echo $this->Html->link('Déconnexion', array('controller'=>'users','action' => 'logout'), array('title' => 'logout')); ?></p>
+				<p>Bonjour, <?= $user['username'] ?> !<?php echo $this->Html->link('Déconnexion', array('controller'=>'users','action' => 'logout'), array('title' => 'logout')); ?></p>
 
 			<?php } ?>
 			
@@ -83,7 +84,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	                       array('escape' => false)); ?>
 	                    <ul id="menu_lessons">
 	                    	<?php foreach ($poles as $pole) {
-	                    		echo '<li class="menu-level1">'.$pole['Pole']['name'];
+	                    		echo '<li class="menu-level1">'.$this->Html->link($pole['Pole']['name'], array('controller'=>'poles','action' => 'view', $pole['Pole']['id']));
 	                    		echo '<ul class="lessons-menu">';
 	                    		foreach($pole['Learning'] as $learning) {
 	                    			echo '<li>'.$this->Html->link($learning['name'], array('controller'=>'learnings','action' => 'view', $learning['id'])).'</li>';
@@ -125,17 +126,24 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 		</div>
 
+		<div id="small_header" style="display:none">
+			<?php 
+				echo $this->Html->link($this->Html->image('logo.png', array('alt' => 'LOGO', 'width' => '60')),
+               		array('controller'=>'pages','action' => 'dome'),
+               		array('escape' => false)); 
+				echo $this->Html->link($this->Html->image('icon_plus.png', array('alt' => 'icon plus', 'width' => '40')),
+					'', array('id' => 'btn_showMenu', 'escape' => false)); 
+            ?>
+		</div>
+
 		<div id="content">
-
 			<?php echo $this->Session->flash(); ?>
-
 			<?php echo $this->fetch('content'); ?>
-
 		</div>
 		<div class="clear"></div>
 
 		<div id="footer">
-<!-- 			<div id="copyright">© LE DOME 2014</div>
+			<!-- <div id="copyright">© LE DOME 2014</div>
 			<div id="links_footer">
 				<a href="#">Mentions légales</a>
 				<a href="#">Contact</a>				
@@ -154,6 +162,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php echo $this->Html->script('jquery-min'); ?>
 	<?php echo $this->Html->script('app'); ?>
 	<?php echo $this->Html->script('tiny_mce'); ?>
+	
 
 </body>
 </html>

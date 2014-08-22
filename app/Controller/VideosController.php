@@ -17,11 +17,36 @@ class VideosController extends AppController {
 
         $alls = $this->Video->find('all', array('conditions' => array('learning_id' => $this->Video->field('learning_id'))));
 
+        $id_prev_video = null;
+        $id_next_video = null;
+
+        $prev_video = $this->Video->find('first', array(
+            'conditions' => array(
+                'learning_id' => $this->Video->field('learning_id'),
+                'position' => $this->Video->field('position') - 1
+            )
+        ));
+        if(count($prev_video) > 0) {
+            $id_prev_video = $prev_video['Video']['id'];
+        }
+
+        $next_video = $this->Video->find('first', array(
+            'conditions' => array(
+                'learning_id' => $this->Video->field('learning_id'),
+                'position' => $this->Video->field('position') + 1
+            )
+        ));
+        if(count($next_video) > 0) {
+            $id_next_video = $next_video['Video']['id'];
+        }
+
         if (!$this->Video->exists()) {
             throw new NotFoundException(__('Video invalide'));
         }
         $this->set(array(
         	'video' => $this->Video->read(null, $id),
+            'id_prev_video' => $id_prev_video,
+            'id_next_video' => $id_next_video,
         	'alls' => $alls
         ));
     }
