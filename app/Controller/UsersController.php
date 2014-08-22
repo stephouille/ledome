@@ -42,19 +42,14 @@ class UsersController extends AppController {
             if(!$this->User->hasAny(array('email' => $this->request->data['User']['email']))) {
                 $this->User->create();
                 if ($this->User->save($this->request->data)) {
-                   $config_mail = array(
-                        'transport' => 'Mail',
-                        'from' => array('admin@ledome.org' => 'Inscription'),
-                        'to' => $this->User->field('email'),
-                        'subject' => 'Inscription - Le dome',
-                        'emailFormat' => 'html',
-                        'message' => 'test',
-                        'charset' => 'utf-8',
-                        'headerCharset' => 'utf-8'
-                    );
-                    $email = new CakeEmail();
-                    $email->config($config_mail);
-                    $email->send();
+
+                    $email = new CakeEmail('default');
+                    $email->to($this->request->data['User']['email']);
+                    $email->subject('test subject');
+                    $email->send('test message');
+
+                    $this->Auth->login();
+                    
                     $this->Session->setFlash(__('L\'user a été sauvegardé'));
                     return $this->redirect(array('controller'=>'pages', 'action' => 'dome'));
                 } else {

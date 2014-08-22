@@ -2,9 +2,8 @@
 
     <!-- app/View/Users/add.ctp -->
     <div class="users form">
-    <?php echo $this->Form->create('User');?>
+    <?php echo $this->Form->create('User', array('url' => array('controller' => 'users', 'action' => 'add')));?>
         <fieldset>
-            <legend><?php echo __('Ajouter User'); ?></legend>
             <?php 
             echo $this->Form->input('username', array('label' => "Nom d'utilisateur"));
             echo $this->Form->input('email');

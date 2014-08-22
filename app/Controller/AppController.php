@@ -33,24 +33,8 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	public $uses = array('Pole');
-	public $components = array('Security','Cookie','Session','Auth','RequestHandler');
+	public $components = array('Cookie','Session','Auth','RequestHandler');
     public $helpers = array('Html','Session','Form');
-
-	// public $components = array(
- //        'Session',
- //        'RequestHandler',
- //        'Auth' => array(
- //        	'authenticate' => array
-	// 	       (
-	// 	           'Form' => array
-	// 	           (
-	// 	               'fields' => array('username' => 'email', 'password' => 'password')
-	// 	           )
-	// 	       ),
- //            'loginRedirect' => array('controller' => 'pages', 'action' => 'home'),
- //            'logoutRedirect' => array('controller' => 'pages', 'action' => 'home')
- //        )
- //    );
 
     public function beforeFilter() {
     	parent::beforeFilter();

@@ -17,6 +17,7 @@
  */
 ?>
 <?php
+echo 'test email html template';
 $content = explode("\n", $content);
 
 foreach ($content as $line):

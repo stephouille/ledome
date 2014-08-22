@@ -13,6 +13,10 @@ $yellow: #f9f291;
 $light_grey: #cfcfcf;
 $dark_grey: #444444;
 
+$color_header: #F3F3F3;
+$grey_text_header: #7A7A7A;
+
+
 @font-face {
 	font-family: 'effralight';
 	src: url('../font/EffraLight-Regular.ttf') format('truetype');
@@ -321,7 +325,7 @@ button, .button {
 #header {
 	height: 100%;
 	width: 10%;
-	background-color: #FFF;
+	background-color: $color_header;
 	float: left;
 	position: relative;
 	#menu { 
@@ -352,7 +356,15 @@ button, .button {
 						background-position: center;
 						margin: 0 auto;
 					}
-					p { margin: 5px 0; }
+					p { 
+						margin: 5px 0;
+						color: $grey_text_header;
+					}
+				}
+				&:hover {
+					p { 
+						color: #000;
+					}
 				}
 				&:first-child {
 					height: 10%;
