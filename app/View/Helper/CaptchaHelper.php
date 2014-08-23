@@ -12,9 +12,8 @@ class CaptchaHelper extends AppHelper {
     switch($settings['captchaType']):
       case 'image':
         echo $this->Html->image($this->Html->url(array('controller'=>'users', 'action'=>'captcha'), true),array('id'=>'img-captcha','vspace'=>2));
-        echo '<p><a href="#" id="a-reload">Can\'t read? Reload</a></p>';
-        echo '<p>Enter security code shown above:</p>';
-        echo $this->Form->input($settings['modelName'].'.'.$settings['fieldName'], array('autocomplete'=>'off','label'=>false,'class'=>''));
+        echo '<p><a href="#" id="a-reload">Vous ne pouvez pas lire ? <span style="text-decoration:underline">Rechargez</span></a></p>';
+        echo '<div class="clear"></div>';
         if($settings['jquerylib'])  {
           echo '<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>';
         }

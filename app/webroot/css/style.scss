@@ -799,6 +799,20 @@ button, .button {
 					transition: opacity 0.2s;
 				}
 			} 
+		}
+		#img-captcha {
+			float: left;
+			margin-right: 10px;
+			margin-bottom: 20px; 
+		}
+		#a-reload {
+			font-size: 13px;
+			font-style: italic;
+			color: #545555;
+		}
+		.button {
+			width: 50%;
+			margin: 0 auto;
 		}		
 	}
 }

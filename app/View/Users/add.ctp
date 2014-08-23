@@ -19,16 +19,18 @@
             </div>
             <div class="input password required">
                 <input class="txt-field" name="data[User][re_password]" type="password" id="UserRePassword" required="required" placeholder="Confirmation du mot de passe">
-                <span class="caption">Confirmation du mot de passe</span>
+                <span class="caption">Confirmez votre mot de passe</span>
             </div>
-        <?php echo $this->Html->image($this->Html->url(array('controller'=>'users', 'action'=>'captcha'), true),array('style'=>'','vspace'=>2)); ?>
+            <?php $this->Captcha->render($captchaSettings); ?>
 
-<p>Enter security code shown above:</p>
-<?php
-    echo $this->Form->input('captcha',array('autocomplete'=>'off','label'=>false,'class'=>'','error'=>__('Failed validating code',true)));
-?>
+        <div class="input text required">
+            <input class="txt-field" name="data[captcha]" autocomplete="off" type="text" id="UserCaptcha" required="required" placeholder="Contrôle de sécurité">
+            <span class="caption">Entrez le code que vous voyez ci-dessus</span>
+        </div>
 
-    <?php echo $this->Form->end(__('Ajouter'));?>
+
+    <?php echo $this->Form->submit(__("S'inscrire"),     array('class' => 'button')); ?>
+    <?php echo $this->Form->end(); ?>
     </div>
 
 </div>

@@ -5,6 +5,21 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
+    var $helpers = array('Html', 'Form', 'Captcha');
+
+    function captcha()  {
+        $this->autoRender = false;
+        $this->layout='ajax';
+        if(!isset($this->Captcha))  { //if Component was not loaded throug $components array()
+            $this->Captcha = $this->Components->load('Captcha', array(
+                'width' => 150,
+                'height' => 50,
+                'theme' => 'random', //possible values : default, random ; No value means 'default'
+            )); //load it
+            }
+        $this->Captcha->create();
+    }
+
     public function index() {
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
@@ -37,51 +52,35 @@ class UsersController extends AppController {
         $this->set('user', $this->User->read(null, $id));
     }
 
-    function captcha()   {
-        $this->autoRender = false;
-        $this->layout='ajax';
-        if(!isset($this->Captcha))  { //if Component was not loaded throug $components array()
-            App::import('Component','Captcha'); //load it
-            $this->Captcha = new CaptchaComponent(); //make instance
-            $this->Captcha->startup($this); //and do some manually calling
-        }
-        //$width = isset($_GET['width']) ? $_GET['width'] : '120';
-        //$height = isset($_GET['height']) ? $_GET['height'] : '40';
-        //$characters = isset($_GET['characters']) && $_GET['characters'] > 1 ? $_GET['characters'] : '6';
-        //$this->Captcha->create($width, $height, $characters); //options, default are 120, 40, 6.
-        $this->Captcha->create();
-    }
-
-
     public function add() {
-        if(!isset($this->Captcha))  { //if Component was not loaded throug $components array()
-            App::import('Component','Captcha'); //load it
-            $this->Captcha = new CaptchaComponent(); //make instance
-            $this->Captcha->startup($this); //and do some manually calling
-        }
+        $this->Captcha = $this->Components->load('Captcha', array('captchaType'=>'image', 'jquerylib'=>true, 'modelName'=>'User', 'fieldName'=>'captcha'));
 
         if ($this->request->is('post')) {
-            $this->User->setCaptcha($this->Captcha->getVerCode()); //getting from component and passing to model to do validation check
-            if(!$this->User->hasAny(array('email' => $this->request->data['User']['email']))) {
-                $this->User->create();
-                if ($this->User->save($this->request->data)) {
+            $this->User->setCaptcha($this->Captcha->getVerCode());
+            if($this->User->matchCaptcha($this->request->data['captcha'])) {
+                if(!$this->User->hasAny(array('email' => $this->request->data['User']['email']))) {
+                    $this->User->create();
+                    if ($this->User->save($this->request->data['User'])) {
 
-                    $email = new CakeEmail('default');
-                    $email->to($this->request->data['User']['email']);
-                    $email->subject('test subject');
-                    $email->send('test message');
+                        $email = new CakeEmail('default');
+                        $email->to($this->request->data['User']['email']);
+                        $email->subject('test subject');
+                        $email->send('test message');
 
-                    $this->Auth->login();
+                        $this->Auth->login();
 
-                    $this->Session->write('popup','congrats-inscription');
-                    
-                    $this->Session->setFlash(__('L\'user a été sauvegardé'));
-                    return $this->redirect(array('controller'=>'pages', 'action' => 'dome'));
+                        $this->Session->write('popup','congrats-inscription');
+                        
+                        $this->Session->setFlash(__('L\'user a été sauvegardé'));
+                        return $this->redirect(array('controller'=>'pages', 'action' => 'dome'));
+                    } else {
+                        $this->Session->setFlash(__('L\'user n\'a pas été sauvegardé. Merci de réessayer.'));
+                    }
                 } else {
-                    $this->Session->setFlash(__('L\'user n\'a pas été sauvegardé. Merci de réessayer.'));
+                    $this->Session->setFlash(__('L\'email est déjà utilisé. Merci de réessayer.'));
                 }
             } else {
-                $this->Session->setFlash(__('L\'email est déjà utilisé. Merci de réessayer.'));
+                $this->Session->setFlash(__('Vous n\'avez pas rentré le bon code.'));
             }
         }
     }

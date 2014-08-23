@@ -27,13 +27,12 @@ class User extends AppModel {
             )
         ),
         'captcha'=>array(
-            'rule' => array('matchCaptcha'),
-            'message'=>'Failed validating human check.'
+            'rule' => array('matchCaptcha')
         )  
     );
 
     function matchCaptcha($inputValue)  {
-        return $inputValue['captcha']==$this->getCaptcha(); //return true or false after comparing submitted value with set value of captcha
+        return $inputValue == $this->getCaptcha(); //return true or false after comparing submitted value with set value of captcha
     }
 
     function setCaptcha($value) {

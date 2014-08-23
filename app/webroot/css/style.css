@@ -694,3 +694,14 @@ button, .button, #user_block input[type=submit] {
       -ms-transition: opacity 0.2s;
       -o-transition: opacity 0.2s;
       transition: opacity 0.2s; }
+  #page_signup .form #img-captcha {
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 20px; }
+  #page_signup .form #a-reload {
+    font-size: 13px;
+    font-style: italic;
+    color: #545555; }
+  #page_signup .form .button, #page_signup .form #user_block input[type=submit], #user_block #page_signup .form input[type=submit] {
+    width: 50%;
+    margin: 0 auto; }
