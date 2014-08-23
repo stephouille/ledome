@@ -1,5 +1,31 @@
 $(document).ready(function() {
 
+	    $(function (){
+        var inpParent = $('.input');
+
+        if (!inpParent.length) return;
+
+        inpParent.each(function (){
+            var thisLine =  $(this),
+                inpTxt =  thisLine.find('.txt-field'),
+                inpCapt =  thisLine.find('.caption');
+
+            function fIn() {
+                inpTxt.parent().addClass('active');
+            }
+            function fOut() {
+                if(inpTxt.val() != 0){
+
+                }else{
+                    inpTxt.parent().removeClass('active');
+                }
+            }
+
+            inpTxt.focusin(fIn);
+            inpTxt.focusout(fOut);
+        })
+    });
+
 	
 
 	$("#menu #menu_lessons .menu-level1").hover(function() {

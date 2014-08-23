@@ -37,8 +37,31 @@ class UsersController extends AppController {
         $this->set('user', $this->User->read(null, $id));
     }
 
+    function captcha()   {
+        $this->autoRender = false;
+        $this->layout='ajax';
+        if(!isset($this->Captcha))  { //if Component was not loaded throug $components array()
+            App::import('Component','Captcha'); //load it
+            $this->Captcha = new CaptchaComponent(); //make instance
+            $this->Captcha->startup($this); //and do some manually calling
+        }
+        //$width = isset($_GET['width']) ? $_GET['width'] : '120';
+        //$height = isset($_GET['height']) ? $_GET['height'] : '40';
+        //$characters = isset($_GET['characters']) && $_GET['characters'] > 1 ? $_GET['characters'] : '6';
+        //$this->Captcha->create($width, $height, $characters); //options, default are 120, 40, 6.
+        $this->Captcha->create();
+    }
+
+
     public function add() {
+        if(!isset($this->Captcha))  { //if Component was not loaded throug $components array()
+            App::import('Component','Captcha'); //load it
+            $this->Captcha = new CaptchaComponent(); //make instance
+            $this->Captcha->startup($this); //and do some manually calling
+        }
+
         if ($this->request->is('post')) {
+            $this->User->setCaptcha($this->Captcha->getVerCode()); //getting from component and passing to model to do validation check
             if(!$this->User->hasAny(array('email' => $this->request->data['User']['email']))) {
                 $this->User->create();
                 if ($this->User->save($this->request->data)) {
