@@ -40,7 +40,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		var showPOPUP = "<?php Print($this->Session->read('popup')); ?>";
-		console.log(showPOPUP);
 	</script>
 </head>
 <body>
@@ -155,7 +154,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php echo $this->element('popup-click-lessons'); ?>
 	<?php echo $this->element('popup-choose-learning'); ?>
 	<?php echo $this->element('popup-click-add-learning'); ?>
-	
+	<?php echo $this->element('popup-end-tutorial'); ?>
 	
 	<script src="//www.youtube.com/player_api"></script>
 	<?php echo $this->Html->script('jquery-min'); ?>

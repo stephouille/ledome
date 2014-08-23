@@ -22,6 +22,9 @@ $cakeDescription = __d('cake_dev', 'Le Dome');
 		echo $this->fetch('script');
 	?>
 </head>
+<script type="text/javascript">
+	var showPOPUP;
+</script>
 <body>
 	<div id="container">
 		<div id="content">

@@ -16,8 +16,19 @@ $(document).ready(function() {
 	//POPUPS
 	if(showPOPUP) {
 		var popup = $('#popup-'+showPOPUP).bPopup({
-			onClose: function() { console.log('to do -> CLEAN LA SESSION'); }
+			onClose: function() {
+			}
 		});
+		$(document).on('click', '.finishTuto', function(){
+			$.ajax({
+	            url: 'users/stopPOPUP',
+	            type: "POST",
+	            dataType : 'json',
+	            success : function(data) {
+	            	popup.close();
+	            }
+	        });
+		})
 		if(showPOPUP == 'choose-learning') {
 			$('#popup-'+showPOPUP).css('top', '75px');
 			$('#learning-1').css({

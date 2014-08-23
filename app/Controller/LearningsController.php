@@ -40,8 +40,22 @@ class LearningsController extends AppController {
         }
     }
 
-    public function add_to_dome() {
-        
+    public function add_to_dome($id) {  
+        if ($this->Auth->login()) {
+            $user = $this->Auth->user();
+
+            $this->UsersLesson->create();
+            $this->UsersLesson->set(array(
+                'user_id' => $user['id'],
+                'learning_id' => $id
+            ));
+            $this->UsersLesson->save();
+
+            if($this->Session->read('popup') == 'click-add-learning') {
+                $this->Session->write('popup', 'end-tutorial');
+            }
+            return $this->redirect(array('controller'=>'pages', 'action' => 'dome'));
+        }
     }
 
 }

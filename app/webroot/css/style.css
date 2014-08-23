@@ -28,7 +28,7 @@
     margin: 20px; }
   .popup .button, .popup #user_block input[type=submit], #user_block .popup input[type=submit] {
     width: 200px;
-    margin: 0 auto; }
+    display: inline-block; }
 
 #preloadedImages {
   width: 0px;
@@ -91,7 +91,7 @@ button, .button, #user_block input[type=submit] {
       background-color: #62bf7f; }
   button#btn_addDome, .button#btn_addDome, #user_block input#btn_addDome[type=submit] {
     width: 300px;
-    margin: 0 auto; }
+    margin: 20px auto; }
 
 #container {
   overflow: hidden;

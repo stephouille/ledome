@@ -96,4 +96,8 @@ class UsersController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
+    public function stopPOPUP() {
+        $this->Session->delete('popup');
+    }   
+
 }
