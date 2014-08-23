@@ -13,6 +13,11 @@ class LearningsController extends AppController {
     }
 
 	public function view($id = null) {
+
+        if($this->Session->read('popup') == 'choose-learning') {
+          $this->Session->write('popup', 'click-add-learning');
+        }
+
         $this->Learning->id = $id;
 
         if (!$this->Learning->exists()) {
@@ -33,6 +38,10 @@ class LearningsController extends AppController {
                 $this->Session->setFlash(__('La vidéo n\'a pas été sauvegardée. Merci de réessayer.'));
             }
         }
+    }
+
+    public function add_to_dome() {
+        
     }
 
 }

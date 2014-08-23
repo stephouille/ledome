@@ -13,15 +13,37 @@ $(document).ready(function() {
 	    element.html(element.text().replace(rgxp, repl));
 	}
 	
-
-	// setTimeout(function(){
-	// 	$('#content').animate({
-	// 		'width': '90%'
-	// 	}, 300);
-	// 	$('#header').animate({
-	// 		'margin-left': '0'
-	// 	}, 300);
-	// }, 1000);
+	//POPUPS
+	if(showPOPUP) {
+		var popup = $('#popup-'+showPOPUP).bPopup({
+			onClose: function() { console.log('to do -> CLEAN LA SESSION'); }
+		});
+		if(showPOPUP == 'choose-learning') {
+			$('#popup-'+showPOPUP).css('top', '75px');
+			$('#learning-1').css({
+				'position': 'relative',
+				'z-index': 10000,
+				'background': '#FFF',
+				'border-radius': '15px',
+				'height': '30px',
+				'line-height': '30px',
+			})
+		} else if(showPOPUP == 'click-add-learning') {
+			$('#btn_addDome').css({
+				'position': 'relative',
+				'z-index': 10000,
+			});
+		}
+		$(document).on('click', '#btn_startTour', function(){
+			popup.close();
+			$('#menu-item-lessons').css({
+				'z-index': 10000,
+				'position': 'relative',
+				'background': '#FFF'
+			});
+			$('#popup-click-lessons').bPopup();
+		});
+	}
 
 	// changer le background en fonction de l'heure de la journée
 	var d = new Date();

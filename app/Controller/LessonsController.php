@@ -7,6 +7,10 @@ class LessonsController extends AppController {
 	public $uses = array('Pole', 'Video', 'Learning');
 
 	public function index() {
+
+    if($this->Session->read('popup') == 'congrats-inscription') {
+      $this->Session->write('popup', 'choose-learning');
+    }
        
    	$poles = $this->Pole->find('all');
    	$nbVideos = $this->Video->find('count', array('conditions' => array('valid' => 1)));

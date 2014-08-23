@@ -36,6 +36,24 @@ $grey_text_header: #7A7A7A;
 	font-style: normal;
 }
 
+
+// POPUP
+.popup {
+	display: none;
+	background-color: #fff;
+	color: #111;
+	display: none;
+	width: 50%;
+	padding: 25px;
+	p {
+		margin: 20px; 
+	}
+	.button {
+		width: 200px;
+		margin: 0 auto;
+	}
+}
+
 #preloadedImages
 {
     width: 0px;
@@ -93,6 +111,10 @@ button, .button {
 		&:hover {
 			background-color: $green_hover;
 		}
+	}
+	&#btn_addDome {
+		width: 300px;
+		margin: 0 auto;
 	}
 }
 
@@ -542,6 +564,10 @@ button, .button {
 				display: block;
 				width: 200px;
 				margin: 10px auto;
+				&.btn_connexion {
+					background-color: $green;
+				}
+				
 			}
 		}
 	}

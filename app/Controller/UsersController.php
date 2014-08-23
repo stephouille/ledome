@@ -49,6 +49,8 @@ class UsersController extends AppController {
                     $email->send('test message');
 
                     $this->Auth->login();
+
+                    $this->Session->write('popup','congrats-inscription');
                     
                     $this->Session->setFlash(__('L\'user a été sauvegardé'));
                     return $this->redirect(array('controller'=>'pages', 'action' => 'dome'));

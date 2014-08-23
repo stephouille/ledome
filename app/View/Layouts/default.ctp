@@ -18,8 +18,6 @@
 
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 
-// debug($poles);
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,6 +38,10 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('script');
 	?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		var showPOPUP = "<?php Print($this->Session->read('popup')); ?>";
+		console.log(showPOPUP);
+	</script>
 </head>
 <body>
 	<div id="preloadedImages"></div>
@@ -142,11 +144,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<div class="clear"></div>
 
 		<div id="footer">
-			<!-- <div id="copyright">© LE DOME 2014</div>
-			<div id="links_footer">
-				<a href="#">Mentions légales</a>
-				<a href="#">Contact</a>				
-			</div> -->
 			<div id="social_footer">
 				<a class="social_footer" id="social_facebook" href="https://www.facebook.com/" target="_blank"></a>
 				<a class="social_footer" id="social_twitter" href="https://twitter.com/" target="_blank"></a>	
@@ -154,11 +151,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		</div>
 
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
-
+	<?php echo $this->element('popup-congrats-inscription'); ?>
+	<?php echo $this->element('popup-click-lessons'); ?>
+	<?php echo $this->element('popup-choose-learning'); ?>
+	<?php echo $this->element('popup-click-add-learning'); ?>
+	
 	
 	<script src="//www.youtube.com/player_api"></script>
 	<?php echo $this->Html->script('jquery-min'); ?>
+	<?php echo $this->Html->script('jquery.bpopup.min'); ?>
 	<?php echo $this->Html->script('app'); ?>
 	<?php echo $this->Html->script('tiny_mce'); ?>
 	

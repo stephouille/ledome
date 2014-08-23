@@ -21,7 +21,7 @@
 			<h3><?= $pole['Pole']['name'] ?></h3>
 			<ul>
 				<?php foreach($pole['Learning'] as $video): ?>
-				<li><?php echo $this->Html->link($video['name'], array('controller'=>'learnings','action' => 'view', $video['id']));?></li>
+				<li id="learning-<?= $video['id'] ?>"><?php echo $this->Html->link($video['name'], array('controller'=>'learnings','action' => 'view', $video['id']));?></li>
 				<?php endforeach; ?>
 			</ul>
 		</li>
