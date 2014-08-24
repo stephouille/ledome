@@ -1,4 +1,4 @@
-<div class="block_content big_content">
+<div class="block_content big_content" id="content_player">
 	<h2><?= $video['Learning']['name'] ?></h2>
 
 	<div id="navigation_videos">
