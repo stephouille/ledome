@@ -1,8 +1,6 @@
 <?php
 
-App::uses('Model', 'Model');
-
-class Pole extends Model {
+class Pole extends AppModel {
 
 	public $hasMany = array( 'Learning' );
 

@@ -1,10 +1,14 @@
 <div class="popup" id="popup-congrats-inscription">
 
+	<a class="finishTuto" href="javascript:void(0)">FERMER X</a>
 
-	<h2>Bravo !</h2>
-	<p>Hoodie selvage 90's lo-fi ethical. Kickstarter asymmetrical you probably haven't heard of them, locavore small batch put a bird on it kitsch.</p>
+	<h2>BIENVENUE DANS LE DOME !</h2>
+	<p>Bonjour <?= $user['username'] ?>,</p>
 
-	<a class="button" id="btn_startTour" href="javascript:void(0)">Commencer la visite !</a>
-	<a class="button finishTuto" href="javascript:void(0)">Stop tuto</a>
+	<p>Ton profil a été enregistré ! Tu peux maintenant organiser les cours qui te plaisent et sauvegarder ta progression à tout moment.</p>
 
+	<p>On te montre tout de suite comment ça marche ! Prêt(e) ?.</p>
+
+	<a class="button" id="btn_startTour" href="javascript:void(0)">C’est parti !</a>
+	
 </div>

@@ -39,52 +39,41 @@ class AppController extends Controller {
     public function beforeFilter() {
     	parent::beforeFilter();
 
-    	if ($this->request->prefix == 'admin') {
+        // Specify which controller/action handles logging in:
+        AuthComponent::$sessionKey = 'Auth.User';
+        $this->Auth->authenticate = array(
+               'Form' => array(
+                   'fields' => array('username' => 'email', 'password' => 'password')
+               )
+           );
+        $this->Auth->loginAction = array('controller'=>'users', 'action'=>'login');
+        $this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'home');
+        $this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'home');
+
+        // If we get here, it is neither a 'phys' prefixed method, not an 'admin' prefixed method.
+        // So, just allow access to everyone - or, alternatively, you could deny access - $this->Auth->deny();
+        $this->Auth->allow();
+        
+        if ($this->request->prefix == 'admin') {
             $this->layout = 'admin';
-            // Specify which controller/action handles logging in:
-            AuthComponent::$sessionKey = 'Auth.Admin'; // solution from http://stackoverflow.com/questions/10538159/cakephp-auth-component-with-two-models-session
-            $this->Auth->loginAction = array('controller'=>'admin', 'action'=>'login');
-            $this->Auth->loginRedirect = array('controller'=>'admin', 'action'=>'index');
-            $this->Auth->logoutRedirect = array('controller'=>'admin', 'action'=>'login');
-            $this->Auth->authenticate = array(
-                'Form' => array(
-                    'userModel' => 'Admin',
-                )
-            );
-            $this->Auth->allow();
-
         } else {
-        	AuthComponent::$sessionKey = 'Auth.User';
-        	$this->Auth->authenticate = array(
-		           'Form' => array(
-		               'fields' => array('username' => 'email', 'password' => 'password')
-		           )
-		       );
-        	$this->Auth->loginAction = array('controller'=>'users', 'action'=>'login');
-        	$this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'home');
-            $this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'home');
+            if ($this->Session->read('Auth.User')) {
+                $authUser = true;
+                $user = $this->Auth->user();
+            } else {
+                $authUser = false;
+                $user = null;
+            }
+            $poles = $this->Pole->find('all');
 
-            // If we get here, it is neither a 'phys' prefixed method, not an 'admin' prefixed method.
-            // So, just allow access to everyone - or, alternatively, you could deny access - $this->Auth->deny();
-            $this->Auth->allow();           
+            $this->set(array(
+                'authUser' => $authUser,
+                'user' => $user,
+                'poles' => $poles, 
+                '_serialize' => array('authUser', 'user', 'poles')
+            ));
         }
-
-        if ($this->Auth->login()) {
-			$authUser = true;
-			$user = $this->Auth->user();
-		} else {
-			$authUser = false;
-			$user = null;
-		}
-
-		$poles = $this->Pole->find('all');
-
-		$this->set(array(
-            'authUser' => $authUser,
-            'user' => $user,
-            'poles' => $poles, 
-            '_serialize' => array('authUser', 'user', 'poles')
-        ));
+		
     }
 
     public function isAuthorized($user){

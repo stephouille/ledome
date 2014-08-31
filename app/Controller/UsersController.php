@@ -64,11 +64,13 @@ class UsersController extends AppController {
 
                         $email = new CakeEmail('default');
                         $email->to($this->request->data['User']['email']);
-                        $email->subject('test subject');
-                        $email->send('test message');
+                        $email->subject('Bienvenue dans LE DOME');
+                        $email->viewVars( array('username' => $this->request->data['User']['username']) );
+                        $email->template('signup');
+                        $email->emailFormat('html');
+                        $email->send();
 
                         $this->Auth->login();
-
                         $this->Session->write('popup','congrats-inscription');
                         
                         $this->Session->setFlash(__('L\'user a été sauvegardé'));

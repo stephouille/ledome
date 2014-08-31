@@ -35,7 +35,8 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array('Pole', 'UsersLesson', 'Zone');
+	public $uses = array('Pole', 'UsersLesson', 'Zone', 'Contributor');
+	public $helpers = array('Html', 'Form', 'Captcha');
 
 /**
  * Displays a view
@@ -56,6 +57,8 @@ class PagesController extends AppController {
 
 	public function home() {
 		$this->layout = 'home';
+		$this->Captcha = $this->Components->load('Captcha', array('captchaType'=>'image', 'jquerylib'=>true, 'modelName'=>'User', 'fieldName'=>'captcha'));
+
 		if ($this->Auth->login()) {
 			$this->redirect(array('controller' => 'pages', 'action' => 'dome'));
 		}
@@ -82,7 +85,15 @@ class PagesController extends AppController {
 	public function about() { }
 	public function help() { }
 	public function contact() { }
-	public function friends() { }
+	public function friends() {
+
+		$contributors = $this->Contributor->find('all');
+		$this->set(array(
+            'contributors' => $contributors,
+            '_serialize' => array('contributors')
+        ));
+
+	}
 	public function imprint() { }
 
 }

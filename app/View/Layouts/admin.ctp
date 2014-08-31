@@ -27,12 +27,11 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 	<?php
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('knacss');
-		echo $this->Html->css('styleAdmin');
+		echo $this->Html->css('style-admin');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -40,27 +39,50 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 </head>
 <body>
-	<div id="container" class="pure-g">
-		<div id="header" class="pure-u-1-5">
-			<div class="pure-menu pure-menu-open">
-				<div id="member_admin">
-					<?php echo $this->Html->image('avatar.jpg', array('alt' => 'icon lessons')); ?>
-					<?php echo $this->Html->link('Déconnexion', array('controller'=>'admin','action' => 'logout'), array('title' => 'logout')); ?>
-				</div>
-			    <!-- <a class="pure-menu-heading">ADMIN le dome</a> -->
-			    <ul>
-			        <!-- <li><a href="#">Statistiques</a></li> -->
-			        <li><a href="#">Apprentissages</a></li>
-			        <!-- <li class="pure-menu-heading">More Sites!</li> -->
+	<div id="container">
+		<div id="wrapper_page">
+			<div id="menu">
+				<?php echo $this->Html->image('logo.png', array('id' => 'logo')); ?>
+				<ul>
+					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='dashboard') )?'active' :'' ?>">
+						<?php echo $this->Html->link($this->Html->image('icon_dashboard.png') . ' ' . __('<p>Dashboard</p>'),
+	                       array('controller'=>'admin','action' => 'dashboard'),
+	                       array('escape' => false)); ?>
+					</li>
+					<li class="<?php echo (!empty($this->params['action']) && ($this->params['controller']=='learnings') && ($this->params['action']=='index') )?'active' :'' ?>">
+						<?php echo $this->Html->link($this->Html->image('icon_learnings.png') . ' ' . __('<p>Apprentissages</p>'),
+	                       array('controller'=>'learnings','action' => 'index', 'admin' => true),
+	                       array('escape' => false)); ?>
+					</li>
+					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='allpages') )?'active' :'' ?>">
+						<?php echo $this->Html->link($this->Html->image('icon_pages.png') . ' ' . __('<p>Pages</p>'),
+	                       array('controller'=>'admin','action' => 'allpages', 'admin' => false),
+	                       array('escape' => false)); ?>
+					</li>
 			    </ul>
 			</div>
+			<div id="wrapper_content">
+				<div id="header">
+					<?php echo $this->Html->link('Retour au site', array('controller'=>'pages','action' => 'dome', 'admin' => false), array('class' => 'button', 'id' => 'btn_backWebsite')); ?>
+					<div id="wrapper_user">
+					<?php echo $this->Html->image('avatar.jpg', array('id' => 'avatar_user')); ?>
+					<p><?= $this->Session->read('Auth.User.username') ?></p>
+					<?php echo $this->Html->link('Déconnexion', array('controller'=>'users','action' => 'logout', 'admin' => false), array('class' => 'button', 'id' => 'btn_logout')); ?>
+					</div>
+					<div class="clear"></div>
+				</div>
+
+				<div id="content">
+					<div id="wrapper_content_admin">
+						<?php echo $this->Session->flash(); ?>
+						<?php echo $this->fetch('content'); ?>
+					</div>
+				</div>
+				<div id="footer">
+				</div>
+			</div>
 		</div>
-		<div id="content" class="pure-u-4-5">
-			<?php echo $this->Session->flash(); ?>
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-		</div>
+		<div class="clear"></div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 

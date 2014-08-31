@@ -5,35 +5,32 @@ App::uses('AppController', 'Controller');
 
 class AdminController extends AppController {
 
-	public $uses = array('Admin');
+	public $uses = array('Learning', 'User', 'Video');
 
-	public function admin_login() {
-	    if ($this->request->is('post')) {
-	        if ($this->Auth->login()) {
-	            return $this->redirect($this->Auth->redirect());
-	        } else {
-	            $this->Session->setFlash(__('Username or password is incorrect'), 'default', array(), 'auth');
-	        }
-	    }
+	public function beforeFilter() {
+    	parent::beforeFilter();
+    	if($this->Session->read('Auth.User.role') == 'user') {
+			return $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+		} else {
+			$this->layout = 'admin';
+		}
+    }
+
+	public function index() {
+
+		$nbUsers = $this->User->find('count');
+		$nbVideos = $this->Video->find('count');
+
+		$this->set(array(
+            'nbUsers' => $nbUsers,
+            'nbVideos' => $nbVideos,
+            '_serialize' => array('nbUsers', 'nbVideos')
+        ));
 	}
 
-	public function admin_logout() {
-	    $this->Session->setFlash('Successfully Logged Out');
-	    $this->redirect($this->Auth->logout());
-	}
+	public function admin_learnings() {
+		$poles = $this->Pole->find('all', array('recursive' => 2));
+        $this->set('poles', $poles);
+    }
 
-
-	public function admin_add() {
-	    
-		if ($this->request->is('post')) {
-            $this->Admin->create();
-            if ($this->Admin->save($this->request->data)) {
-                $this->Session->setFlash(__('L\'user a été sauvegardé'));
-                return $this->redirect(array('action' => 'index'));
-            } else {
-                $this->Session->setFlash(__('L\'user n\'a pas été sauvegardé. Merci de réessayer.'));
-            }
-        }
-
-	}
 }

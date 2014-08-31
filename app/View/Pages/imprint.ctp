@@ -2,16 +2,15 @@
 	<div id="wrapper_imprint">
 
 		<h2>Mentions légales</h2>
-		<ul>
-			<li><span>La raison sociale</span> : Le Dome</li>
-			<li><span>Le siège social</span> : 36 rue des Renaudes, 75017 Paris</li>
-			<li><span>Un numéro de téléphone</span> : 06 22 47 40 59</li>
-			<li><span>Le nom du directeur de la publication et/ou du responsable de la rédaction</span> : Fernando Costa</li>
-			<li><span>Nom de l'hébergeur</span> : 1&1</li>
-			<li><span>Raison sociale de l'hébergeur</span> : 1&1 Internet SARL</li>
-			<li><span>Adresse de l'hébergeur</span> : 7 place de la Gare, BP 70109, 57201 Sarreguemines Cedex</li>
-			<li><span>Numéro de téléphone de l'hébergeur</span> : 0970 808 911</li>
-		</ul>
+
+		<p>Le Dome est édité par l'association loi 1901 Le Dome, dont le siège social est situé au 36 rue des Renaudes, 75017 Paris, France, représentée par son président et directeur de la publication, M. Fernando Costa.</p>
+		<p>Contact : 06 22 47 40 59</p>
+
+		<p>Le Dome est hébergé par :</p>
+
+		<p>1&1 Internet SARL<br/>
+		7 place de la Gare BP 70109, 57201 Sarreguemines Cedex<br/>
+		0970 808 911</p>
 
 	</div>
 </div>

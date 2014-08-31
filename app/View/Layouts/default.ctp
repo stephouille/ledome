@@ -54,7 +54,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 				</div>
 
 				<div id="form_login" style="display:none">				
-					<?php echo $this->Session->flash('auth'); ?>
+					<!-- <?php echo $this->Session->flash('auth'); ?> -->
 					<?php echo $this->Form->create('User'); ?>
 					     <?php echo $this->Form->input('email', array('label' => '', 'placeholder' => 'email'));
 					        echo $this->Form->input('password', array('label' => '', 'placeholder' => 'mot de passe')); ?>
@@ -63,7 +63,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 			<?php } else { ?>
 
-				<p>Bonjour, <?= $user['username'] ?> !<?php echo $this->Html->link('Déconnexion', array('controller'=>'users','action' => 'logout'), array('title' => 'logout')); ?></p>
+				<p>Bonjour, <?= $user['username'] ?> ! <?php echo $this->Html->link('Déconnexion', array('controller'=>'users','action' => 'logout'), array('title' => 'logout')); ?></p>
 
 			<?php } ?>
 			

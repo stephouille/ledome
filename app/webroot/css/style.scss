@@ -36,21 +36,33 @@ $grey_text_header: #7A7A7A;
 	font-style: normal;
 }
 
-
+.center { text-align: center; }
 // POPUP
 .popup {
+	text-align: center;
 	display: none;
 	background-color: #fff;
 	color: #111;
 	display: none;
 	width: 50%;
 	padding: 25px;
+	h2 {
+		font-size: 1.3em;
+		text-align: center;
+	}
 	p {
 		margin: 20px; 
 	}
 	.button {
 		width: 200px;
 		display: inline-block;
+	}
+	.finishTuto {
+		position: absolute;
+		top: 6px;
+		font-weight: bold;
+		font-size: 0.9em;
+		right: 10px;
 	}
 }
 
@@ -76,8 +88,10 @@ h1 {
 	font-weight: normal;
 }
 h2 {
-	text-align: center;
 	font-size: 1.8em;
+	line-height: 1;
+	font-family: 'adam';
+	text-align: left;
 	font-weight: normal;
 }
 h3 {
@@ -112,17 +126,24 @@ button, .button {
 			background-color: $green_hover;
 		}
 	}
-	&#btn_addDome {
-		width: 300px;
-		margin: 20px auto;
+	&.bluebutton {
+		background-color: $blue;
+		&:hover {
+			background-color: $blue_hover;
+		}
 	}
+	
 }
+
+
 
 
 
 #container {
 	overflow: hidden;
-	/*background: url(../img/bg_day.jpg) no-repeat;*/
+	// background-image: url(../img/background_dome.jpg);
+	background-image: url(../img/background_home.jpg);
+	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
 	height: 100%;
@@ -186,27 +207,13 @@ button, .button {
 		.block_content {
 			background: #FFF;
 			padding: 10px;
-			width: 75%;
-			height: 80%;
+			width: 80%;
+			height: 82%;
 			margin: 0 auto;
-			margin-top: 6%;
-			.block {
-				width: 40%;
-				height: 80%;
-				background-color: #f5f6f1;
-				margin: 0 5%;
-				.content_block {
-					width: 90%;
-					margin: 0 auto;
-					h2 {
-						margin: 10px 0;
-					}
-				}
-				
-			}
+			margin-top: 5%;
 			&.big_content {
 				width: 98%;
-				height: 100%;
+				height: 89%;
 				margin-top: 0;
 				.block_video {
 					width: 55%;
@@ -242,7 +249,7 @@ button, .button {
 						#wrapper_infos_video {
 							vertical-align: top;
 							display: inline-block;
-							width: 78%;
+							width: 77%;
 							a { vertical-align: top; }
 							img {
 								float: left;
@@ -325,31 +332,103 @@ button, .button {
 	}
 }
 #content_home {
-	width: 250px;
-	background: #FFF;
-	padding: 10px;
-	text-align: center;
-	position: absolute;
-	top: 20%;
-	left: 12%;
-	input {
-		padding: 5px;
-		height: 35px;
-		width: 100%;
-		margin: 5px 0;
+	h1 {
+		color: #FFF;
+		font-size: 7em;
+		margin-top: 0;
+		margin-bottom: 40px;
 	}
-}
-#home_dome {
-	position: absolute;
-	bottom: 10%;
-	right: 10%;
-	text-align: right;
-	a {
-		img {
-			width: 85%;
+	.users.form {
+		width: 28%;
+		background: #FFF;
+		margin-left: 6%;
+		position: relative;
+		padding: 50px 15px 15px 15px;
+		#logo {
+			position: absolute;
+			width: 90px;
+			top: -45px;
+			left: 50%;
+			margin-left: -45px;
 		}
-		&:hover img {
-			opacity: 0.7;
+		form {
+			margin-top: 10px;
+			.input {
+				margin: 0 0 10px 0;
+				position: relative;
+				input {
+					width: 100%;
+					height: 33px;
+					padding: 6px 15px 5px;
+					box-sizing: border-box;
+					-moz-box-sizing: border-box;
+					-webkit-box-sizing: border-box;
+					border: 1px solid #dadada;
+					border-radius: 3px;
+					color: #000;
+					outline: none;
+				}
+				.caption {
+					position: absolute;
+					left: 10px;
+					top: -10px;
+					padding: 0 5px;
+					background: #fff;
+					font-size: 12px;
+					color: #545555;
+					cursor: default;
+					opacity: 0;
+				}
+				&.active {
+					.caption {
+						opacity: 1;
+						-webkit-transition: opacity 0.2s;
+						-moz-transition: opacity 0.2s;
+						-ms-transition: opacity 0.2s;
+						-o-transition: opacity 0.2s;
+						transition: opacity 0.2s;
+					}
+				} 
+			}
+			#img-captcha {
+				float: left;
+				margin-right: 10px;
+				margin-bottom: 20px; 
+			}
+			#a-reload {
+				font-size: 13px;
+				font-style: italic;
+				color: #545555;
+			}
+			.button {
+				width: 50%;
+				margin: 0 auto;
+			}	
+		}
+	}
+	#home_dome {
+		position: absolute;
+		bottom: 10%;
+		right: 6%;
+		width: 50%;
+		#wrapper_home_dome {
+			cursor: pointer;
+			display: none;
+			text-align: center;
+			width: 52%;
+			margin: 0 auto;
+			background: rgba(255, 255, 255, 0.91);
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 37%;
+			height: 30%;
+			padding: 37px 0 0 0;
+		}
+		&:hover {
+			#wrapper_home_dome {
+				display: block;
+			}
 		}
 	}
 }
@@ -381,11 +460,14 @@ button, .button {
 					height: 100%;
 					display: inline-block;
 					.icon {
-						display: block;
-						height: 90%;
-						background-size: auto 100%;
-						background-repeat: no-repeat;
-						background-position: center;
+						// display: block;
+						// height: 90%;
+						// background-size: auto 100%;
+						// background-repeat: no-repeat;
+						// background-position: center;
+						height: 33px;
+						background-size: 33px;
+						width: 33px;
 						margin: 0 auto;
 					}
 					p { 
@@ -393,7 +475,7 @@ button, .button {
 						color: $grey_text_header;
 					}
 				}
-				&:hover {
+				&:hover, &.active {
 					p { 
 						color: #000;
 					}
@@ -408,6 +490,7 @@ button, .button {
 				&#menu-item-lessons {
 					a .icon { 
 						background-image: url(../img/icon_lessons.png); 
+						background-position: 0 0;
 					}
 					#menu_lessons {
 						z-index: 20;
@@ -442,20 +525,27 @@ button, .button {
 							}
 						}
 					}
-					&:hover #menu_lessons {
-						display: block;
+					&:hover {
+						#menu_lessons {
+							display: block;
+						}
+					}
+					&:hover, &.active {
+						a .icon {  
+							background-position: 0 33px;
+						}
 					}
 				}
 				&#menu-item-help a .icon { background-image: url(../img/icon_help.png); }
-				&#menu-item-help:hover a .icon, &#menu-item-help.active a .icon { background-image: url(../img/icon_help_hover.png); }
+				&#menu-item-help:hover a .icon, &#menu-item-help.active a .icon { background-position: 0 33px; }
 				&#menu-item-friends a .icon { background-image: url(../img/icon_friends.png);}
-				&#menu-item-friends:hover a .icon, &#menu-item-friends.active a .icon { background-image: url(../img/icon_friends_hover.png); }
+				&#menu-item-friends:hover a .icon, &#menu-item-friends.active a .icon { background-position: 0 33px; }
 				&#menu-item-about a .icon { background-image: url(../img/icon_about.png); }
-				&#menu-item-about:hover a .icon, &#menu-item-about.active a .icon { background-image: url(../img/icon_about_hover.png); }
+				&#menu-item-about:hover a .icon, &#menu-item-about.active a .icon { background-position: 0 33px; }
 				&#menu-item-imprint a .icon { background-image: url(../img/icon_imprint.png); }
-				&#menu-item-imprint:hover a .icon, &#menu-item-imprint.active a .icon { background-image: url(../img/icon_imprint_hover.png); }
+				&#menu-item-imprint:hover a .icon, &#menu-item-imprint.active a .icon { background-position: 0 33px; }
 				&#menu-item-contact a .icon { background-image: url(../img/icon_contact.png); }
-				&#menu-item-contact:hover a .icon, &#menu-item-contact.active a .icon { background-image: url(../img/icon_contact_hover.png); }
+				&#menu-item-contact:hover a .icon, &#menu-item-contact.active a .icon { background-position: 0 33px; }
 				&#menu-item-close {
 					border-top: 2px solid #000;
 					width: 25%;
@@ -506,7 +596,7 @@ button, .button {
 		a {
 			display: inline-block;
 			margin: 0 2px;
-			width: 140px;
+			width: 120px;
 		}
 	}
 
@@ -623,85 +713,99 @@ button, .button {
 
 //PAGE player
 #content_player {
-	h2 {
-		text-align: left;
-		font-size: 1.4em;
-	}
-	#navigation_videos {
-		margin: 22px 0 10px 0;
-		.item_nav_video {
-			display: block;
-			background: $blue;
-			width: 30px;
-			height: 20px;
-			text-align: center;
-			position: relative;
-			float: left;
-			.title_video {
-				display: none;
-				position: absolute;
-				top: -20px;
-				left: 50%;
-				width: 100%;
-				font-size: 0.9em;	
-			}
-			&.active {
-				background: $blue_hover;
+	#header_player {
+		width: 98%;
+		margin: 0 auto;
+		#img_learning {
+			display: inline-block;
+			width: 40px;
+			margin-right: 7px;
+		}
+		h2 {
+			text-align: left;
+			font-size: 1.4em;
+			display: inline-block;
+			margin-top: 1.5%;
+		}
+		#navigation_videos {
+			margin: 5px 0;
+			.item_nav_video {
+				display: block;
+				background: #FFF;//$blue;
+				width: 30px;
+				height: 20px;
+				text-align: center;
+				position: relative;
+				float: left;
 				.title_video {
-					display: block;
-				}
-				&::after{
-					content: '';
-					background-image: url(../img/icon_arrow_down.png);
-					width: 20px;
-					height: 20px;
-					display: block;
+					display: none;
 					position: absolute;
-					right: -10px;
-					top: 0;
-					z-index: 10;
+					top: -20px;
+					left: 50%;
+					width: 100%;
+					font-size: 0.9em;	
 				}
-			}
-			a {
-				color: #FFF;
-				width: 100%;
-				height: 100%;
-				display: none;
-				line-height: 20px;
-			}
-			&:hover {
+				&.active {
+					background: $blue_hover;
+					.title_video {
+						display: block;
+					}
+					&::after{
+						content: '';
+						background-image: url(../img/icon_arrow_down.png);
+						width: 20px;
+						height: 20px;
+						display: block;
+						position: absolute;
+						right: -10px;
+						top: 0;
+						z-index: 10;
+					}
+					&:hover {
+						a {
+							display: block;	
+						}
+					}
+				}
 				a {
-					display: block;
+					color: #FFF;
+					width: 100%;
+					height: 100%;
+					display: none;
+					line-height: 20px;
 				}
-				.title_video {
-					display: block;
+				&:hover {
+					cursor: pointer;
+					.title_video {
+						display: block;
+					}
+					&::after{
+						content: '';
+						background-image: url(../img/icon_arrow_down.png);
+						width: 20px;
+						height: 20px;
+						display: block;
+						position: absolute;
+						right: -10px;
+						top: 0;
+						z-index: 10;
+					}
 				}
-				&::after{
-					content: '';
-					background-image: url(../img/icon_arrow_down.png);
-					width: 20px;
-					height: 20px;
-					display: block;
-					position: absolute;
-					right: -10px;
-					top: 0;
-					z-index: 10;
-				}
-			}
-			&:last-child {
-				.title_video { 
-					left: 0;
+				&:last-child {
+					.title_video { 
+						left: 0;
+					}
 				}
 			}
 		}
 	}
+	.bloc_notes {
+		width: 100%;
+		height: 300px;
+	}	
 }
 
 
-.bloc_notes {
-	width: 100%;
-	height: 300px;
-}
 
 #footer {
 	position: absolute;
@@ -709,18 +813,22 @@ button, .button {
 	right: 10px;
 	.social_footer {
 		display: inline-block;
-		width: 48px;
-		height: 46px;
+		width: 38px;
+		height: 38px;
+		background-size: 38px;
+		margin-right: 8px;
 		&#social_facebook {
-			background: url(../img/icon_facebook.png);
+			background-image: url(../img/icon_facebook.png);
+			background-position: 0 0;
 			&:hover {
-				background: url(../img/icon_facebook_hover.png);
+				background-position: 0 38px;
 			}
 		}
 		&#social_twitter {
-			background: url(../img/icon_twitter.png);
+			background-image: url(../img/icon_twitter.png);
+			background-position: 0 0;
 			&:hover {
-				background: url(../img/icon_twitter_hover.png);
+				background-position: 0 38px;
 			}
 		}
 	}
@@ -728,61 +836,129 @@ button, .button {
 }
 
 #block_help {
-	#block_donation {
-		text-align: center;
-		input, button {
-			padding: 5px;
-			height: 40px;
-			width: 80%;
-			margin: 10px 0;
-		}
-	}
-	#block_sendHelp {
-		form {
-			margin-top: 20px;
-			input, button {
-				padding: 5px;
-				height: 30px;
-				width: 100%;
-				margin: 5px 0;
-				&#firstname_helper, &#lastname_helper {
-					width: 49%;
-					display: inline-block;
+	#wrapper_help {
+		width: 95%;
+		height: 100%;
+		margin: 10px auto 0 auto;
+		.block {
+			width: 49%;
+			height: 85%;
+			background-color: #f5f6f1;
+			.content_block {
+				text-align: justify;
+				width: 90%;
+				margin: 10px auto;
+				h3 {
+					font-size: 1.2em;
+					font-weight: bold;
+					text-align: center;
 				}
-				&#description_helper {
-					height: 50px;
+				h4 {
+					color: #7A7A7A;
+					font-size: 1em;
+				}
+				p {
+					line-height: 1.4;
 				}
 			}
 		}
-		
+		#block_donation {
+			#btn_paypal {
+				padding: 5px;
+				height: 30px;
+				width: 74%;
+				margin: 40px auto 10px auto;
+				line-height: 22px;
+			}
+		}
+		#block_sendHelp {
+			form {
+				margin-top: 20px;
+				input, button {
+					padding: 5px;
+					height: 30px;
+					width: 100%;
+					margin: 5px 0;
+					&#firstname_helper, &#lastname_helper {
+						width: 49%;
+						display: inline-block;
+					}
+					&#description_helper {
+						height: 50px;
+					}
+				}
+			}
+			.button {
+				width: 50%;
+				margin: 0 auto;
+				display: block;
+			}
+			.link {
+				text-align: center;
+				text-decoration: underline;
+				display: block;
+			}
+		}
 	}
 }
 
 
 // ------ Page about ------
 #wrapper_about {
-	width: 90%;
-	margin: 20px auto 0 auto;
+	width: 92%;
+	margin: 10px auto 0 auto;
+	text-align: justify;
 	h2 {
-		margin: 0;
+		margin: 15px 0 15px 0;
 	}
 	h3 {
 		font-style: italic;
 		color: $dark_grey;
 		text-align: center;
-		margin: 0 0 50px 0;
+		margin: 0 0 10px 0;
+	}
+	span {
+		font-weight: 900;
+	}
+	.link {
+		text-decoration: underline;
 	}
 	.button {
-		width: 30%;
-		margin: 50px auto 0 auto;
+		width: 120px;
+		margin: 20px auto 0 auto;
 	}
 }
 
 // ------ Page imprint ------
 #wrapper_imprint {
-	width: 90%;
+	width: 95%;
 	margin: 20px auto 0 auto;
 }
+
+// ------ Page contact ------
+#wrapper_contact {
+	width: 95%;
+	margin: 20px auto 0 auto;
+	span {
+		color: $orange;
+	}
+	p {
+		margin: 0;
+	}
+	a {
+		display: block;
+		width: 20%;
+		float: left;
+		margin: 12% 6.5%;
+		text-align: center;
+	}
+	.contact_icon {
+		width: 80%;
+		margin: 10px auto;
+		display: block;
+	}
+}
+
 
 // ------ Page signup -------
 .form .txt-field::-webkit-input-placeholder {color:  #b1b3b5}
@@ -848,6 +1024,69 @@ button, .button {
 			width: 50%;
 			margin: 0 auto;
 		}		
+	}
+}
+
+//Page amis
+#block_friends {
+	#wrapper_friends {
+		margin: 20px auto;
+		width: 95%;
+		ul {
+			margin: 15px 0;
+			li {
+				width: 18%;
+				display: inline-block;
+				text-align: center;
+				.image_contributor {
+					width: 80%;
+					display: block;
+					margin: 10px auto;
+					border-radius: 50%;
+				}
+				.name_contributor {
+					font-weight: bold;
+				}
+				.poste_contributor {
+					font-style: italic;
+				}
+			}
+		}
+		#btn_becomeAFriend {
+			width: 200px;
+			display: block;
+			margin: 30px auto 0 auto;
+		}
+	}
+}
+
+//Page learning 
+#wrapper_polePage {
+	margin: 20px auto;
+	width: 95%;
+	ul {
+		li {
+			img {
+				margin-right: 10px; 
+			}
+		}
+	}
+}
+
+//Page learning 
+#wrapper_learningPage {
+	margin: 20px auto;
+	width: 95%;
+	#btn_addDome {
+		background-color: $yellow;
+		width: 300px;
+		margin: 20px auto;
+		color: #000;
+	}
+	#btn_removeDome {
+		background-color: $green;
+		width: 300px;
+		margin: 20px auto;
 	}
 }
 

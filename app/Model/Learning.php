@@ -4,7 +4,8 @@ App::uses('AppModel', 'Model');
 
 class Learning extends AppModel {
 
-	public $hasMany = array( 'Video');
+	public $hasMany = array( 'Video' );
+	public $belongsTo = array( 'Pole' );
 
 
 }

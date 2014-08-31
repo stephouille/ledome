@@ -54,37 +54,11 @@ $(document).ready(function() {
 		});
 	}
 
-	// changer le background en fonction de l'heure de la journée
-	var d = new Date();
-	var n = d.getHours();
-
-	if(n >= 6 || n < 7) {	//Lever du jour
-		$('#container').removeClass();
-		$('#container').addClass('sunrise');
-	}
-	if(n >= 7 || n < 19) {	//Jour 
-		$('#container').removeClass();
-		$('#container').addClass('day');
-	}
-	if(n >= 19 || n < 20) {	//Coucher du soleil
-		$('#container').removeClass();
-		$('#container').addClass('sunset');
-	}
-	if(n >= 20 || n < 21) {	//Fin du Coucher du soleil
-		$('#container').removeClass();
-		$('#container').addClass('endsunset');
-	}
-	if(n >= 21 || n < 6) {	//Nuit
-		$('#container').removeClass();
-		$('#container').addClass('night');
-	}
-
 
 	$('.button_login').click(function() {
 		$('#form_login').show();
 		$('#buttons_users').hide();
 	});
-
 
 	$('#menu-item-close').click(function() {
 		$('#header').addClass('hidden');
@@ -102,7 +76,6 @@ $(document).ready(function() {
 	});
 
 	$('#btn_showMenu').click(function() {
-
 		$('#small_header').fadeOut(function() {
 			//content animation
 			$('#content').animate({

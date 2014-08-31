@@ -2,7 +2,7 @@
 	<?php if (!$authUser) { ?>	
 	<div id="block_noconnected">
 		<div id="wrapper_noconnected">
-			<p>Tote bag slow-carb kogi, viral next level Carles keffiyeh iPhone. Butcher meh mustache, Banksy umami meggings scenester selvage squid wolf.</p>
+			<p>Inscrivez-vous pour sauvegarder votre progression et organiser les cours que vous souhaitez apprendre au sein de votre DOME. <?php echo $this->Html->link("?", array('controller'=>'pages','action' => 'about'), array('class' => ''));?></p>
 			<?php echo $this->Html->link("Je m'inscris", array('controller'=>'users','action' => 'add'), array('class' => 'button btn_connexion'));?>
 			<?php echo $this->Html->link("Déjà inscrit ?", array('controller'=>'users','action' => 'login'), array('class' => ''));?>
 		</div>
@@ -25,6 +25,8 @@
 </div>
 
 <script type="text/javascript">
+
+	$('#buttons_users').hide();
 	
 	$('#block_noconnected').width($(window).height() - 20);
 	$('#block_noconnected').css('margin-left', -($(window).height() - 20) / 2);
