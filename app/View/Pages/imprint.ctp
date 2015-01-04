@@ -3,7 +3,7 @@
 
 		<h2>Mentions légales</h2>
 
-		<p>Le Dome est édité par l'association loi 1901 Le Dome, dont le siège social est situé au 36 rue des Renaudes, 75017 Paris, France, représentée par son président et directeur de la publication, M. Fernando Costa.</p>
+		<p>Le Dome est édité par l'association loi 1901 Le Dome, dont le siège social est situé au 36 rue des Renaudes, 75017 Paris, France, représentée par son président et directeur de la publication, Fernando Costa.</p>
 		<p>Contact : 06 22 47 40 59</p>
 
 		<p>Le Dome est hébergé par :</p>

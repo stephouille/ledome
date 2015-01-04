@@ -2,16 +2,23 @@
 
 <div class="block_content">
     <div class="videos form">
-    <?php echo $this->Form->create('User');?>
-        <fieldset>
-            <?php 
-            echo $this->Form->input('title');
-            echo $this->Form->input('url');
-            echo $this->Form->input('email');
-            echo $this->Form->input('password');
-            echo $this->Form->input('re_password', array('type' => 'password'));
+    <?php echo $this->Form->create('Video');?>
+        
+        <div class="left block_form">
+        <?php 
+            echo $this->Form->input('title', array('label' => 'Titre de la vidéo'));
+            echo $this->Form->input('id_youtube', array('label' => 'ID de la vidéo Youtube'));
+            echo $this->Form->input('position', array('label' => 'Position de la vidéo'));
         ?>
-        </fieldset>
+        </div>
+        <div class="right block_form">
+        <?php 
+            echo $this->Form->input('description', array('label' => 'Description de la vidéo', 'type' => 'textarea'));
+            echo $this->Form->input('summary', array('label' => 'Sommaire', 'type' => 'textarea') );
+        ?>
+        </div>
+        <div class="clear"></div>
+
     <?php echo $this->Form->end(__('Ajouter'));?>
     </div>
 

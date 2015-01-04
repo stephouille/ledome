@@ -35,7 +35,7 @@ class PagesController extends AppController {
  *
  * @var array
  */
-	public $uses = array('Pole', 'UsersLesson', 'Zone', 'Contributor');
+	public $uses = array('Pole', 'UsersLesson', 'Zone', 'Contributor', 'Config');
 	public $helpers = array('Html', 'Form', 'Captcha');
 
 /**
@@ -95,5 +95,13 @@ class PagesController extends AppController {
 
 	}
 	public function imprint() { }
+
+
+	public function admin_imprint() {
+		$page_imprint = $this->Config->find('first', array('conditions' => array('clé' => 'page_imprint')));
+    	$this->set('page_imprint', $page_imprint);
+	}
+
+	
 
 }

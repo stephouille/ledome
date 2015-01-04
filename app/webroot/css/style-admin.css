@@ -115,7 +115,8 @@ label {
         background: #FFF;
         margin-top: 1%;
         border-radius: 2px;
-        height: 90.4%; }
+        height: 90.4%;
+        overflow: auto; }
         #container #wrapper_page #wrapper_content #content #wrapper_content_admin {
           width: 97%;
           margin: 0px auto;
@@ -163,3 +164,17 @@ label {
   #block_links a {
     display: block;
     color: #000; }
+
+.block_form {
+  width: 40%; }
+  .block_form.right {
+    width: 60%; }
+    .block_form.right label {
+      text-align: left; }
+  .block_form label {
+    width: 30%;
+    vertical-align: top;
+    margin: 0 10px 0 0; }
+
+.defaultSimpleSkin {
+  display: inline-block; }

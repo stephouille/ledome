@@ -9,23 +9,37 @@ class AdminController extends AppController {
 
 	public function beforeFilter() {
     	parent::beforeFilter();
-    	if($this->Session->read('Auth.User.role') == 'user') {
+		if($this->Session->read('Auth.User.role') == 'user') {
 			return $this->redirect(array('controller' => 'pages', 'action' => 'home'));
 		} else {
 			$this->layout = 'admin';
 		}
     }
 
+    public function admin_login() {
+    	$this->layout = 'admin';
+    	if ($this->request->is('post')) {
+	        if ($this->Auth->login()) {
+	            return $this->redirect(array('controller' => 'admin', 'action' => 'index', 'admin' => false));
+	        } else {
+	            $this->Session->setFlash(__("Nom d'user ou mot de passe invalide, réessayer"));
+	        }
+	    }
+    }
+
 	public function index() {
+		if($this->Session->read('Auth.User')) {
+			$nbUsers = $this->User->find('count');
+			$nbVideos = $this->Video->find('count');
 
-		$nbUsers = $this->User->find('count');
-		$nbVideos = $this->Video->find('count');
-
-		$this->set(array(
-            'nbUsers' => $nbUsers,
-            'nbVideos' => $nbVideos,
-            '_serialize' => array('nbUsers', 'nbVideos')
-        ));
+			$this->set(array(
+	            'nbUsers' => $nbUsers,
+	            'nbVideos' => $nbVideos,
+	            '_serialize' => array('nbUsers', 'nbVideos')
+	        ));
+		} else {
+			return $this->redirect(array('controller' => 'admin', 'action' => 'login'));
+		}
 	}
 
 	public function admin_learnings() {
@@ -33,4 +47,9 @@ class AdminController extends AppController {
         $this->set('poles', $poles);
     }
 
+    public function admin_allpages() {
+
+    	
+    	
+	}
 }

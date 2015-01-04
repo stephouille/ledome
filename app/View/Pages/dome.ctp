@@ -1,14 +1,14 @@
+<div class="loader"></div>
 <div class="block_dome">
 	<?php if (!$authUser) { ?>	
 	<div id="block_noconnected">
 		<div id="wrapper_noconnected">
-			<p>Inscrivez-vous pour sauvegarder votre progression et organiser les cours que vous souhaitez apprendre au sein de votre DOME. <?php echo $this->Html->link("?", array('controller'=>'pages','action' => 'about'), array('class' => ''));?></p>
+			<p>Inscrivez-vous pour sauvegarder votre progression et organiser les cours que vous souhaitez apprendre au sein de votre DOME.</p>
 			<?php echo $this->Html->link("Je m'inscris", array('controller'=>'users','action' => 'add'), array('class' => 'button btn_connexion'));?>
-			<?php echo $this->Html->link("Déjà inscrit ?", array('controller'=>'users','action' => 'login'), array('class' => ''));?>
 		</div>
 	</div>
 	<?php } ?>
-	<div id="wrapper_dome">
+	<div id="wrapper_dome" <?php if (!$authUser) { echo 'style="visibility:hidden"'; } ?>>
 		<canvas id="myCanvas"></canvas>
 		<?php echo $this->Html->image('main_dome.png', array('alt' => 'main_dome', 'id' => "main_dome", 'usemap' => '#map_dome')); ?>
 		<map name="map_dome">
@@ -26,11 +26,9 @@
 
 <script type="text/javascript">
 
-	$('#buttons_users').hide();
+	$('#btn_signup').hide();
 	
-	$('#block_noconnected').width($(window).height() - 20);
-	$('#block_noconnected').css('margin-left', -($(window).height() - 20) / 2);
-	$('#block_noconnected').css('margin-top', -($(window).height() - 20) / 2);
+	
 
 	//---------- LEDOME -----------
 
@@ -70,6 +68,18 @@
 	    drawPoly(coordStr);
 	}
 
+
+	function myHover2(element)
+	{
+	    var coordStr = element.attr('coords');
+	    var areaType = element.attr('shape');
+	    var colorStroke = element.attr('color');
+
+	    hdc.fillStyle = '#'+colorStroke;
+
+	    drawPoly(coordStr);
+	}
+
 	function myLeave()
 	{
 	    var canvas = $('#myCanvas');
@@ -87,49 +97,74 @@
 
 	    var x,y, w,h;
 
-	    // get it's position and width+height
-	    x = img.offsetLeft;
-	    y = img.offsetTop;
-	    w = img.clientWidth;
-	    h = img.clientHeight;
+	    $(".block_dome #wrapper_dome #main_dome").load(function() {
 
-	    // move the canvas, so it's contained by the same parent as the image
-	    var imgParent = img.parentNode;
-	    var can = byId('myCanvas');
-	    imgParent.appendChild(can);
+		    // get it's position and width+height
+		    x = img.offsetLeft;
+		    y = img.offsetTop;
+		    w = img.clientWidth;
+		    h = img.clientHeight;
 
-	    var scale = w/500;
-	    // make same size as the image (with scaling)
-	    can.setAttribute('width', w+'px');
-    	can.setAttribute('height', h+'px');
+		    // move the canvas, so it's contained by the same parent as the image
+		    var imgParent = img.parentNode;
+		    var can = byId('myCanvas');
+		    imgParent.appendChild(can);
 
-	    // get it's context
-	    hdc = can.getContext('2d');
+		    var scale = w/500;
+		    // make same size as the image (with scaling)
+		    can.setAttribute('width', w+'px');
+	    	can.setAttribute('height', h+'px');
 
-	    // set the 'default' values for the colour/width of fill/stroke operations
-	    hdc.fillStyle = 'red';
-	    hdc.strokeStyle = 'red';
-	    hdc.lineWidth = 2;
+		    // get it's context
+		    hdc = can.getContext('2d');
 
-	    // console.log($('#-area-0'));
-	    $('.area.active').each(function() {
-	        myHover($(this));
-	    });
+		    // set the 'default' values for the colour/width of fill/stroke operations
+		    hdc.fillStyle = 'red';
+		    hdc.strokeStyle = 'red';
+		    hdc.lineWidth = 2;
 
-	    $('#block_dome').width(w);
-	    $('#block_dome').height(h);
-	    $('#myCanvas').css({
-	        'transform': 'scale('+scale+')',
-	        'top' : ((h-500)*scale)/2+'px',
-	        'left' : ((h-500)*scale)/2+'px'
-	    });
-	    $('#wrapper_dome').width(w);
+	    
+		  	$('#block_noconnected').width($(window).height() - 20);
+			$('#block_noconnected').css('margin-left', -($(window).height() - 20) / 2);
+			$('#block_noconnected').css('margin-top', -($(window).height() - 20) / 2);
+		    $('#block_dome').width($(this).width());
+		    $('#block_dome').height($(this).height());
+		    $('#wrapper_dome').width($(this).width());
 
-	    // $('.area').hover(function() { 
-	    //     myHover($(this)); 
-	    // }, function() {
-	    //     // myLeave($(this));
-	    // });
+		    // alert('test1')
+		    $('#myCanvas').css({
+		        'transform': 'scale('+scale+')',
+		        'top' : (($(this).height()-500)*scale)/2+'px',
+		        'left' : (($(this).height()-500)*scale)/2+'px'
+		    });
+
+		    // console.log($('#-area-0'));
+		    $('.area.active').each(function() {
+		    	console.log('test')
+		        myHover($(this));
+		    });
+		    $('.area.active').hover(function() { 
+		        console.log($(this).attr('id'));
+		        myHover2($(this));
+		        // $(this).
+		    }, function() {
+		        // myLeave($(this));
+		    });
+		    // alert('test2')
+
+		    $(".block_dome").css('visibility', 'visible');
+		});
+
+
+
+		// .each(function() {
+			// alert('test')
+		 //  if(this.complete) {
+		 //  	$(this).load();
+		 //  };
+		// });
+
+
 	   
 	}
 	myInit();

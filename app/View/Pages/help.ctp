@@ -25,13 +25,13 @@
 
 		<div class="right block" id="block_sendHelp">
 			<div class="content_block">
-				<h3>À contruire le dome</h3>
+				<h3>À construire le dome</h3>
 
-				<p>Tous les cours mis à disposition sur ce site proviennent de curateurs (institutions, universités, particuliers) qui partagent l’idée d’un savoir accessible et ouvert à tous.</p>
+				<p>Tous les cours mis à disposition sur ce site proviennent de curateurs (institutions, universités, particuliers) qui partagent l’idée d’un savoir accessible à tous.</p>
 
 				<p>Nous sommes constamment à la recherche de nouveaux contenus et de volontaires pour en apprécier la qualité.</p>
 
-				<p>En fonction (de votre intérêt et) du temps dont vous disposez, il y aura toujours un moyen efficace de nous aider :</p>
+				<p>En fonction de votre intérêt et du temps dont vous disposez, il y aura toujours un moyen efficace de nous aider :</p>
 
 				<a class="link" href="">Proposer un cours</a>
 				<a class="link" href="">Proposer une annexe</a>

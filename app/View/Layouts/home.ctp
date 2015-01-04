@@ -7,10 +7,7 @@ $cakeDescription = __d('cake_dev', 'Le Dome');
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
-	</title>
+	<title>Le Dome - Rendre le savoir accessible à tous</title>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -49,28 +46,30 @@ $cakeDescription = __d('cake_dev', 'Le Dome');
 			<div class="users form">
 				<?php echo $this->Html->image('logo.png', array('alt' => 'LOGO', 'id' => 'logo')); ?>
 		    	<?php echo $this->Form->create('User', array('url' => array('controller' => 'users', 'action' => 'add')));?>
-		            <div class="input text">
+		            <div class="input text input-line">
 		                <input class="txt-field" name="data[User][username]" maxlength="255" type="text" id="UserUsername" placeholder="Nom d'utilisateur">
 		                <span class="caption">Nom d'utilisateur</span>
 		            </div>
-		            <div class="input email required">
+		            <div class="input email required input-line">
 		                <input class="txt-field" name="data[User][email]" maxlength="255" type="email" id="UserEmail" required="required" placeholder="Email">
 		                <span class="caption">Email</span>
 		            </div>
-		            <div class="input password required">
+		            <div class="input password required input-line">
 		                <input class="txt-field" name="data[User][password]" type="password" id="UserPassword" required="required" placeholder="Mot de passe">
 		                <span class="caption">Mot de passe</span>
 		            </div>
-		            <div class="input password required">
+		            <div class="input password required input-line" >
 		                <input class="txt-field" name="data[User][re_password]" type="password" id="UserRePassword" required="required" placeholder="Confirmation du mot de passe">
 		                <span class="caption">Confirmez votre mot de passe</span>
 		            </div>
-		            <?php $this->Captcha->render($captchaSettings); ?>
+		            <?php 
+		            	// $this->Captcha->render($captchaSettings); 
+		            ?>
 
-		        <div class="input text required">
+		        <!-- <div class="input text required">
 		            <input class="txt-field" name="data[captcha]" autocomplete="off" type="text" id="UserCaptcha" required="required" placeholder="Contrôle de sécurité">
 		            <span class="caption">Entrez le code que vous voyez ci-dessus</span>
-		        </div>
+		        </div> -->
 		    	<?php echo $this->Form->submit(__("S'inscrire"),     array('class' => 'button')); ?>
 		    	<?php echo $this->Form->end(); ?>
 		    </div>
@@ -78,9 +77,6 @@ $cakeDescription = __d('cake_dev', 'Le Dome');
 				<?php echo $this->Html->link('<div id="wrapper_home_dome"><p>Dans LE DOME, apprendre, tu pourras.<br/>Gratuit, ce sera.</p></div>'.$this->Html->image("dome.png"), array('controller'=>'pages','action' => 'dome'), array('escape' => false)); ?>
 			</div>
 			<div class="clear"></div>
-		</div>
-		<div id="footer">
-			<div id="copyright">© LE DOME 2014</div>
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
@@ -90,6 +86,31 @@ $cakeDescription = __d('cake_dev', 'Le Dome');
 			$('#form_login').show();
 			$('#buttons_users').hide();
 		});
+		$(function (){
+	        var inpParent = $('.input-line');
+
+	        if (!inpParent.length) return;
+
+	        inpParent.each(function (){
+	            var thisLine =  $(this),
+	                inpTxt =  thisLine.find('.txt-field'),
+	                inpCapt =  thisLine.find('.caption');
+
+	            function fIn() {
+	                inpTxt.parent().addClass('active');
+	            }
+	            function fOut() {
+	                if(inpTxt.val() != 0){
+
+	                }else{
+	                    inpTxt.parent().removeClass('active');
+	                }
+	            }
+
+	            inpTxt.focusin(fIn);
+	            inpTxt.focusout(fOut);
+	        })
+	    });
 	</script>
 </body>
 </html>

@@ -57,7 +57,8 @@ class AppController extends Controller {
         if ($this->request->prefix == 'admin') {
             $this->layout = 'admin';
         } else {
-            if ($this->Session->read('Auth.User')) {
+
+            if ($this->Auth->login()) {
                 $authUser = true;
                 $user = $this->Auth->user();
             } else {

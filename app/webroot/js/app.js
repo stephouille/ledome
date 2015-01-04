@@ -1,8 +1,22 @@
 $(document).ready(function() {
 
+	var heightWindow = $(document).height();
+	var sizeIcon = (heightWindow-50*5)/100;
+	$('#header #menu ul li').css({
+		'margin' : (heightWindow*3)/100+'px auto'
+	});
+
 	$("#menu #menu_lessons .menu-level1").hover(function() {
 		$('.lessons-menu').hide();
 		$(this).children('.lessons-menu').show();
+		$(this).css('background-color', 'rgba(0,0,0,0.05)');
+	}, function() {
+		$(this).css('background-color', 'rgba(255,255,255,1)');
+	});
+	$("#menu #menu-item-lessons").hover(function() {
+		$(this).children('.hover_menu').show();
+	}, function() {
+		$(this).children('.hover_menu').hide();
 	});
 
 	function hiliter(word, element) {
@@ -89,11 +103,6 @@ $(document).ready(function() {
 		});
 
 		return false;
-	});
-
-	tinyMCE.init({
-		selector : ".bloc_notes",
-		theme: "simple",
 	});
 
 });

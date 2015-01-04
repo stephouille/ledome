@@ -37,6 +37,11 @@ $grey_text_header: #7A7A7A;
 }
 
 .center { text-align: center; }
+a.disabled {
+   pointer-events: none;
+   cursor: default;
+}
+
 // POPUP
 .popup {
 	text-align: center;
@@ -66,18 +71,6 @@ $grey_text_header: #7A7A7A;
 	}
 }
 
-#preloadedImages
-{
-    width: 0px;
-    height: 0px;
-    display: inline;
-    background-image: url(../img/icon_help_hover.png);
-    background-image: url(../img/icon_friends_hover.png);
-    background-image: url(../img/icon_about_hover.png);
-    background-image: url(../img/icon_imprint_hover.png);
-    background-image: url(../img/icon_contact_hover.png);
-}
-
 body, html { height: 100%; font-family: 'effraregular', Helvetica, Arial, sans-serif; }
 ul { list-style-type:none; padding: 0; margin: 0; }
 a { text-decoration: none; color: #000; }
@@ -103,6 +96,7 @@ h3 {
 button, .button {
 	border: 0;
 	// border: 1px solid $orange;
+	font-size: 13px;
 	background-color: $orange;
 	color: #FFF;
 	border-radius: 2px;
@@ -110,12 +104,7 @@ button, .button {
 	display: block;
 	text-align: center;
 	height: 28px;
-	line-height: 28px;
-	-moz-box-shadow: 0px 2px 0px 0px #444;
-	-webkit-box-shadow: 0px 2px 0px 0px #444;
-	-o-box-shadow: 0px 2px 0px 0px #444;
-	box-shadow: 0px 2px 0px 0px #444;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#444, Direction=180, Strength=0);
+	line-height: 25px;
 	&:hover {
 		background-color: $orange_hover;
 		cursor: pointer;
@@ -213,118 +202,8 @@ button, .button {
 			margin-top: 5%;
 			&.big_content {
 				width: 98%;
-				height: 89%;
+				height:91%;
 				margin-top: 0;
-				.block_video {
-					width: 55%;
-					iframe {
-						width: 100%;
-					}
-					.btn_nav_video {
-						width: 50px;
-						height: 50px;
-						display: block;
-						background-size: 50px 50px;
-						&#btn_next_video {
-							background-image: url(../img/icon_arrow_right.png);
-						}
-						&#btn_prev_video {
-							background-image: url(../img/icon_arrow_left.png);
-						}
-						&:hover {
-							opacity: 0.6;
-						}
-					}
-					#infos_video {
-						height: 50px;
-						margin: 8px 0;
-						img {
-							display: inline-block;
-							vertical-align: top;
-							margin-right: 10px;
-						}
-						.btn_nav_video {
-							display: inline-block;
-						}
-						#wrapper_infos_video {
-							vertical-align: top;
-							display: inline-block;
-							width: 77%;
-							a { vertical-align: top; }
-							img {
-								float: left;
-								vertical-align: top;
-								margin-right: 10px;
-							}
-							.name_professor {
-								font-style: italic;
-								color: $dark_grey;
-							}
-							h3 {
-								font-size: 1.2em;
-								margin: 0;
-							}
-						}
-					}
-					#bottom_video {
-						width: 100%;
-						.tab {
-							height: 45px;
-							border-bottom: 1px solid $light_grey;
-							height: 34px;
-							background: #F3F3F3;
-							a {
-								display: inline-block;
-								width: 200px;
-								height: 35px;
-								text-align: center;
-								line-height: 35px;
-								&:hover, &.active {
-									border-bottom: 3px solid $green;
-								}
-							}
-						}
-						.content_tabs {
-							margin: 10px auto;
-							width: 98%;
-							.content_tab {
-								display: none;
-								&.active {
-									display: block;
-								}
-							}
-						}
-					}
-				}
-				#block_right_videopage {
-					width: 42%;
-					.block_videopage {
-						display: none;
-						min-height: 310px;
-						.textarea {
-							display: block;
-							width: 100%;
-							table {
-								width: 100% !important;
-							}
-						}
-						&.active {
-							display: block;
-						}
-					}
-					#block_notes {
-						#VideoTextarea_tbl {
-							width: 100% !important;
-						}
-					}
-				}
-				#buttons_video_page {
-					.button {
-						width: 60%;
-						margin: 10px auto;
-					}
-				}
-				
 			}
 
 		}
@@ -337,11 +216,13 @@ button, .button {
 		font-size: 7em;
 		margin-top: 0;
 		margin-bottom: 40px;
+		font-family: 'adam', Arial, sans-serif;
+		text-shadow: 2px 2px #616161;
 	}
 	.users.form {
-		width: 28%;
+		width: 26%;
 		background: #FFF;
-		margin-left: 6%;
+		margin-left: 10%;
 		position: relative;
 		padding: 50px 15px 15px 15px;
 		#logo {
@@ -352,9 +233,10 @@ button, .button {
 			margin-left: -45px;
 		}
 		form {
-			margin-top: 10px;
+			margin: 15px auto 0 auto;
+			width: 90%;
 			.input {
-				margin: 0 0 10px 0;
+				margin: 0 0 15px 0;
 				position: relative;
 				input {
 					width: 100%;
@@ -402,15 +284,15 @@ button, .button {
 			}
 			.button {
 				width: 50%;
-				margin: 0 auto;
+				margin: 20px auto 10px auto;
 			}	
 		}
 	}
 	#home_dome {
 		position: absolute;
 		bottom: 10%;
-		right: 6%;
-		width: 50%;
+		right: 10%;
+		width: 42%;
 		#wrapper_home_dome {
 			cursor: pointer;
 			display: none;
@@ -423,7 +305,7 @@ button, .button {
 			right: 0;
 			top: 37%;
 			height: 30%;
-			padding: 37px 0 0 0;
+			padding: 3% 0 0 0;
 		}
 		&:hover {
 			#wrapper_home_dome {
@@ -445,46 +327,54 @@ button, .button {
 		margin: 0 auto;
 		font-family: 'adam', Arial, sans-serif;
 		color: #000;
+		font-size: .9em;
 		ul {
 			height: 100%;
 			display: block;
 			li {
+				position: relative;
 				cursor: pointer;
-				display: inline-block;
 				width: 100%;
 				text-align: center;
-				height: 5.5%;
-				margin: 17% 0;
+				height: 50px;
+				margin: 18% auto;
+				.hover_menu {
+					position: absolute;
+					width: 37%;
+					right: 0;
+					height: 120px;
+					display: none;
+					z-index: 99;
+				}
 				a {
 					color: #000;
 					height: 100%;
 					display: inline-block;
 					.icon {
-						// display: block;
-						// height: 90%;
-						// background-size: auto 100%;
-						// background-repeat: no-repeat;
-						// background-position: center;
-						height: 33px;
-						background-size: 33px;
-						width: 33px;
-						margin: 0 auto;
+						height: 80%;
+						width : 27px;
+						height : 27px;
+						background-size : 27px;
+						margin: 0 auto 5px auto;
 					}
 					p { 
-						margin: 5px 0;
 						color: $grey_text_header;
+						padding: 0 5px;
 					}
 				}
 				&:hover, &.active {
 					p { 
 						color: #000;
 					}
+					a .icon {  
+						background-position: 0 27px;
+					}
 				}
 				&:first-child {
-					height: 10%;
-					margin-top: 10%;
+					height: 75px;
 					img {
-						height: 100%;
+						height: 75%;
+						margin-bottom: 5px;
 					}
 				}
 				&#menu-item-lessons {
@@ -499,26 +389,29 @@ button, .button {
 						right: -250px;
 						width: 250px;
 						background-color: #FFF;
-						margin-top: -75px;
+						margin-top: -70px;
 						height: auto;
 						a {
 							width: 100%;
 						}
 						li {
 							cursor: pointer;
-							height: 30px;
-							line-height: 30px;
+							height: 38px;
+							line-height: 43px;
 							padding: 0;
 							border-bottom: 1px solid #DEDEDE;
-							margin: 5px 0;
+							margin: 0 !important;
 							.lessons-menu {
 								display: none;
 								position: absolute;
 								right: -300px;
 								background-color: #FFF;
 								width: 300px;
-								margin-top: -35px;
+								margin-top: -43px;
 								height: auto;
+								li:hover {
+									background-color: rgba(0,0,0,0.05);
+								}
 							}
 							&:last-child {
 								border: 0;
@@ -529,31 +422,31 @@ button, .button {
 						#menu_lessons {
 							display: block;
 						}
-					}
-					&:hover, &.active {
 						a .icon {  
-							background-position: 0 33px;
+							background-position: 0 27px;
+						}
+					}
+					&.active {
+						a .icon {  
+							background-position: 0 27px;
 						}
 					}
 				}
 				&#menu-item-help a .icon { background-image: url(../img/icon_help.png); }
-				&#menu-item-help:hover a .icon, &#menu-item-help.active a .icon { background-position: 0 33px; }
 				&#menu-item-friends a .icon { background-image: url(../img/icon_friends.png);}
-				&#menu-item-friends:hover a .icon, &#menu-item-friends.active a .icon { background-position: 0 33px; }
 				&#menu-item-about a .icon { background-image: url(../img/icon_about.png); }
-				&#menu-item-about:hover a .icon, &#menu-item-about.active a .icon { background-position: 0 33px; }
-				&#menu-item-imprint a .icon { background-image: url(../img/icon_imprint.png); }
-				&#menu-item-imprint:hover a .icon, &#menu-item-imprint.active a .icon { background-position: 0 33px; }
-				&#menu-item-contact a .icon { background-image: url(../img/icon_contact.png); }
-				&#menu-item-contact:hover a .icon, &#menu-item-contact.active a .icon { background-position: 0 33px; }
-				&#menu-item-close {
-					border-top: 2px solid #000;
-					width: 25%;
-					margin: 0 auto;
-					display: block;
-					margin-top: 10%;
-					padding-top: 10%;
+				&#menu-item-imprint {
+					height: 70px;
+					a .icon { background-image: url(../img/icon_imprint.png); }
 				}
+				&#menu-item-contact a .icon { background-image: url(../img/icon_contact.png); }
+			}
+			#menu-item-close {
+				width: 25%;
+				border-top: 2px solid;
+				padding-top: 15px;
+				margin: 0 auto;
+				display: block;
 			}
 		}
 	}
@@ -582,14 +475,28 @@ button, .button {
 	text-align: right;
 	span { font-family: 'adam', Arial, sans-serif; float: left; line-height: 26px; margin-right: 8px; }
 	input { 
-		float: left; 
-		padding: 5px;
+		float: left;
+		padding: 8px;
 		width: 130px;
 		margin: 3px;
+		border-radius: 1px;
+		border: 1px solid #FFF;
+		height: 28px;
+		outline: none;
 		&[type=submit] {
 			@extend .button;
+			padding: 5px;
 			width: 40px;
 			line-height: 18px;
+			background-color: rgba(0, 0, 0, 0);
+			border: 1px solid #FFF; 
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			filter: none;
+			&:hover {
+				border: 1px solid $orange; 
+			}
 		}
 	}
 	#buttons_users {
@@ -597,6 +504,17 @@ button, .button {
 			display: inline-block;
 			margin: 0 2px;
 			width: 120px;
+			&.button_login {
+				background-color: rgba(0,0,0,0);
+				-webkit-box-shadow: none;
+				-moz-box-shadow: none;
+				box-shadow: none;
+				filter: none;
+				border: 1px solid transparent;
+				&:hover {
+					border: 1px solid #FFF;
+				}
+			}
 		}
 	}
 
@@ -644,11 +562,14 @@ button, .button {
 
 
 .block_dome {
+	visibility: hidden;
 	height: 100%;
 	#block_noconnected {
 		width: 61%;
 		height: 97%;
-		background-color: rgba(255, 255, 255, 0.4);
+		// background-color: rgba(255, 255, 255, 0.4);
+		background-image: url(../img/img_blocnoconnected.png);
+		background-size: cover;
 		position: absolute;
 		z-index: 10;
 		left: 50%;
@@ -658,12 +579,15 @@ button, .button {
 		border-radius: 50%;
 		#wrapper_noconnected {
 			text-align: center;
-			width: 50%;
-			margin: 40% auto;
+			width: 80%;
+			margin: 38% auto;
+			p {
+				font-size: 1.3em;
+			}
 			a {
 				display: block;
 				width: 200px;
-				margin: 10px auto;
+				margin: 4% auto;
 				&.btn_connexion {
 					background-color: $green;
 				}
@@ -713,22 +637,12 @@ button, .button {
 
 //PAGE player
 #content_player {
+	height: 100%;
 	#header_player {
-		width: 98%;
-		margin: 0 auto;
-		#img_learning {
-			display: inline-block;
-			width: 40px;
-			margin-right: 7px;
-		}
-		h2 {
-			text-align: left;
-			font-size: 1.4em;
-			display: inline-block;
-			margin-top: 1.5%;
-		}
+		width: calc(98% - 320px);
+		width: -webkit-calc(98% - 320px);
 		#navigation_videos {
-			margin: 5px 0;
+			margin: 20px 0 5px 1.5%;
 			.item_nav_video {
 				display: block;
 				background: #FFF;//$blue;
@@ -741,18 +655,16 @@ button, .button {
 					display: none;
 					position: absolute;
 					top: -20px;
-					left: 50%;
+					color: #FFF;
 					width: 100%;
 					font-size: 0.9em;	
+					white-space: nowrap;
 				}
 				&.active {
 					background: $blue_hover;
-					.title_video {
-						display: block;
-					}
 					&::after{
 						content: '';
-						background-image: url(../img/icon_arrow_down.png);
+						// background-image: url(../img/icon_arrow_down.png);
 						width: 20px;
 						height: 20px;
 						display: block;
@@ -763,7 +675,9 @@ button, .button {
 					}
 					&:hover {
 						a {
-							display: block;	
+							span {
+								// display: block;	
+							}
 						}
 					}
 				}
@@ -771,17 +685,23 @@ button, .button {
 					color: #FFF;
 					width: 100%;
 					height: 100%;
-					display: none;
+					display: block;
 					line-height: 20px;
+					span {
+						// display: none;
+					}
 				}
 				&:hover {
 					cursor: pointer;
+					&:not(.active){
+						background: #F1F1F1;
+					}
 					.title_video {
 						display: block;
 					}
 					&::after{
 						content: '';
-						background-image: url(../img/icon_arrow_down.png);
+						// background-image: url(../img/icon_arrow_down.png);
 						width: 20px;
 						height: 20px;
 						display: block;
@@ -799,10 +719,201 @@ button, .button {
 			}
 		}
 	}
-	.bloc_notes {
+	.block_video {
 		width: 100%;
-		height: 300px;
-	}	
+		height: 75%;
+		iframe {
+			width: 60%;
+			height: 100%;
+		}
+		#right_player {
+			float: right;
+			width: 40%;
+			height: 100%;
+			#header_right_player {
+				background-color: rgba(0, 0, 0, 0.08);
+				height: 67px;
+				#img_learning {
+					display: inline-block;
+					width: 40px;
+					margin-right: 7px;
+				}
+				h2 {
+					text-align: left;
+					font-size: 1.4em;
+					display: inline-block;
+					margin: 0;
+					width: -moz-calc(100% - 60px);
+					width: calc(100% - 60px);
+					width: -webkit-calc(100% - 60px);
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+				#navigation_video {
+					height: 27px;
+					line-height: 27px;
+					background-color: rgba(0, 0, 0, 0.07);
+					a {
+						display: inline-block;
+						width: 7%;
+						margin: 0 1%;
+						&#btn_addDome {
+							float: right;
+							width: 34%;
+							height: 29px;
+							line-height: 29px;
+							color: #444;
+							img {
+								width: 14%;
+								vertical-align: text-bottom;
+								margin-right: 5px;
+							}
+						}
+					}
+				}
+			}
+			#block_right_videopage {
+				height: -moz-calc(100% - 67px);
+				height: calc(100% - 67px);
+				height: -webkit-calc(100% - 67px);
+				form {
+					height: 100%;
+					.block_videopage {
+						display: none;
+						width: 100%;
+						height: -moz-calc(100% - 42px);
+						height: calc(100% - 42px);
+						height: -webkit-calc(100% - 42px);
+						&.active {
+							display: block;
+						}
+						&#summary {
+							padding: 10px;
+							// height: 310px;
+							overflow: auto;
+							ul {
+								list-style-type: circle;
+								padding-left: 20px;
+								margin-left: 20px;
+							}
+						}
+						&#block_notes {
+							height: -moz-calc(100% - 80px);
+							height: calc(100% - 80px);
+							height: -webkit-calc(100% - 80px);
+							#cke_bloc_notes {
+								border: 0;
+								.cke_combo_button {
+									margin: 0 6px 0 0;
+								}
+								#cke_1_top {
+									padding: 5px;
+									width: 100%;
+								}
+								#cke_1_contents {
+									height: auto !important;
+								}
+								#cke_1_bottom {
+									display: none;
+								}
+							}
+							.textarea {
+								display: block;
+								width: 100%;
+								height: 100%;
+								table {
+									width: 100% !important;
+									height: 100% !important;
+									border-top: 0;
+									border-left: 0;
+									.mceIframeContainer {
+										height: 100%;
+										iframe {
+											height: 100% !important;
+										}
+									}
+								}
+							}
+							#VideoTextarea_tbl {
+								width: 100% !important;
+							}
+						}
+					} 
+				}
+			}
+			h3 {
+				font-size: 1.2em;
+				text-transform: uppercase;
+				font-weight: bold;
+			}
+			
+		}
+	}
+	#infos_video {
+		width: 60%;
+		height: 23%;
+		margin-top: 10px;
+		float: left;
+		h3 {
+			font-size: 1.2em;
+			margin: 0 0 10px 0;
+			text-transform: uppercase;
+		}
+		img {
+			float: left;
+			vertical-align: top;
+			margin-right: 10px;
+		}
+		.name_professor {
+			font-style: italic;
+			color: $dark_grey;
+			line-height: 50px;
+		}
+		.buttons_professor {
+			float: right;
+			a {
+				margin: 0px 20px 10% 0;
+				background-color: #dbdbdb;
+				-webkit-box-shadow: none;
+				-moz-box-shadow: none;
+				box-shadow: none;
+				filter: none;
+				&:hover {
+					background-color: $blue;
+				}
+				&.done {
+					background-color: #7a7a7a;
+				}
+				&#btn_thanks {
+					background-image: url(../img/icon_merci.png);
+					background-repeat: no-repeat;
+					background-position: 9px 5px;
+					background-size: auto 64%;
+					padding-left: 14px;
+				}
+			}
+		}
+	}
+	#wrapper_annexes {
+		float: right;
+		width: 38%;
+		height: 23%;
+		border: 1px solid rgba(158, 158, 158, 0.3);
+		margin: 1%;
+		padding: 0.5% 1%;
+		h3 {
+			font-size: 1.2em;
+			margin: 0 0 10px 0;
+			text-transform: uppercase;
+		}
+	}
+	#buttons_video_page {
+		.button {
+			width: 60%;
+			margin: 10px auto;
+		}
+	}
 }
 
 
@@ -866,7 +977,7 @@ button, .button {
 			#btn_paypal {
 				padding: 5px;
 				height: 30px;
-				width: 74%;
+				width: 50%;
 				margin: 40px auto 10px auto;
 				line-height: 22px;
 			}

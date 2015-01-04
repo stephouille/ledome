@@ -65,7 +65,7 @@ class LearningsController extends AppController {
             if($this->Session->read('popup') == 'click-add-learning') {
                 $this->Session->write('popup', 'end-tutorial');
             }
-            return $this->redirect(array('controller'=>'pages', 'action' => 'dome'));
+            return $this->redirect(array('controller'=>'videos', 'action' => 'view', $id));
         }
     }
 
@@ -80,13 +80,40 @@ class LearningsController extends AppController {
                 $this->UsersLesson->delete();
             }
 
-            return $this->redirect(array('controller'=>'pages', 'action' => 'dome'));
+            return $this->redirect(array('controller'=>'videos', 'action' => 'view', $id));
         }
     }
 
     public function admin_delete($id) {
         $this->Learning->delete($id);
         return $this->redirect(array('controller'=>'learnings', 'action' => 'index', 'admin' => true));
+    }
+
+    public function admin_edit($id) {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid Learning'));
+        }
+
+        $learning = $this->Learning->findById($id);
+        if (!$learning) {
+            throw new NotFoundException(__('Invalid Learning'));
+        }
+
+        if ($this->request->is(array('learning', 'put'))) {
+            $this->Learning->id = $id;
+            if ($this->Learning->save($this->request->data)) {
+                $this->Session->setFlash(__('Your learning has been updated.'));
+                return $this->redirect(array('controller' => 'learnings', 'action' => 'index'));
+            }
+            $this->Session->setFlash(__('Unable to update your learning.'));
+        }
+
+        if (!$this->request->data) {
+            $this->request->data = $learning;
+            $this->set(array(
+                'poles' => $this->Learning->Pole->find('list')
+            ));
+        }
     }
 
    

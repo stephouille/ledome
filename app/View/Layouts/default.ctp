@@ -15,17 +15,13 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-$cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
-	</title>
+	<title>Le Dome - Rendre le savoir accessible à tous</title>
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -37,19 +33,21 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->fetch('script');
 	?>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+	<?php echo $this->Html->script('ckeditor/ckeditor'); ?>
 	<script type="text/javascript">
 		var showPOPUP = "<?php Print($this->Session->read('popup')); ?>";
+		var myBaseUrl = "<?php echo $this->Html->url('/'); ?>";
 	</script>
 </head>
 <body>
-	<div id="preloadedImages"></div>
 	<div id="container">
+
 		<div id="user_block" class="form">
 
 			<?php if (!$authUser) { ?>
 
 				<div id="buttons_users">
-					<?php echo $this->Html->link('Créer un compte', array('controller' => 'users','action' => 'add'), array('title' => 'signup', 'class' => 'button greenbutton'));?>
+					<?php echo $this->Html->link('Créer un compte', array('controller' => 'users','action' => 'add'), array('title' => 'signup', 'class' => 'button greenbutton', 'id' => 'btn_signup'));?>
 					<a class="button button_login" href="javascript:void(0)">Se connecter</a>	
 				</div>
 
@@ -72,12 +70,13 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<div id="header">
 			<div id="menu">
 				<ul>
-					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='dome') )?'active' :'' ?>">
+					<li id="menu-item-dome" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='dome') )?'active' :'' ?>">
 						<?php echo $this->Html->link($this->Html->image('logo.png', array('alt' => 'LOGO')) . ' ' . __('<p>Le dome</p>'),
 	                       array('controller'=>'pages','action' => 'dome'),
 	                       array('escape' => false)); ?>
 					</li>
 					<li id="menu-item-lessons" class="<?php echo (!empty($this->params['action']) && ($this->params['controller']=='lessons' && $this->params['action']=='index') )?'active' :'' ?>">
+						<div class="hover_menu"></div>
 					  	<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Les cours</p>'),
 	                       array('controller'=>'lessons','action' => 'index'),
 	                       array('escape' => false)); ?>
@@ -117,9 +116,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	                       array('controller'=>'pages','action' => 'contact'),
 	                       array('escape' => false)); ?>
 					</li>
-					<li id="menu-item-close">
+					<div id="menu-item-close">
 						<?php echo $this->Html->image('icon_close.png', array('alt' => 'icon contact')); ?>
-					</li>
+					</div>
 				</ul>
 			</div>
 
@@ -134,7 +133,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					'', array('id' => 'btn_showMenu', 'escape' => false)); 
             ?>
 		</div>
-
 		<div id="content">
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->fetch('content'); ?>
@@ -159,7 +157,6 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php echo $this->Html->script('jquery-min'); ?>
 	<?php echo $this->Html->script('jquery.bpopup.min'); ?>
 	<?php echo $this->Html->script('app'); ?>
-	<?php echo $this->Html->script('tiny_mce'); ?>
 	
 
 </body>

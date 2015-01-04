@@ -53,11 +53,11 @@ class UsersController extends AppController {
     }
 
     public function add() {
-        $this->Captcha = $this->Components->load('Captcha', array('captchaType'=>'image', 'jquerylib'=>true, 'modelName'=>'User', 'fieldName'=>'captcha'));
+        // $this->Captcha = $this->Components->load('Captcha', array('captchaType'=>'image', 'jquerylib'=>true, 'modelName'=>'User', 'fieldName'=>'captcha'));
 
         if ($this->request->is('post')) {
-            $this->User->setCaptcha($this->Captcha->getVerCode());
-            if($this->User->matchCaptcha($this->request->data['captcha'])) {
+            // $this->User->setCaptcha($this->Captcha->getVerCode());
+            // if($this->User->matchCaptcha($this->request->data['captcha'])) {
                 if(!$this->User->hasAny(array('email' => $this->request->data['User']['email']))) {
                     $this->User->create();
                     if ($this->User->save($this->request->data['User'])) {
@@ -81,9 +81,9 @@ class UsersController extends AppController {
                 } else {
                     $this->Session->setFlash(__('L\'email est déjà utilisé. Merci de réessayer.'));
                 }
-            } else {
-                $this->Session->setFlash(__('Vous n\'avez pas rentré le bon code.'));
-            }
+            // } else {
+            //     $this->Session->setFlash(__('Vous n\'avez pas rentré le bon code.'));
+            // }
         }
     }
 
@@ -123,5 +123,33 @@ class UsersController extends AppController {
     public function stopPOPUP() {
         $this->Session->delete('popup');
     }   
+
+    public function guidedTour() {
+        $this->Session->write('popup','congrats-inscription');
+        $this->redirect(array('controller'=>'pages', 'action' => 'dome'));
+    }
+
+    public function save_notes() {
+        $this->loadModel('UsersNote');
+        if ($this->Auth->login()) {
+            $user = $this->Auth->user();
+
+            if(!$this->UsersNote->hasAny(array('user_id' => $user['id'], 'video_id' => $this->request->data['video_id']))) {
+                $this->UsersNote->create();
+                $this->UsersNote->set(array(
+                    'user_id' => $user['id'],
+                    'video_id' => $this->request->data['video_id'],
+                    'notes' => $this->request->data['notes']
+                ));
+            } else {
+                $usernote = $this->UsersNote->find('first', array('conditions' => array('user_id' => $user['id'], 'video_id' => $this->request->data['video_id'])));
+                $this->UsersNote->id = $usernote['UsersNote']['id'];
+                $this->UsersNote->set(array(
+                    'notes' => $this->request->data['notes']
+                ));
+            }
+             $this->UsersNote->save();
+        }
+    }
 
 }
