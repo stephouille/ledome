@@ -562,12 +562,10 @@ button, .button {
 
 
 .block_dome {
-	visibility: hidden;
 	height: 100%;
 	#block_noconnected {
 		width: 61%;
 		height: 97%;
-		// background-color: rgba(255, 255, 255, 0.4);
 		background-image: url(../img/img_blocnoconnected.png);
 		background-size: cover;
 		position: absolute;
@@ -595,34 +593,26 @@ button, .button {
 			}
 		}
 	}
-	canvas
-	{
-	    pointer-events: none;
-	    position: absolute;
-	}
 	#wrapper_dome {
-		position: relative;
 		height: 100%;
-		margin: 0 auto;
-		#main_dome {
-			height: 100%;
-			margin: 0 auto;
+		svg {
 			display: block;
-			z-index: 9;
-    		position: absolute;
+			margin: 0 auto;
+			height: 100%;
+			max-width: 100%;
+			a {
+				polygon {
+					-webkit-transition: .6s all;
+        			transition: .6s all;
+        			opacity: .5;
+					&.active, &:hover {
+						fill: $orange;
+						opacity: 1;
+					}
+				}
+			}
 		}
 	}
-	// #drawing_dome {
-	// 	display: block;
-	// 	margin: 0 auto;
-	// 	position: relative;
-	// 	height: 100%;
-		// background-size: auto 100%;
-		// background-image: url(../img/main_dome.png);
-		// background-position: center;
-		// background-repeat: no-repeat;
-		// width: 100%;
-	// }
 }
 
 
@@ -1200,4 +1190,32 @@ button, .button {
 		margin: 20px auto;
 	}
 }
+
+
+// media queries 
+@media screen and (max-width: 800px) {
+	
+	#container {
+		overflow: auto;
+		#content {
+			float: none;
+			width: 100%;
+		}
+	}
+
+	#header {
+		float: none;
+		width: 100%;
+		height: 100px;
+		#menu ul li {
+			height: 100% !important;
+			display: inline-block;
+			margin: 0 !important;
+			width: 12%;
+		}
+	}
+
+}
+
+
 

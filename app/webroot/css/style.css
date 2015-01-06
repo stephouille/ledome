@@ -499,7 +499,6 @@ button, .button, #user_block input[type=submit] {
     border-bottom: 2px solid #62bf7f; }
 
 .block_dome {
-  visibility: hidden;
   height: 100%; }
   .block_dome #block_noconnected {
     width: 61%;
@@ -525,19 +524,20 @@ button, .button, #user_block input[type=submit] {
         margin: 4% auto; }
         .block_dome #block_noconnected #wrapper_noconnected a.btn_connexion {
           background-color: #62bf7f; }
-  .block_dome canvas {
-    pointer-events: none;
-    position: absolute; }
   .block_dome #wrapper_dome {
-    position: relative;
-    height: 100%;
-    margin: 0 auto; }
-    .block_dome #wrapper_dome #main_dome {
-      height: 100%;
-      margin: 0 auto;
+    height: 100%; }
+    .block_dome #wrapper_dome svg {
       display: block;
-      z-index: 9;
-      position: absolute; }
+      margin: 0 auto;
+      height: 100%;
+      max-width: 100%; }
+      .block_dome #wrapper_dome svg a polygon {
+        -webkit-transition: .6s all;
+        transition: .6s all;
+        opacity: .5; }
+        .block_dome #wrapper_dome svg a polygon.active, .block_dome #wrapper_dome svg a polygon:hover {
+          fill: #e66525;
+          opacity: 1; }
 
 .item_dome {
   display: block;
@@ -980,3 +980,20 @@ button, .button, #user_block input[type=submit] {
     background-color: #62bf7f;
     width: 300px;
     margin: 20px auto; }
+
+@media screen and (max-width: 800px) {
+  #container {
+    overflow: auto; }
+    #container #content {
+      float: none;
+      width: 100%; }
+
+  #header {
+    float: none;
+    width: 100%;
+    height: 100px; }
+    #header #menu ul li {
+      height: 100% !important;
+      display: inline-block;
+      margin: 0 !important;
+      width: 12%; } }
