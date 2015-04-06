@@ -5,20 +5,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
-    var $helpers = array('Html', 'Form', 'Captcha');
-
-    function captcha()  {
-        $this->autoRender = false;
-        $this->layout='ajax';
-        if(!isset($this->Captcha))  { //if Component was not loaded throug $components array()
-            $this->Captcha = $this->Components->load('Captcha', array(
-                'width' => 150,
-                'height' => 50,
-                'theme' => 'random', //possible values : default, random ; No value means 'default'
-            )); //load it
-            }
-        $this->Captcha->create();
-    }
+    var $helpers = array('Html', 'Form');
 
     public function index() {
         $this->User->recursive = 0;
@@ -150,6 +137,72 @@ class UsersController extends AppController {
             }
              $this->UsersNote->save();
         }
+    }
+
+    public function forgotpasswordajax() {
+
+        $this->layout = null;
+
+        $user = $this->User->find('first', array('conditions' => array('email' => $this->request->data['email'])));
+        if(count($user) > 0) {
+            $this->User->id = $user['User']['id'];
+
+            $crypt_pass = $this->generateRandomString(15);
+            $this->User->set('crypt_pass', $crypt_pass);
+            $this->User->save();
+
+            $email = new CakeEmail('default');
+            $email->to($this->User->field('email'));
+            $email->subject('Mot de passe oublié');
+            $email->viewVars( array('username' => $this->User->field('username'), 'crypt_pass' => $crypt_pass, 'user_id' => $this->User->id) );
+            $email->template('forgot_password');
+            $email->emailFormat('html');
+            $email->send();
+
+            $status = 'OK';
+
+        } else {
+            $status = 'KO';
+        }
+
+        $this->set(array(
+            'status' => $status,
+            '_serialize' => array('status')
+        ));
+
+    }
+
+    public function forgotpassword() {
+        $this->User->id = $this->request->params['user_id'];
+        $this->request->data = $this->User->read(null, $this->request->params['user_id']);
+        unset($this->request->data['User']['password']);
+    }
+
+    public function reinit_pass() {
+        
+
+        $this->User->id = $this->request->data['User']['id'];
+        if($this->User->field('crypt_pass') != null && $this->request->data['User']['crypt'] == $this->User->field('crypt_pass')) {
+            debug($this->request->data);
+
+            $this->User->set('password', $this->request->data['User']['password']);
+            $this->User->set('crypt_pass', null);
+            $this->User->save();
+
+            // to do -> message OK
+
+            $this->redirect(array('controller' => 'pages', 'action' => 'dome'));
+        }
+    }
+
+    public function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 }

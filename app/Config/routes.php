@@ -36,6 +36,9 @@
 	Router::connect('/contact', array('controller' => 'pages', 'action' => 'contact'));
 	Router::connect('/friends', array('controller' => 'pages', 'action' => 'friends'));
 	Router::connect('/imprint', array('controller' => 'pages', 'action' => 'imprint'));
+	Router::connect('/forgotpassword/:user_id', array('controller' => 'users', 'action' => 'forgotpassword'));
+	
+	Router::connect('/admin/contributors', array('controller' => 'contributors', 'action' => 'index', 'admin' => true));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */

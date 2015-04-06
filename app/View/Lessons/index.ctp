@@ -1,4 +1,4 @@
-<div class="block_content">
+<div class="block_content" id="index_all">
 
 	<h3>Recommandations de l'équipe</h3>
 
@@ -8,33 +8,38 @@
 
 	<form id="search_form">	
 		<input type="text" name="search_lessons" id="search_lessons" placeholder="Recherche" />
-		<!-- <input type="submit" value="Rechercher" id="btn_search" /> -->
 	</form>
-	<div class="clear"></div>
 
-	<ul id="content_search"></ul>
+	<!-- <ul id="content_search"></ul> -->
 
-	<ul>
+	<ul><!--
 	<?php foreach($poles as $pole): ?>
 
-		<li class="pole_presentation">
-			<h3><?= $pole['Pole']['name'] ?></h3>
+		--><li class="pole_presentation">
+			<h3><a href="<?= $this->Html->url(null, true); ?>/../poles/view/<?= $pole['Pole']['id'] ?>"><?= $pole['Pole']['name'] ?></h3>
 			<ul>
 				<?php foreach($pole['Learning'] as $video): ?>
-				<li id="learning-<?= $video['id'] ?>"><?php echo $this->Html->link($video['name'], array('controller'=>'learnings','action' => 'view', $video['id']));?></li>
+				<li id="learning-<?= $video['id'] ?>">
+					<?php echo $this->Html->link($video['name'], array('controller'=>'learnings','action' => 'view', $video['id']));?>
+				</li>
 				<?php endforeach; ?>
 			</ul>
-		</li>
+		</li><!--
 
 	<?php endforeach; ?>
-	</ul>
+	--></ul>
 </div>
 
 <script type="text/javascript">
 
+ 	var url_base = "<?php echo $this->Html->url(null, true); ?>";
+
 	$('#search_lessons').keyup(function(){
 		var search_term = $('#search_lessons').val();
-		if(search_term == '') {
+
+		$('.pole_presentation ul li').hide();
+		$('.pole_presentation ul li:icontains(\''+search_term+'\')').show();
+		/*if(search_term == '') {
 			$('#content_search').html('');
 		} else {
 			$.ajax({
@@ -47,7 +52,7 @@
 		        success : function(data) {
 		        	$('#content_search').html('');
 		        	for( var i = 0; i < data.lessons.length ; i++) {
-		        		$('#content_search').append('<li><a href="/le_dome/videos/view/'+data.lessons[i]['Video']['id']+'">'+data.lessons[i]['Video']['title']+'</a></li>');
+		        		$('#content_search').append('<li><a href="'+url_base+'/../learnings/view/'+data.lessons[i]['Learning']['id']+'">'+data.lessons[i]['Learning']['name']+'</a></li>');
 		        	}
 		        	$("#content_search li a" ).each(function( index ) {
 					  	hiliter(search_term, $(this));
@@ -56,7 +61,7 @@
 		           
 		        }
 		    });
-		}
+		}*/
 	   	
 	});
 

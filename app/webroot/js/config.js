@@ -1,0 +1,1 @@
+window.WEB_URL = '//localhost:8888/LEDOMEVERSION/ledome/';

@@ -30,7 +30,8 @@
 		
 		<div class="block_video">
 
-			<div class="left" id="player"></div>
+			<?= $video['Video']['iframe_video'] ?>
+			
 			<div id="right_player">
 				
 				<div id="header_right_player">
@@ -118,7 +119,7 @@
 		<div id="infos_video">
 			<h3><?= $video['Video']['title'] ?></h3>
 			<img src="<?= $video['Professor']['picture'] ?>" width="50">
-			<span class="name_professor"><?= $video['Professor']['firstname'] ?> <?= $video['Professor']['lastname'] ?></span>
+			<span class="name_professor"><?= $video['Professor']['name'] ?></span>
 
 			<div class="buttons_professor">
 				<a href="javascript:void(0)" class="button" id="btn_thanks">Merci</a>
@@ -138,16 +139,6 @@
 <script type="text/javascript">
 
 	$('.social_footer').css('display', 'none');
-
-    // create youtube player
-    var player;
-    function onYouTubePlayerAPIReady() {
-        player = new YT.Player('player', {
-          height: '420',
-          width: '640',
-          videoId: "<?php print($video['Video']['id_youtube']); ?>"
-        });
-    }
 
     var nb_videos = '<?php Print(count($alls)); ?>';
     var user_id = '<?php Print($user_id); ?>';

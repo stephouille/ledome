@@ -5,7 +5,7 @@ App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 
-    var $captcha = ''; //intializing captcha var
+    // var $captcha = ''; //intializing captcha var
 
 	public $validate = array(
         'email' => array(
@@ -26,22 +26,22 @@ class User extends AppModel {
                 'message' => 'Les mots de passe ne correspondent pas'
             )
         ),
-        'captcha'=>array(
-            'rule' => array('matchCaptcha')
-        )  
+        // 'captcha'=>array(
+        //     'rule' => array('matchCaptcha')
+        // )  
     );
 
-    function matchCaptcha($inputValue)  {
-        return $inputValue == $this->getCaptcha(); //return true or false after comparing submitted value with set value of captcha
-    }
+    // function matchCaptcha($inputValue)  {
+    //     return $inputValue == $this->getCaptcha(); //return true or false after comparing submitted value with set value of captcha
+    // }
 
-    function setCaptcha($value) {
-        $this->captcha = $value; //setting captcha value
-    }
+    // function setCaptcha($value) {
+    //     $this->captcha = $value; //setting captcha value
+    // }
 
-    function getCaptcha()   {
-        return $this->captcha; //getting captcha value
-    }
+    // function getCaptcha()   {
+    //     return $this->captcha; //getting captcha value
+    // }
 
     public function beforeSave($options = array()) { //cryptage password
         if (isset($this->data[$this->alias]['password'])) {

@@ -31,11 +31,21 @@ class AdminController extends AppController {
 		if($this->Session->read('Auth.User')) {
 			$nbUsers = $this->User->find('count');
 			$nbVideos = $this->Video->find('count');
+			$nbLearnings = $this->Learning->find('count');
+
+			$recommendation = $this->Video->find('first', array(
+				'conditions' => array('recommendation' => 1)
+			));
+
+			$learnings = $this->Learning->find('all', array('recursive' => 2));
 
 			$this->set(array(
 	            'nbUsers' => $nbUsers,
 	            'nbVideos' => $nbVideos,
-	            '_serialize' => array('nbUsers', 'nbVideos')
+	            'nbLearnings' => $nbLearnings,
+	            'recommendation' => $recommendation,
+	            'learnings' => $learnings,
+	            '_serialize' => array('nbUsers', 'nbVideos', 'nbLearnings', 'recommendation', 'learnings')
 	        ));
 		} else {
 			return $this->redirect(array('controller' => 'admin', 'action' => 'login'));

@@ -8,9 +8,21 @@ class PolesController extends AppController {
         $this->Pole->id = $id;
 
         if (!$this->Pole->exists()) {
-            throw new NotFoundException(__('Video invalide'));
+            throw new NotFoundException(__('Catégorie invalide'));
         }
+        $this->loadModel('UsersLesson');
+
+        $ul = null;
+        if($this->Auth->login()) {
+            $uid = $this->Auth->user('id');
+            $ul = $this->UsersLesson->find('list', array(
+            	'conditions' => array('user_id' => $uid),
+            	'fields' => array('UsersLesson.learning_id')
+            ));
+        }
+
         $this->set(array(
+        	'userslessons' => $ul,
         	'pole' => $this->Pole->read(null, $id)
         ));
     }

@@ -10,6 +10,10 @@ h2 {
   font-weight: normal;
   font-size: 1.4em; }
 
+h3 {
+  font-weight: normal;
+  font-size: 1.3em; }
+
 ul {
   list-style: none; }
 
@@ -28,25 +32,6 @@ ul {
   background: rgba(84, 158, 96, 0.86);
   color: #FFF;
   text-align: center; }
-
-label {
-  display: inline-block;
-  width: 10%;
-  text-align: right;
-  margin-right: 1%; }
-
-.input {
-  margin: 10px 0; }
-  .input input {
-    padding: 5px;
-    border-radius: 3px;
-    border: 1px solid #B9B9B9;
-    height: 35px;
-    width: 200px;
-    display: inline-block;
-    font-size: 0.8em; }
-  .input select {
-    width: 200px; }
 
 #container {
   background-image: url(../img/bg_admin.jpg);
@@ -118,7 +103,7 @@ label {
         height: 90.4%;
         overflow: auto; }
         #container #wrapper_page #wrapper_content #content #wrapper_content_admin {
-          width: 97%;
+          width: 90%;
           margin: 0px auto;
           padding-top: 7px;
           font-size: .9em; }
@@ -154,10 +139,13 @@ label {
     display: block; }
 
 #wrapper_stats {
-  float: left; }
+  display: inline-block;
+  vertical-align: top;
+  width: 70%; }
 
 #block_links {
-  float: right;
+  display: inline-block;
+  vertical-align: top;
   width: 30%;
   border-left: 1px solid #CCC;
   padding: 0 10px; }
@@ -178,3 +166,6 @@ label {
 
 .defaultSimpleSkin {
   display: inline-block; }
+
+#list_annexes {
+  list-style-type: circle; }

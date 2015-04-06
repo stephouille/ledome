@@ -1,3 +1,7 @@
+jQuery.expr[':'].icontains = function(a, i, m) {
+	return jQuery(a).text().toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+};
+
 $(document).ready(function() {
 
 	var heightWindow = $(document).height();
@@ -103,6 +107,32 @@ $(document).ready(function() {
 		});
 
 		return false;
+	});
+
+	$('#forgot_pass').click(function() {
+		$('#form_login').hide();
+		$('#form_mdp').show();
+
+		$('#back_form').click(function() {
+			$('#form_login').show();
+			$('#form_mdp').hide();
+		});
+
+		$('#form_mdp form').submit(function() {
+			var email = $('#form_mdp form #UserEmail').val();
+			$.ajax({
+	            url: window.WEB_URL+'users/forgotpasswordajax',
+	            type: "POST",
+	            data: {
+	            	email : email
+	            },
+	            dataType : 'json',
+	            success : function(data) {
+	            	
+	            }
+	        });
+			return false;
+		});
 	});
 
 });

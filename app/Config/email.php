@@ -41,7 +41,7 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => 'admin@ledome.fr',
+		'from' => 'contact@ledome.fr',
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);

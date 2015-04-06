@@ -13,8 +13,8 @@ class LessonsController extends AppController {
     }
        
    	$poles = $this->Pole->find('all');
-   	$nbVideos = $this->Video->find('count', array('conditions' => array('valid' => 1)));
-   	$recommendation = $this->Video->find('first', array('conditions' => array('valid' => 1, 'recommendation' => 1)));
+   	$nbVideos = $this->Video->find('count');
+   	$recommendation = $this->Video->find('first', array('conditions' => array('recommendation' => 1)));
 
 		$this->set(array(
       'poles' => $poles,
@@ -28,7 +28,7 @@ class LessonsController extends AppController {
   public function search() {
     $this->layout = null;
 
-    $lessons = $this->Learning->find('all', array('conditions' => array('name LIKE' => '%'.$this->request->data['search'].'%')));
+    $lessons = $this->Learning->find('all', array('conditions' => array('Learning.name LIKE' => '%'.$this->request->data['search'].'%')));
 
     $this->set(array(
       'lessons' => $lessons,

@@ -86,7 +86,10 @@ button, .button, #user_block input[type=submit] {
   display: block;
   text-align: center;
   height: 28px;
-  line-height: 25px; }
+  line-height: 25px;
+  font-size: .95em;
+  font-family: 'effraregular', Helvetica, Arial, sans-serif;
+  transition: background 0.5s; }
   button:hover, .button:hover, #user_block input[type=submit]:hover {
     background-color: #e7743b;
     cursor: pointer; }
@@ -202,11 +205,14 @@ button, .button, #user_block input[type=submit] {
       width: 80%;
       height: 82%;
       margin: 0 auto;
-      margin-top: 5%; }
+      margin-top: 5%;
+      overflow: auto; }
       #container #content .block_content.big_content {
         width: 98%;
         height: 91%;
         margin-top: 0; }
+      #container #content .block_content#index_all {
+        font-size: 1.1em; }
 
 #content_home h1 {
   color: #FFF;
@@ -299,56 +305,56 @@ button, .button, #user_block input[type=submit] {
   background-color: #f3f3f3;
   float: left;
   position: relative; }
-  #header #menu {
+  #header .menu {
     width: 100%;
     height: 100%;
     margin: 0 auto;
     font-family: 'adam', Arial, sans-serif;
     color: #000;
     font-size: .9em; }
-    #header #menu ul {
+    #header .menu ul {
       height: 100%;
       display: block; }
-      #header #menu ul li {
+      #header .menu ul li {
         position: relative;
         cursor: pointer;
         width: 100%;
         text-align: center;
         height: 50px;
         margin: 18% auto; }
-        #header #menu ul li .hover_menu {
+        #header .menu ul li .hover_menu {
           position: absolute;
           width: 37%;
           right: 0;
           height: 120px;
           display: none;
           z-index: 99; }
-        #header #menu ul li a {
+        #header .menu ul li a {
           color: #000;
           height: 100%;
           display: inline-block; }
-          #header #menu ul li a .icon {
+          #header .menu ul li a .icon {
             height: 80%;
             width: 27px;
             height: 27px;
             background-size: 27px;
             margin: 0 auto 5px auto; }
-          #header #menu ul li a p {
+          #header .menu ul li a p {
             color: #7a7a7a;
             padding: 0 5px; }
-        #header #menu ul li:hover p, #header #menu ul li.active p {
+        #header .menu ul li:hover p, #header .menu ul li.active p {
           color: #000; }
-        #header #menu ul li:hover a .icon, #header #menu ul li.active a .icon {
+        #header .menu ul li:hover a .icon, #header .menu ul li.active a .icon {
           background-position: 0 27px; }
-        #header #menu ul li:first-child {
+        #header .menu ul li:first-child {
           height: 75px; }
-          #header #menu ul li:first-child img {
+          #header .menu ul li:first-child img {
             height: 75%;
             margin-bottom: 5px; }
-        #header #menu ul li#menu-item-lessons a .icon {
+        #header .menu ul li#menu-item-lessons a .icon {
           background-image: url(../img/icon_lessons.png);
           background-position: 0 0; }
-        #header #menu ul li#menu-item-lessons #menu_lessons {
+        #header .menu ul li#menu-item-lessons #menu_lessons {
           z-index: 20;
           display: none;
           position: absolute;
@@ -357,51 +363,58 @@ button, .button, #user_block input[type=submit] {
           background-color: #FFF;
           margin-top: -70px;
           height: auto; }
-          #header #menu ul li#menu-item-lessons #menu_lessons a {
+          #header .menu ul li#menu-item-lessons #menu_lessons a {
             width: 100%; }
-          #header #menu ul li#menu-item-lessons #menu_lessons li {
+          #header .menu ul li#menu-item-lessons #menu_lessons li {
             cursor: pointer;
             height: 38px;
             line-height: 43px;
             padding: 0;
             border-bottom: 1px solid #DEDEDE;
             margin: 0 !important; }
-            #header #menu ul li#menu-item-lessons #menu_lessons li .lessons-menu {
+            #header .menu ul li#menu-item-lessons #menu_lessons li .lessons-menu {
               display: none;
               position: absolute;
-              right: -300px;
+              right: -500px;
               background-color: #FFF;
-              width: 300px;
+              width: 500px;
               margin-top: -43px;
               height: auto; }
-              #header #menu ul li#menu-item-lessons #menu_lessons li .lessons-menu li:hover {
+              #header .menu ul li#menu-item-lessons #menu_lessons li .lessons-menu li:hover {
                 background-color: rgba(0, 0, 0, 0.05); }
-            #header #menu ul li#menu-item-lessons #menu_lessons li:last-child {
+            #header .menu ul li#menu-item-lessons #menu_lessons li:last-child {
               border: 0; }
-        #header #menu ul li#menu-item-lessons:hover #menu_lessons {
+        #header .menu ul li#menu-item-lessons:hover #menu_lessons {
           display: block; }
-        #header #menu ul li#menu-item-lessons:hover a .icon {
+        #header .menu ul li#menu-item-lessons:hover a .icon {
           background-position: 0 27px; }
-        #header #menu ul li#menu-item-lessons.active a .icon {
+        #header .menu ul li#menu-item-lessons.active a .icon {
           background-position: 0 27px; }
-        #header #menu ul li#menu-item-help a .icon {
+        #header .menu ul li#menu-item-help a .icon {
           background-image: url(../img/icon_help.png); }
-        #header #menu ul li#menu-item-friends a .icon {
+        #header .menu ul li#menu-item-friends a .icon {
           background-image: url(../img/icon_friends.png); }
-        #header #menu ul li#menu-item-about a .icon {
+        #header .menu ul li#menu-item-about a .icon {
           background-image: url(../img/icon_about.png); }
-        #header #menu ul li#menu-item-imprint {
+        #header .menu ul li#menu-item-imprint {
           height: 70px; }
-          #header #menu ul li#menu-item-imprint a .icon {
+          #header .menu ul li#menu-item-imprint a .icon {
             background-image: url(../img/icon_imprint.png); }
-        #header #menu ul li#menu-item-contact a .icon {
+        #header .menu ul li#menu-item-contact a .icon {
           background-image: url(../img/icon_contact.png); }
-      #header #menu ul #menu-item-close {
+      #header .menu ul #menu-item-close {
         width: 25%;
         border-top: 2px solid;
         padding-top: 15px;
         margin: 0 auto;
         display: block; }
+    #header .menu#menu_mobile {
+      display: none; }
+      #header .menu#menu_mobile ul li {
+        height: 100% !important;
+        display: inline-block;
+        margin: 0 !important;
+        width: 12%; }
 
 #small_header {
   width: 7%;
@@ -449,6 +462,10 @@ button, .button, #user_block input[type=submit] {
       filter: none; }
       #user_block input[type=submit]:hover {
         border: 1px solid #e66525; }
+  #user_block #forgot_pass {
+    display: block;
+    text-decoration: underline;
+    width: 100%; }
   #user_block #buttons_users a {
     display: inline-block;
     margin: 0 2px;
@@ -466,16 +483,17 @@ button, .button, #user_block input[type=submit] {
 #search_form {
   margin: 10px 0;
   border-bottom: 1px solid #3886c7; }
-  #search_form #search_lessons {
-    width: 95%;
+  #search_form input[type="text"] {
+    width: calc(100% - 40px);
     height: 40px;
     border: 0;
     padding: 10px;
     font-size: 13px;
-    outline: none; }
+    outline: none;
+    display: inline-block; }
   #search_form::before {
     content: "";
-    display: block;
+    display: inline-block;
     height: 40px;
     width: 40px;
     background-image: url(../img/icon_search.png);
@@ -486,9 +504,11 @@ button, .button, #user_block input[type=submit] {
 
 .pole_presentation {
   margin-top: 40px;
-  width: 25%;
+  width: 24%;
+  margin: .5%;
   text-align: center;
-  float: left; }
+  display: inline-block;
+  vertical-align: top; }
   .pole_presentation h3 {
     text-transform: uppercase;
     font-size: 1.1em;
@@ -497,21 +517,33 @@ button, .button, #user_block input[type=submit] {
     height: 45px;
     line-height: 18px;
     border-bottom: 2px solid #62bf7f; }
+  .pole_presentation ul li {
+    display: block;
+    background: rgba(56, 134, 199, 0.18);
+    line-height: 30px;
+    border: 1px solid #3886c7;
+    margin-bottom: 5px; }
+    .pole_presentation ul li a {
+      display: block; }
+    .pole_presentation ul li:hover {
+      background: rgba(56, 134, 199, 0); }
 
 .block_dome {
   height: 100%; }
   .block_dome #block_noconnected {
-    width: 61%;
-    height: 97%;
+    width: 660px;
+    height: 660px;
+    max-height: 100%;
     background-image: url(../img/img_blocnoconnected.png);
-    background-size: cover;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: top center;
     position: absolute;
     z-index: 10;
     left: 50%;
     margin-left: -330px;
     top: 50%;
-    margin-top: -330px;
-    border-radius: 50%; }
+    margin-top: -330px; }
     .block_dome #block_noconnected #wrapper_noconnected {
       text-align: center;
       width: 80%;
@@ -519,11 +551,12 @@ button, .button, #user_block input[type=submit] {
       .block_dome #block_noconnected #wrapper_noconnected p {
         font-size: 1.3em; }
       .block_dome #block_noconnected #wrapper_noconnected a {
-        display: block;
-        width: 200px;
-        margin: 4% auto; }
-        .block_dome #block_noconnected #wrapper_noconnected a.btn_connexion {
-          background-color: #62bf7f; }
+        display: inline-block;
+        width: auto;
+        margin: 4% auto;
+        padding: 10px 30px;
+        height: auto;
+        font-size: 1.3em; }
   .block_dome #wrapper_dome {
     height: 100%; }
     .block_dome #wrapper_dome svg {
@@ -531,13 +564,37 @@ button, .button, #user_block input[type=submit] {
       margin: 0 auto;
       height: 100%;
       max-width: 100%; }
-      .block_dome #wrapper_dome svg a polygon {
+      .block_dome #wrapper_dome svg polygon {
         -webkit-transition: .6s all;
         transition: .6s all;
         opacity: .5; }
-        .block_dome #wrapper_dome svg a polygon.active, .block_dome #wrapper_dome svg a polygon:hover {
+        .block_dome #wrapper_dome svg polygon.active, .block_dome #wrapper_dome svg polygon:hover {
           fill: #e66525;
           opacity: 1; }
+    .block_dome #wrapper_dome #hover_dome {
+      position: absolute;
+      background-color: #FFF;
+      display: none;
+      top: 0;
+      width: 200px;
+      height: 100px; }
+      .block_dome #wrapper_dome #hover_dome .content_hover {
+        width: 90%;
+        margin: 10px auto; }
+        .block_dome #wrapper_dome #hover_dome .content_hover img {
+          display: inline-block;
+          width: 15%;
+          margin-right: 5%;
+          vertical-align: top; }
+        .block_dome #wrapper_dome #hover_dome .content_hover p {
+          display: inline-block;
+          width: 80%;
+          vertical-align: top;
+          margin: 0; }
+        .block_dome #wrapper_dome #hover_dome .content_hover .progress {
+          width: 100%;
+          margin: 5px 0;
+          text-align: center; }
 
 .item_dome {
   display: block;
@@ -945,18 +1002,24 @@ button, .button, #user_block input[type=submit] {
   #block_friends #wrapper_friends ul {
     margin: 15px 0; }
     #block_friends #wrapper_friends ul li {
-      width: 18%;
+      width: 22%;
       display: inline-block;
-      text-align: center; }
+      vertical-align: top;
+      text-align: center;
+      background-color: cornsilk;
+      margin-right: 4%;
+      margin-bottom: 10px; }
+      #block_friends #wrapper_friends ul li:last-child {
+        margin-right: 0; }
       #block_friends #wrapper_friends ul li .image_contributor {
-        width: 80%;
+        width: 90%;
         display: block;
-        margin: 10px auto;
-        border-radius: 50%; }
+        margin: 8px auto; }
       #block_friends #wrapper_friends ul li .name_contributor {
         font-weight: bold; }
       #block_friends #wrapper_friends ul li .poste_contributor {
-        font-style: italic; }
+        font-style: italic;
+        margin-bottom: 8px; }
   #block_friends #wrapper_friends #btn_becomeAFriend {
     width: 200px;
     display: block;
@@ -965,12 +1028,33 @@ button, .button, #user_block input[type=submit] {
 #wrapper_polePage {
   margin: 20px auto;
   width: 95%; }
-  #wrapper_polePage ul li img {
-    margin-right: 10px; }
+  #wrapper_polePage h2 {
+    text-align: center; }
+  #wrapper_polePage ul li {
+    border: 1px solid #3886c7;
+    margin-bottom: 10px;
+    background-color: rgba(56, 134, 199, 0.1); }
+    #wrapper_polePage ul li a {
+      padding: 10px;
+      width: 100%;
+      height: 100%;
+      display: block; }
+      #wrapper_polePage ul li a img {
+        margin-right: 10px;
+        width: 50px;
+        display: inline-block; }
+      #wrapper_polePage ul li a p {
+        display: inline-block; }
+    #wrapper_polePage ul li:hover {
+      background-color: rgba(56, 134, 199, 0); }
+    #wrapper_polePage ul li.active {
+      background-color: rgba(56, 134, 199, 0.9); }
 
 #wrapper_learningPage {
   margin: 20px auto;
-  width: 95%; }
+  width: 95%;
+  overflow: auto;
+  height: 93%; }
   #wrapper_learningPage #btn_addDome {
     background-color: #f9f291;
     width: 300px;
@@ -980,6 +1064,34 @@ button, .button, #user_block input[type=submit] {
     background-color: #62bf7f;
     width: 300px;
     margin: 20px auto; }
+  #wrapper_learningPage h2 {
+    text-align: center; }
+  #wrapper_learningPage ul li {
+    border: 1px solid #3886c7;
+    margin-bottom: 10px;
+    background-color: rgba(56, 134, 199, 0.1);
+    display: inline-block;
+    width: 49%;
+    box-sizing: content-box; }
+    #wrapper_learningPage ul li:nth-child(2n+1) {
+      margin-right: 1%; }
+    #wrapper_learningPage ul li a {
+      padding: 10px;
+      width: 100%;
+      height: 100%;
+      display: block; }
+      #wrapper_learningPage ul li a span {
+        display: inline-block; }
+      #wrapper_learningPage ul li a img {
+        margin-right: 10px;
+        width: 50px;
+        display: inline-block; }
+      #wrapper_learningPage ul li a p {
+        display: inline-block; }
+    #wrapper_learningPage ul li:hover {
+      background-color: rgba(56, 134, 199, 0); }
+    #wrapper_learningPage ul li.active {
+      background-color: rgba(56, 134, 199, 0.9); }
 
 @media screen and (max-width: 800px) {
   #container {
@@ -987,13 +1099,23 @@ button, .button, #user_block input[type=submit] {
     #container #content {
       float: none;
       width: 100%; }
+      #container #content .block_content {
+        width: 90%; }
 
   #header {
     float: none;
     width: 100%;
     height: 100px; }
-    #header #menu ul li {
-      height: 100% !important;
-      display: inline-block;
-      margin: 0 !important;
-      width: 12%; } }
+    #header .menu#menu {
+      display: none; }
+    #header .menu#menu_mobile {
+      display: block; } }
+@media screen and (max-width: 600px) {
+  #container #content .block_content {
+    width: 95%; }
+
+  #block_friends #wrapper_friends ul li {
+    width: 30%; } }
+@media screen and (max-width: 400px) {
+  #block_friends #wrapper_friends ul li {
+    width: 45%; } }

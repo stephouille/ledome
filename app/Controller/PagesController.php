@@ -68,10 +68,39 @@ class PagesController extends AppController {
 		$this->layout = 'default';
 
 		$uid = $this->Auth->user('id');
-		$lessons_user = $this->UsersLesson->find('all', array('conditions' => array('user_id' => $uid)));
+		$lessons_user = $this->UsersLesson->find('all', array('recursive' => 2,'conditions' => array('user_id' => $uid)));
 		$zones = $this->Zone->find('all');
 
-		// var_dump($lessons_user);
+		/*debug($lessons_user);
+		$learnings = array();
+		foreach ($zones as $z) {
+			$learning = array();
+			$learning['id'] = $z['Learning']['id'];
+			$learning['name'] = $z['Learning']['name'];
+			$learning['image'] = $z['Learning']['image'];
+			$learning['coords'] = $z['Zone']['coords'];
+			$learning['color'] = $z['Zone']['color'];
+			if(isset($z['Learning']['Pole'])) {
+				$learning['pole_id'] = $z['Learning']['Pole']['id'];
+				$learning['pole_name'] = $z['Learning']['Pole']['name'];
+			}
+			if(isset($z['Learning']['Video'])) {
+				$learning['nb_videos'] = count($z['Learning']['Video']);
+			}			
+			$isAddedToDome = false;
+			$progress = 0;
+			foreach ($lessons_user as $l) {
+                if($l['Learning']['id'] == $z['Zone']['learning_id']) {
+                    $isAddedToDome = true;
+                    $progress = $l['UsersLesson']['progress'];
+                    break;
+                }
+            } 
+            $learning['isAddedToDome'] = $isAddedToDome;
+            $learning['progress'] = $progress;
+			array_push($learnings, $learning);
+		}
+		debug($learnings);*/
 
 		$this->set(array(
             'lessons_user' => $lessons_user,

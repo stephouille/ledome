@@ -31,12 +31,17 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('knacss');
+		echo $this->Html->css('bootstrap.min');
 		echo $this->Html->css('style-admin');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js" type="text/javascript"></script>
+	<?php echo $this->Html->script('ckeditor/ckeditor'); ?>
+	<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+	<?php echo $this->Html->script('config'); ?>
 </head>
 <body>
 	<div id="container">
@@ -52,6 +57,16 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 					<li class="<?php echo (!empty($this->params['action']) && ($this->params['controller']=='learnings') && ($this->params['action']=='index') )?'active' :'' ?>">
 						<?php echo $this->Html->link($this->Html->image('icon_learnings.png') . ' ' . __('<p>Apprentissages</p>'),
 	                       array('controller'=>'learnings','action' => 'index', 'admin' => true),
+	                       array('escape' => false)); ?>
+					</li>
+					<li class="<?php echo (!empty($this->params['action']) && ($this->params['controller']=='professors') && ($this->params['action']=='index') )?'active' :'' ?>">
+						<?php echo $this->Html->link($this->Html->image('icon_friends_admin.png') . ' ' . __('<p>Les speakers</p>'),
+	                       '/admin/professors/index',
+	                       array('escape' => false)); ?>
+					</li>
+					<li class="<?php echo (!empty($this->params['action']) && ($this->params['controller']=='contributors') && ($this->params['action']=='index') )?'active' :'' ?>">
+						<?php echo $this->Html->link($this->Html->image('icon_friends_admin.png') . ' ' . __('<p>Les amis</p>'),
+	                       '/admin/contributors/index',
 	                       array('escape' => false)); ?>
 					</li>
 					<li class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='allpages') )?'active' :'' ?>">
@@ -86,8 +101,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+
 	<?php echo $this->Html->script('admin'); ?>
+	<?php echo $this->Html->script('bootstrap.min'); ?>
 	<?php echo $this->Html->script('tiny_mce'); ?>
 </body>
 </html>

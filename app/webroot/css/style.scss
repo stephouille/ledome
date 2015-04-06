@@ -105,6 +105,9 @@ button, .button {
 	text-align: center;
 	height: 28px;
 	line-height: 25px;
+	font-size: .95em;
+	font-family: 'effraregular', Helvetica, Arial, sans-serif;
+	transition: background 0.5s;
 	&:hover {
 		background-color: $orange_hover;
 		cursor: pointer;
@@ -200,12 +203,15 @@ button, .button {
 			height: 82%;
 			margin: 0 auto;
 			margin-top: 5%;
+			overflow: auto;
 			&.big_content {
 				width: 98%;
 				height:91%;
 				margin-top: 0;
 			}
-
+			&#index_all {
+				font-size: 1.1em;
+			}
 		}
 
 	}
@@ -321,7 +327,7 @@ button, .button {
 	background-color: $color_header;
 	float: left;
 	position: relative;
-	#menu { 
+	.menu { 
 		width: 100%; 
 		height: 100%;
 		margin: 0 auto;
@@ -404,9 +410,9 @@ button, .button {
 							.lessons-menu {
 								display: none;
 								position: absolute;
-								right: -300px;
+								right: -500px;
 								background-color: #FFF;
-								width: 300px;
+								width: 500px;
 								margin-top: -43px;
 								height: auto;
 								li:hover {
@@ -447,6 +453,17 @@ button, .button {
 				padding-top: 15px;
 				margin: 0 auto;
 				display: block;
+			}
+		}
+		&#menu_mobile {
+			display: none;
+			ul {
+				li {
+					height: 100% !important;
+					display: inline-block;
+					margin: 0 !important;
+					width: 12%;
+				}
 			}
 		}
 	}
@@ -499,6 +516,11 @@ button, .button {
 			}
 		}
 	}
+	#forgot_pass {
+		display: block;
+	  	text-decoration: underline;
+	  	width: 100%;
+	}
 	#buttons_users {
 		a {
 			display: inline-block;
@@ -523,17 +545,18 @@ button, .button {
 #search_form {
 	margin: 10px 0;
 	border-bottom: 1px solid $blue;
-	#search_lessons { 
-		width: 95%;
+	input[type="text"] {
+		width: calc(100% - 40px);
 		height: 40px;
 		border: 0;
 		padding: 10px;
 		font-size: 13px;
-		outline: none
+		outline: none;
+		display: inline-block;
 	}
 	&::before {
 		content: "";
-		display: block;
+		display: inline-block;
 		height: 40px;
 		width: 40px;
 		background-image: url(../img/icon_search.png);
@@ -546,9 +569,11 @@ button, .button {
 }
 .pole_presentation { 
 	margin-top: 40px;
-	width: 25%;
+	width: 24%;
+	margin: .5%;
 	text-align: center;
-	float: left;
+	display: inline-block;
+	vertical-align: top;
 	h3 {
 		text-transform: uppercase;
 		font-size: 1.1em;
@@ -558,23 +583,40 @@ button, .button {
 		line-height: 18px;
 		border-bottom: 2px solid $green;
 	}
+	ul {
+		li {
+			display: block;
+			background: rgba(56, 134, 199, 0.18);
+			line-height: 30px;
+			border: 1px solid $blue;
+			margin-bottom: 5px;
+			a {
+				display: block;
+			}
+			&:hover {
+				background: rgba(56, 134, 199, 0);
+			}
+		}
+	}
 }
 
 
 .block_dome {
 	height: 100%;
 	#block_noconnected {
-		width: 61%;
-		height: 97%;
+		width: 660px;
+		height: 660px;
+		max-height: 100%;
 		background-image: url(../img/img_blocnoconnected.png);
-		background-size: cover;
+		background-size: auto 100%;
+		background-repeat: no-repeat;
+		background-position: top center;
 		position: absolute;
 		z-index: 10;
 		left: 50%;
 		margin-left: -330px;
 		top: 50%;
 		margin-top: -330px;
-		border-radius: 50%;
 		#wrapper_noconnected {
 			text-align: center;
 			width: 80%;
@@ -583,13 +625,12 @@ button, .button {
 				font-size: 1.3em;
 			}
 			a {
-				display: block;
-				width: 200px;
+				display: inline-block;
+				width: auto;
 				margin: 4% auto;
-				&.btn_connexion {
-					background-color: $green;
-				}
-				
+				padding: 10px 30px;
+				height: auto;
+				font-size: 1.3em;
 			}
 		}
 	}
@@ -600,15 +641,43 @@ button, .button {
 			margin: 0 auto;
 			height: 100%;
 			max-width: 100%;
-			a {
-				polygon {
-					-webkit-transition: .6s all;
-        			transition: .6s all;
-        			opacity: .5;
-					&.active, &:hover {
-						fill: $orange;
-						opacity: 1;
-					}
+			polygon {
+				-webkit-transition: .6s all;
+    			transition: .6s all;
+    			opacity: .5;
+				&.active, &:hover {
+					fill: $orange;
+					opacity: 1;
+				}
+			}
+		}
+		#hover_dome {
+			position: absolute;
+			background-color: #FFF;
+			display: none;
+			top: 0;
+
+			width: 200px;
+			height: 100px;
+			.content_hover {
+				width: 90%;
+				margin: 10px auto;
+				img {
+					display: inline-block;
+					width: 15%;
+					margin-right: 5%;
+					vertical-align: top;
+				}
+				p {
+					display: inline-block;
+					width: 80%;
+					vertical-align: top;
+					margin: 0;
+				}
+				.progress {
+					width: 100%;
+					margin: 5px 0;
+					text-align: center;
 				}
 			}
 		}
@@ -1136,20 +1205,28 @@ button, .button {
 		ul {
 			margin: 15px 0;
 			li {
-				width: 18%;
+				width: 22%;
 				display: inline-block;
+				vertical-align: top;
 				text-align: center;
+				background-color: cornsilk;
+				margin-right: 4%;
+				margin-bottom: 10px;
+				&:last-child {
+					margin-right: 0;
+				}
 				.image_contributor {
-					width: 80%;
+					width: 90%;
 					display: block;
-					margin: 10px auto;
-					border-radius: 50%;
+					margin: 8px auto;
+					// border-radius: 50%;
 				}
 				.name_contributor {
 					font-weight: bold;
 				}
 				.poste_contributor {
 					font-style: italic;
+					margin-bottom: 8px;
 				}
 			}
 		}
@@ -1165,10 +1242,33 @@ button, .button {
 #wrapper_polePage {
 	margin: 20px auto;
 	width: 95%;
+	h2 {
+		text-align: center;
+	}
 	ul {
 		li {
-			img {
-				margin-right: 10px; 
+			border: 1px solid $blue;
+			margin-bottom: 10px;
+			background-color: rgba(56, 134, 199, 0.1);
+			a {
+				padding: 10px;
+				width: 100%;
+				height: 100%;
+				display: block;
+				img {
+					margin-right: 10px; 
+					width: 50px;
+					display: inline-block;
+				}
+				p {
+					display: inline-block;
+				}
+			}
+			&:hover {
+				background-color: rgba(56, 134, 199, 0);
+			}
+			&.active {
+				background-color: rgba(56, 134, 199, .9);
 			}
 		}
 	}
@@ -1178,6 +1278,8 @@ button, .button {
 #wrapper_learningPage {
 	margin: 20px auto;
 	width: 95%;
+	overflow: auto;
+	height: 93%;
 	#btn_addDome {
 		background-color: $yellow;
 		width: 300px;
@@ -1188,6 +1290,45 @@ button, .button {
 		background-color: $green;
 		width: 300px;
 		margin: 20px auto;
+	}
+	h2 {
+		text-align: center;
+	}
+	ul {
+		li {
+			border: 1px solid $blue;
+			margin-bottom: 10px;
+			background-color: rgba(56, 134, 199, 0.1);
+			display: inline-block;
+			width: 49%;
+  			box-sizing: content-box;
+			&:nth-child(2n+1) {
+				margin-right: 1%;
+			}
+			a {
+				padding: 10px;
+				width: 100%;
+				height: 100%;
+				display: block;
+				span {
+					display: inline-block;
+				}
+				img {
+					margin-right: 10px; 
+					width: 50px;
+					display: inline-block;
+				}
+				p {
+					display: inline-block;
+				}
+			}
+			&:hover {
+				background-color: rgba(56, 134, 199, 0);
+			}
+			&.active {
+				background-color: rgba(56, 134, 199, .9);
+			}
+		}
 	}
 }
 
@@ -1200,6 +1341,9 @@ button, .button {
 		#content {
 			float: none;
 			width: 100%;
+			.block_content {
+				width: 90%;
+			}
 		}
 	}
 
@@ -1207,15 +1351,54 @@ button, .button {
 		float: none;
 		width: 100%;
 		height: 100px;
-		#menu ul li {
-			height: 100% !important;
-			display: inline-block;
-			margin: 0 !important;
-			width: 12%;
+		.menu {
+			&#menu {
+				display: none;
+			}
+			&#menu_mobile {
+				display: block;
+			}
 		}
 	}
 
 }
+
+@media screen and (max-width: 600px) {
+
+	#container {
+		#content {
+			.block_content {
+				width: 95%;
+			}
+		}
+	}
+
+	#block_friends {
+		#wrapper_friends {
+			ul {
+				li {
+					width: 30%;
+				}
+			}
+		}
+	}
+
+}
+
+@media screen and (max-width: 400px) {
+
+	#block_friends {
+		#wrapper_friends {
+			ul {
+				li {
+					width: 45%;
+				}
+			}
+		}
+	}
+
+}
+
 
 
 

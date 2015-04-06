@@ -32,7 +32,8 @@
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js" type="text/javascript"></script>-->
+	<?php echo $this->Html->script('jquery-1.10.2.min'); ?>
 	<?php echo $this->Html->script('ckeditor/ckeditor'); ?>
 	<script type="text/javascript">
 		var showPOPUP = "<?php Print($this->Session->read('popup')); ?>";
@@ -54,9 +55,21 @@
 				<div id="form_login" style="display:none">				
 					<!-- <?php echo $this->Session->flash('auth'); ?> -->
 					<?php echo $this->Form->create('User'); ?>
-					     <?php echo $this->Form->input('email', array('label' => '', 'placeholder' => 'email'));
-					        echo $this->Form->input('password', array('label' => '', 'placeholder' => 'mot de passe')); ?>
+
+					    <?= $this->Form->input('email', array('label' => '', 'placeholder' => 'email')); ?>
+					    <?= $this->Form->input('password', array('label' => '', 'placeholder' => 'mot de passe')); ?>
+
 					<?php echo $this->Form->end(__('OK'), array('class' => 'button')); ?>
+					<a href="javascript:void(0)" id="forgot_pass">Mot de passe oublié ?</a>
+				</div>
+
+				<div id="form_mdp" style="display:none">
+					<?php echo $this->Form->create('User'); ?>
+
+					    <?= $this->Form->input('email', array('label' => '', 'placeholder' => 'email')); ?>
+
+					<?php echo $this->Form->end(__('OK'), array('class' => 'button')); ?>
+				    <a href="javascript:void(0)" id="back_form">Retour</a>
 				</div>
 
 			<?php } else { ?>
@@ -68,7 +81,7 @@
 
 		</div>
 		<div id="header">
-			<div id="menu">
+			<div class="menu" id="menu">
 				<ul>
 					<li id="menu-item-dome" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='dome') )?'active' :'' ?>">
 						<?php echo $this->Html->link($this->Html->image('logo.png', array('alt' => 'LOGO')) . ' ' . __('<p>Le dome</p>'),
@@ -122,6 +135,60 @@
 				</ul>
 			</div>
 
+			<div class="menu" id="menu_mobile">
+				<ul>
+					<li id="menu-item-lessons" class="<?php echo (!empty($this->params['action']) && ($this->params['controller']=='lessons' && $this->params['action']=='index') )?'active' :'' ?>">
+						<div class="hover_menu"></div>
+					  	<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Les cours</p>'),
+	                       array('controller'=>'lessons','action' => 'index'),
+	                       array('escape' => false)); ?>
+	                    <ul id="menu_lessons">
+	                    	<?php foreach ($poles as $pole) {
+	                    		echo '<li class="menu-level1">'.$this->Html->link($pole['Pole']['name'], array('controller'=>'poles','action' => 'view', $pole['Pole']['id']));
+	                    		echo '<ul class="lessons-menu">';
+	                    		foreach($pole['Learning'] as $learning) {
+	                    			echo '<li>'.$this->Html->link($learning['name'], array('controller'=>'learnings','action' => 'view', $learning['id'])).'</li>';
+	                    		}
+								echo '</ul></li>';
+	                    	} ?>
+	                    </ul>
+					</li>
+					<li id="menu-item-help" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='help') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Nous aider</p>'),
+	                       array('controller'=>'pages','action' => 'help'),
+	                       array('escape' => false)); ?>
+					</li>
+					<li id="menu-item-friends" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='friends') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Les amis</p>'),
+	                       array('controller'=>'pages','action' => 'friends'),
+	                       array('escape' => false)); ?>
+					</li>
+					<li id="menu-item-dome" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='dome') )?'active' :'' ?>">
+						<?php echo $this->Html->link($this->Html->image('logo.png', array('alt' => 'LOGO')) . ' ' . __('<p>Le dome</p>'),
+	                       array('controller'=>'pages','action' => 'dome'),
+	                       array('escape' => false)); ?>
+					</li>
+					<li id="menu-item-about" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='about') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>A propos</p>'),
+	                       array('controller'=>'pages','action' => 'about'),
+	                       array('escape' => false)); ?>
+					</li>
+					<li id="menu-item-imprint" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='imprint') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Mentions légales</p>'),
+	                       array('controller'=>'pages','action' => 'imprint'),
+	                       array('escape' => false)); ?>
+					</li>
+					<li id="menu-item-contact" class="<?php echo (!empty($this->params['action']) && ($this->params['action']=='contact') )?'active' :'' ?>">
+						<?php echo $this->Html->link('<div class="icon"></div>' . ' ' . __('<p>Contact</p>'),
+	                       array('controller'=>'pages','action' => 'contact'),
+	                       array('escape' => false)); ?>
+					</li>
+					<!--<div id="menu-item-close">
+						<?php echo $this->Html->image('icon_close.png', array('alt' => 'icon contact')); ?>
+					</div>-->
+				</ul>
+			</div>
+
 		</div>
 
 		<div id="small_header" style="display:none">
@@ -156,6 +223,7 @@
 	<script src="//www.youtube.com/player_api"></script>
 	<?php echo $this->Html->script('jquery-min'); ?>
 	<?php echo $this->Html->script('jquery.bpopup.min'); ?>
+	<?php echo $this->Html->script('config'); ?>
 	<?php echo $this->Html->script('app'); ?>
 	
 

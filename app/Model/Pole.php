@@ -2,7 +2,7 @@
 
 class Pole extends AppModel {
 
-	public $hasMany = array( 'Learning' );
+	public $hasMany = array( 'Learning' => array('order' => 'position') );
 
 
 }
