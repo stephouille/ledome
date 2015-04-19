@@ -89,8 +89,14 @@
 					<input type="hidden" name="data[Video][title]" value="<?= $video['Video']['title'] ?>">
 
 					<div class="block_videopage active" id="summary">
-						<h3>Sommaire</h3>
-						<?= $video['Video']['summary'] ?>
+						<?php if($video['Video']['description'] != null): ?>
+							<h3>Description</h3>
+							<?= $video['Video']['description'] ?>
+						<?php endif; ?>
+						<?php if($video['Video']['summary'] != null): ?>
+							<h3>Sommaire</h3>
+							<?= $video['Video']['summary'] ?>
+						<?php endif; ?>
 					</div>
 					<div class="block_videopage" id="block_notes">	
 					    <?php 
@@ -118,16 +124,62 @@
 
 		<div id="infos_video">
 			<h3><?= $video['Video']['title'] ?></h3>
-			<img src="<?= $video['Professor']['picture'] ?>" width="50">
-			<span class="name_professor"><?= $video['Professor']['name'] ?></span>
 
-			<div class="buttons_professor">
+			<div class="right_infos">
+			
+				<?php 
+					if($video['Video']['difficulty'] == 1) {
+						$name = 'Facile';
+					} 
+					if($video['Video']['difficulty'] == 2) {
+						$name = 'Moyen';
+					} 
+					if($video['Video']['difficulty'] == 3) {
+						$name = 'Difficile';
+					} 
+				?>
+				<p class="difficulty"><?= $this->Html->image('icon_difficulty_'.$video['Video']['difficulty'].'.png'); ?><?= $name ?></p>
+
+				<img id="image_professor" src="<?= $video['Professor']['picture'] ?>" width="50">
+				<span class="name_professor"><?= $video['Professor']['name'] ?></span>
+
+			</div><!--
+
+			--><div class="buttons_professor">
 				<a href="javascript:void(0)" class="button" id="btn_thanks">Merci</a>
 				<a href="javascript:void(0)" class="button" id="btn_contact">Contact</a>
+				<a href="javascript:void(0)" class="button" id="btn_more">...</a>
+				<div id="show_more_button">
+					<a href="javascript:void(0)" id="signal_link">Signaler un lien mort</a>
+				</div>
 			</div>
 		</div>
 		<div id="wrapper_annexes">
 			<h3>ANNEXES</h3>
+
+			<?php if(count($video['AnnexesVideo']) > 0): ?>
+
+			<div class="swiper-button swiper-button-prev"></div>
+		   	<div class="swiper-button swiper-button-next"></div>
+
+			<div class="swiper-container">
+			    <!-- Additional required wrapper -->
+			    <div class="swiper-wrapper">
+			        <!-- Slides -->
+			        <?php foreach ($video['AnnexesVideo'] as $av): ?>
+			        <div class="swiper-slide">
+			        	<a href="<?= Router::url('/', true).'files/'.$av['video_id'].'/'.$av['path'] ?>" download>
+			        		<?= $this->Html->image($list_annexes[$av['annexe_id']]); ?>
+			        		<p><?= $av['path'] ?></p>
+			        	</a>
+			        </div>
+			        <?php endforeach; ?>
+			    </div>
+			</div>
+			<?php else: ?>
+				<p>Pas d'annexes pour cette vidéo pour le moment.</p>
+			<?php endif; ?>
+			
 		</div>
 		
 		<div class="clear"></div>
@@ -137,8 +189,6 @@
 
 <script src="http://www.youtube.com/player_api"></script>
 <script type="text/javascript">
-
-	$('.social_footer').css('display', 'none');
 
     var nb_videos = '<?php Print(count($alls)); ?>';
     var user_id = '<?php Print($user_id); ?>';
@@ -188,6 +238,48 @@
 	            }
 	        });
 		}
+	});
+
+	//slider annexes vidéo 
+	var mySwiper = new Swiper ('.swiper-container', {
+	    // Optional parameters
+	    direction: 'horizontal',
+	    // Navigation arrows
+	    nextButton: '.swiper-button-next',
+	    prevButton: '.swiper-button-prev',
+	    slidesPerView: 3,
+        paginationClickable: true,
+        spaceBetween: 30,
+        freeMode: true
+	});  
+
+	// $('#footer').css('visibility', 'hidden');
+
+	$('#btn_more').click(function() {
+		$('#show_more_button').show();
+		$('#signal_link').click(function() {
+			$.ajax({
+	            url: myBaseUrl + 'videos/broken_link',
+	            type: "POST",
+	            data: {
+	            	video_id: video_id
+	            },
+	            dataType : 'json',
+	            success : function(data) {
+	            	if(data.status == "OK") {
+	            		alert('un email a été envoyé à l administrateur du site');
+	            	}
+	            }
+	        });
+		});
+	});
+	$(document).mouseup(function (e) {
+	    var container = $("#show_more_button");
+	    if (!container.is(e.target) // if the target of the click isn't the container...
+	        && container.has(e.target).length === 0) // ... nor a descendant of the container
+	    {
+	        container.hide();
+	    }
 	});
     
 </script>

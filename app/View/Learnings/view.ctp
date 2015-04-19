@@ -3,8 +3,12 @@
 	<div id="wrapper_learningPage">
 
 		<?php 
-			// debug($learning_user); 
+			// debug($learning); 
 		?>
+
+		<div class="filarianne">
+			<?= $this->Html->link('Tous les cours', array('controller' => 'lessons', 'action' => 'index')); ?> > <?= $this->Html->link($learning['Pole']['name'], array('controller' => 'poles', 'action' => 'view', $learning['Learning']['pole_id'])); ?> > <?= $learning['Learning']['name'] ?>
+		</div>
 
 		<form id="search_form">	
 			<input type="text" data-learning="<?= $learning['Learning']['id'] ?>" name="search_learnings" id="search_learnings" placeholder="Rechercher un cours dans <?= $learning['Learning']['name'] ?>" />
@@ -26,7 +30,9 @@
 		<?php foreach ($learning['Video'] as $video): ?>
 			--><li class="<?php if($learning_user != null && $learning_user['UsersLesson']['progress'] >= $video['position']) echo 'active'; ?>">
 				<a href="<?= Router::url('/') ?>videos/view/<?= $video['id'] ?>">
-					<?= $this->Html->image($video['Professor']['picture']); ?>
+					<?php if(isset($video['Professor']['picture'])): ?>
+						<?= $this->Html->image($video['Professor']['picture']); ?>
+					<?php endif; ?>
 					<span class="position"><?= $video['position'] ?>.</span>
 					<p><?= $video['title'] ?></p>
 				</a>

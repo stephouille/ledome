@@ -1,7 +1,7 @@
 <?php
 
 App::uses('AppController', 'Controller');
-
+App::uses('CakeEmail', 'Network/Email');
 
 class VideosController extends AppController {
 
@@ -73,6 +73,9 @@ class VideosController extends AppController {
 
         }
 
+        $this->loadModel('Annexes');
+        $list_annexes = $this->Annexes->find('list', array('fields' => array('id', 'icon_path')));
+
         $this->set(array(
         	'video' => $this->Video->read(null, $id),
             'id_prev_video' => $id_prev_video,
@@ -80,7 +83,8 @@ class VideosController extends AppController {
             'isAddedToDome' => $isAddedToDome,
             'user_id' => $user_id,
             'notes' => $notes,
-        	'alls' => $alls
+        	'alls' => $alls,
+            'list_annexes' => $list_annexes
         ));
     }
 
@@ -349,6 +353,31 @@ class VideosController extends AppController {
         $this->set(array(
           'videos' => $videos,
           '_serialize' => array('videos')
+        ));
+
+    }
+
+    public function broken_link() {
+
+        $this->layout = null;
+
+        $video_id = $this->request->data['video_id'];
+        $this->Video->id = $video_id;
+
+        $email = new CakeEmail('default');
+        $email->to('contact@le-dome.fr');
+        $email->subject('Lien de vidéo cassé');
+        $email->viewVars( array('video' => $this->Video->read()) );
+        $email->template('broken_link');
+        $email->emailFormat('html');
+        if($email->send()) {
+            $status = 'OK';
+        } else {
+        }
+
+        $this->set(array(
+          'status' => $status,
+          '_serialize' => array('status')
         ));
 
     }

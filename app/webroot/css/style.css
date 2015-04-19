@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
 /* ----- Colors ----- */
 @font-face {
   font-family: 'effralight';
@@ -49,7 +50,7 @@ a.disabled {
 
 body, html {
   height: 100%;
-  font-family: 'effraregular', Helvetica, Arial, sans-serif; }
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif; }
 
 ul {
   list-style-type: none;
@@ -59,6 +60,9 @@ ul {
 a {
   text-decoration: none;
   color: #000; }
+
+input {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif; }
 
 h1 {
   text-align: center;
@@ -88,7 +92,7 @@ button, .button, #user_block input[type=submit] {
   height: 28px;
   line-height: 25px;
   font-size: .95em;
-  font-family: 'effraregular', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   transition: background 0.5s; }
   button:hover, .button:hover, #user_block input[type=submit]:hover {
     background-color: #e7743b;
@@ -101,6 +105,11 @@ button, .button, #user_block input[type=submit] {
     background-color: #3886c7; }
     button.bluebutton:hover, .button.bluebutton:hover, #user_block input.bluebutton[type=submit]:hover {
       background-color: #489fd8; }
+
+.filarianne {
+  font-size: .8em; }
+  .filarianne a {
+    text-decoration: underline; }
 
 #container {
   overflow: hidden;
@@ -277,7 +286,8 @@ button, .button, #user_block input[type=submit] {
       color: #545555; }
     #content_home .users.form form .button, #content_home .users.form form #user_block input[type=submit], #user_block #content_home .users.form form input[type=submit] {
       width: 50%;
-      margin: 20px auto 10px auto; }
+      margin: 20px auto 10px auto;
+      height: 36px; }
 #content_home #home_dome {
   position: absolute;
   bottom: 10%;
@@ -727,6 +737,10 @@ button, .button, #user_block input[type=submit] {
             #content_player .block_video #right_player #block_right_videopage form .block_videopage#summary {
               padding: 10px;
               overflow: auto; }
+              #content_player .block_video #right_player #block_right_videopage form .block_videopage#summary p span {
+                font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
+                font-size: 1em !important;
+                line-height: 1 !important; }
               #content_player .block_video #right_player #block_right_videopage form .block_videopage#summary ul {
                 list-style-type: circle;
                 padding-left: 20px;
@@ -772,20 +786,33 @@ button, .button, #user_block input[type=submit] {
     float: left; }
     #content_player #infos_video h3 {
       font-size: 1.2em;
-      margin: 0 0 10px 0;
+      margin: 0 0 5px 0;
       text-transform: uppercase; }
-    #content_player #infos_video img {
-      float: left;
-      vertical-align: top;
-      margin-right: 10px; }
-    #content_player #infos_video .name_professor {
-      font-style: italic;
-      color: #444444;
-      line-height: 50px; }
+    #content_player #infos_video .right_infos {
+      display: inline-block;
+      width: 75%;
+      vertical-align: top; }
+      #content_player #infos_video .right_infos .difficulty {
+        line-height: 30px;
+        margin-bottom: 5px; }
+        #content_player #infos_video .right_infos .difficulty img {
+          margin-right: 10px; }
+      #content_player #infos_video .right_infos #image_professor {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 10px; }
+      #content_player #infos_video .right_infos .name_professor {
+        font-style: italic;
+        color: #444444;
+        line-height: 50px; }
     #content_player #infos_video .buttons_professor {
-      float: right; }
+      display: inline-block;
+      width: 25%;
+      text-align: center;
+      position: relative; }
       #content_player #infos_video .buttons_professor a {
-        margin: 0px 20px 10% 0;
+        margin: 0px 20px 6% 0;
+        height: 26px;
         background-color: #dbdbdb;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
@@ -801,8 +828,24 @@ button, .button, #user_block input[type=submit] {
           background-position: 9px 5px;
           background-size: auto 64%;
           padding-left: 14px; }
+      #content_player #infos_video .buttons_professor #show_more_button {
+        display: none;
+        border: 1px solid #DDD;
+        border-radius: 3px;
+        position: absolute;
+        bottom: 30px;
+        right: -50px;
+        background: #FFF;
+        text-align: center;
+        padding: 5px 10px;
+        z-index: 999; }
+        #content_player #infos_video .buttons_professor #show_more_button a {
+          text-decoration: underline;
+          background: none;
+          margin: 0; }
   #content_player #wrapper_annexes {
     float: right;
+    position: relative;
     width: 38%;
     height: 23%;
     border: 1px solid rgba(158, 158, 158, 0.3);
@@ -810,8 +853,27 @@ button, .button, #user_block input[type=submit] {
     padding: 0.5% 1%; }
     #content_player #wrapper_annexes h3 {
       font-size: 1.2em;
-      margin: 0 0 10px 0;
+      margin: 0 0 8px 0;
       text-transform: uppercase; }
+    #content_player #wrapper_annexes .swiper-container {
+      width: 85%;
+      height: 70%; }
+      #content_player #wrapper_annexes .swiper-container .swiper-slide {
+        text-align: center; }
+        #content_player #wrapper_annexes .swiper-container .swiper-slide a {
+          height: 100%;
+          width: 100%;
+          display: inline-block; }
+          #content_player #wrapper_annexes .swiper-container .swiper-slide a img {
+            height: 70%; }
+          #content_player #wrapper_annexes .swiper-container .swiper-slide a p {
+            margin: 0;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: .85em;
+            margin-top: 5px; }
   #content_player #buttons_video_page .button, #content_player #buttons_video_page #user_block input[type=submit], #user_block #content_player #buttons_video_page input[type=submit] {
     width: 60%;
     margin: 10px auto; }
@@ -1006,7 +1068,7 @@ button, .button, #user_block input[type=submit] {
       display: inline-block;
       vertical-align: top;
       text-align: center;
-      background-color: cornsilk;
+      background-color: #EAEAEA;
       margin-right: 4%;
       margin-bottom: 10px; }
       #block_friends #wrapper_friends ul li:last-child {

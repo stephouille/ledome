@@ -8,6 +8,8 @@
 			<div class="content_block">
 				<h3>Faire un don</h3>
 
+				<p>Le don est notre première source de revenu, la publicité n'a pas sa place sur Le Dome, nous souhaitons que ça continue, c'est pour ça que les dons sont si importants.</p>
+
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="VSBWJEAM24YBQ">
@@ -15,11 +17,7 @@
 				<img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 				</form>
 
-				<h4>Où va votre don ?</h4>
-
-				<p>Équipe : LE DOME est une organisation à but non lucratif. L’argent que vous donnez sert avant tout à payer l’équipe.</p>
-
-				<p>Infrastructure : serveurs, bande passante, maintenance, développement web.</p>
+				<p>Cette aide nous permet d'améliorer les fonctionnalités du site et à proposer le plus de cours possible. Plus vous donnez plus nous pouvons mobiliser des ressources (équipe, hébergement, maintenance, développement web, bande passante serveurs).</p>
 			</div>
 		</div>
 

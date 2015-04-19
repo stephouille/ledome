@@ -27,6 +27,7 @@
 
 		echo $this->Html->css('knacss');
 		echo $this->Html->css('style');
+		echo $this->Html->css('swiper.css');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -35,6 +36,7 @@
 	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.1/jquery.min.js" type="text/javascript"></script>-->
 	<?php echo $this->Html->script('jquery-1.10.2.min'); ?>
 	<?php echo $this->Html->script('ckeditor/ckeditor'); ?>
+	<?php echo $this->Html->script('swiper.jquery.min'); ?>
 	<script type="text/javascript">
 		var showPOPUP = "<?php Print($this->Session->read('popup')); ?>";
 		var myBaseUrl = "<?php echo $this->Html->url('/'); ?>";
@@ -224,6 +226,7 @@
 	<?php echo $this->Html->script('jquery-min'); ?>
 	<?php echo $this->Html->script('jquery.bpopup.min'); ?>
 	<?php echo $this->Html->script('config'); ?>
+	<?php echo $this->Html->script('fonctions'); ?>
 	<?php echo $this->Html->script('app'); ?>
 	
 

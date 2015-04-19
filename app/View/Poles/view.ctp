@@ -3,6 +3,10 @@
 <div class="block_content">
 	<div id="wrapper_polePage">
 
+		<div class="filarianne">
+			<?= $this->Html->link('Tous les cours', array('controller' => 'lessons', 'action' => 'index')); ?> > <?= $pole['Pole']['name'] ?>
+		</div>
+
 		<form id="search_form">	
 			<input type="text" name="search_learnings" id="search_learnings" placeholder="Rechercher un cours dans la catégorie <?= $pole['Pole']['name'] ?>" />
 		</form>

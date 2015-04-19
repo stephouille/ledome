@@ -16,7 +16,7 @@ $dark_grey: #444444;
 $color_header: #F3F3F3;
 $grey_text_header: #7A7A7A;
 
-
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
 @font-face {
 	font-family: 'effralight';
 	src: url('../font/EffraLight-Regular.ttf') format('truetype');
@@ -71,9 +71,10 @@ a.disabled {
 	}
 }
 
-body, html { height: 100%; font-family: 'effraregular', Helvetica, Arial, sans-serif; }
+body, html { height: 100%; font-family: 'Open Sans', Helvetica, Arial, sans-serif; }
 ul { list-style-type:none; padding: 0; margin: 0; }
 a { text-decoration: none; color: #000; }
+input { font-family: 'Open Sans', Helvetica, Arial, sans-serif; }
 
 h1 {
 	text-align: center;
@@ -106,7 +107,7 @@ button, .button {
 	height: 28px;
 	line-height: 25px;
 	font-size: .95em;
-	font-family: 'effraregular', Helvetica, Arial, sans-serif;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 	transition: background 0.5s;
 	&:hover {
 		background-color: $orange_hover;
@@ -125,6 +126,13 @@ button, .button {
 		}
 	}
 	
+}
+
+.filarianne {
+	font-size: .8em;
+	a {
+		text-decoration: underline;
+	}
 }
 
 
@@ -291,6 +299,7 @@ button, .button {
 			.button {
 				width: 50%;
 				margin: 20px auto 10px auto;
+				height: 36px;
 			}	
 		}
 	}
@@ -851,6 +860,13 @@ button, .button {
 							padding: 10px;
 							// height: 310px;
 							overflow: auto;
+							p {
+								span {
+									font-family: 'Open Sans', Helvetica, Arial, sans-serif !important;
+									font-size: 1em !important;
+									line-height: 1 !important;
+								}
+							}
 							ul {
 								list-style-type: circle;
 								padding-left: 20px;
@@ -916,23 +932,39 @@ button, .button {
 		float: left;
 		h3 {
 			font-size: 1.2em;
-			margin: 0 0 10px 0;
+			margin: 0 0 5px 0;
 			text-transform: uppercase;
 		}
-		img {
-			float: left;
+		.right_infos {
+			display: inline-block;
+			width: 75%;
 			vertical-align: top;
-			margin-right: 10px;
-		}
-		.name_professor {
-			font-style: italic;
-			color: $dark_grey;
-			line-height: 50px;
+			.difficulty {
+				line-height: 30px;
+				margin-bottom: 5px;
+				img {
+					margin-right: 10px;
+				}
+			}
+			#image_professor {
+				display: inline-block;
+				vertical-align: top;
+				margin-right: 10px;
+			}
+			.name_professor {
+				font-style: italic;
+				color: $dark_grey;
+				line-height: 50px;
+			}
 		}
 		.buttons_professor {
-			float: right;
+			display: inline-block;
+			width: 25%;
+			text-align: center;
+			position: relative;
 			a {
-				margin: 0px 20px 10% 0;
+				margin: 0px 20px 6% 0;
+				height: 26px;
 				background-color: #dbdbdb;
 				-webkit-box-shadow: none;
 				-moz-box-shadow: none;
@@ -952,10 +984,28 @@ button, .button {
 					padding-left: 14px;
 				}
 			}
+			#show_more_button {
+				display: none;
+				border: 1px solid #DDD;
+				border-radius: 3px;
+				position: absolute;
+				bottom: 30px;
+				right: -50px;
+				background: #FFF;
+				text-align: center;
+				padding: 5px 10px;
+				z-index: 999;
+				a {
+					text-decoration: underline;
+					background: none;
+					margin: 0;
+				}
+			}
 		}
 	}
 	#wrapper_annexes {
 		float: right;
+		position: relative;
 		width: 38%;
 		height: 23%;
 		border: 1px solid rgba(158, 158, 158, 0.3);
@@ -963,9 +1013,33 @@ button, .button {
 		padding: 0.5% 1%;
 		h3 {
 			font-size: 1.2em;
-			margin: 0 0 10px 0;
+			margin: 0 0 8px 0;
 			text-transform: uppercase;
 		}
+		.swiper-container {
+	        width: 85%;
+	        height: 70%;
+	        .swiper-slide {
+		        text-align: center;
+		        a {
+		        	height: 100%;
+		        	width: 100%;
+  					display: inline-block;
+  					img {
+						height: 70%;
+					}
+					p {
+						margin: 0;
+						width: 100%;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						font-size: .85em;
+						margin-top: 5px;
+					}
+		        }
+		    }
+	    }
 	}
 	#buttons_video_page {
 		.button {
@@ -1209,7 +1283,7 @@ button, .button {
 				display: inline-block;
 				vertical-align: top;
 				text-align: center;
-				background-color: cornsilk;
+				background-color: #EAEAEA;
 				margin-right: 4%;
 				margin-bottom: 10px;
 				&:last-child {
